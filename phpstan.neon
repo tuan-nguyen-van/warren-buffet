@@ -1,9 +1,9 @@
 parameters:
 	level: 9
-  paths:
-      - app
-      - config
-      - database
-      - resources/views
-      - routes
-      - tests
+	paths:	
+		- app
+		- config
+		- database
+		- resources/views
+		- routes
+		- tests
