@@ -1,9 +1,14 @@
 {
     "private": true,
+    "engines": {
+        "node": "16",
+        "npm": "8"
+    },
     "dependencies": {
-        "@emotion/react": "^11.10.0",
-        "@emotion/styled": "^11.10.0",
-        "@mui/material": "^5.10.1",
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "@mui/icons-material": "^5.10.3",
+        "@mui/material": "^5.10.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -15,20 +20,22 @@
     "devDependencies": {
         "@types/react": "^18.0.17",
         "@types/react-dom": "^18.0.6",
-        "@typescript-eslint/eslint-plugin": "^5.33.1",
+        "@typescript-eslint/eslint-plugin": "^5.37.0",
+        "@typescript-eslint/parser": "^5.37.0",
         "axios": "^0.27",
-        "eslint": "^8.22.0",
-        "eslint-config-standard-with-typescript": "^22.0.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-n": "^15.2.5",
-        "eslint-plugin-promise": "^6.0.0",
-        "eslint-plugin-react": "^7.30.1",
+        "eslint": "^8.23.1",
+        "eslint-plugin-react": "^7.31.8",
         "husky": "^8.0.1",
         "laravel-vite-plugin": "^0.5.0",
+        "lint-staged": "^13.0.3",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "prettier": "2.7.1",
-        "typescript": "^4.7.4",
+        "typescript": "^4.8.3",
         "vite": "^3.0.0"
+    },
+    "lint-staged": {
+        "*.{js,tsx}": "eslint --fix",
+        "*.{js,tsx,css,md}": "prettier --write"
     }
 }

@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 *.code-workspace
 *.php-cs-fixer.cache
+/--fix

@@ -1,21 +1,44 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'plugin:@typescript-eslint/recommended',
   ],
-  overrides: [
-  ],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
-  plugins: [
-    'react'
-  ],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
-  }
-}
+    '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'import/prefer-default-export': 'off',
+    'no-use-before-define': 'off',
+    'no-param-reassign': ['error', { props: false }],
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-closing-bracket-location': 'off',
+    'react/jsx-wrap-multilines': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/prop-types': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/state-in-constructor': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+};

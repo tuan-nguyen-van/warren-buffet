@@ -1,0 +1,36 @@
+@mixin font-40-imp {
+  font-size: 40px !important;
+}
+
+@mixin cursor-pointer-imp {
+  cursor: pointer !important;
+}
+
+@mixin margin-left-40-imp {
+  margin-left: 40px !important;
+}
+
+@mixin float-right {
+  float: right;
+}
+
+
+.home-icon {
+  @include font-40-imp;
+  @include cursor-pointer-imp;
+  @include margin-left-40-imp;
+}
+
+.menu-icon {
+  @include font-40-imp;
+  @include cursor-pointer-imp;
+}
+
+.avatar {
+  @include float-right;
+  @include cursor-pointer-imp;
+}
+
+.left-menu .MuiPaper-root {
+  top: 50px!important;
+}

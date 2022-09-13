@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "target": "es6",
+    "jsx": "react",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./resources/types"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "baseUrl": ".",
+    // "paths": {
+    //   "App/*": [
+    //     "resources/js/*"
+    //   ]
+    // }
+  },
+  "include": [
+    "resources/js"
+  ]
+}

@@ -15,5 +15,5 @@ else
   echo "Does not contain .php file"
 fi
 
-
 echo "pre commit hook finish"
+npx lint-staged
