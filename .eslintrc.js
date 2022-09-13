@@ -25,6 +25,48 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'default',
+        format: ['camelCase'],
+        filter: {
+          regex: globalExcludeRegexp,
+          match: false,
+        },
+      },
+      {
+        selector: 'variable',
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      },
+      {
+        selector: 'parameter',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow',
+      },
+      {
+        selector: 'memberLike',
+        modifiers: ['private'],
+        format: ['camelCase'],
+        leadingUnderscore: 'require',
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'property',
+        format: ['camelCase', 'snake_case', 'PascalCase'],
+        filter: {
+          regex: globalExcludeRegexp,
+          match: false,
+        },
+      },
+      {
+        selector: 'enumMember',
+        format: ['UPPER_CASE', 'camelCase'],
+      },
+    ],
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
     'no-param-reassign': ['error', { props: false }],
