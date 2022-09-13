@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Menu from './menu';
 
-export default function LeftMenu() {
+const LeftMenu = () => {
   return (
     <Container maxWidth={false}>
       <Grid
@@ -15,4 +15,6 @@ export default function LeftMenu() {
       </Grid>
     </Container>
   );
-}
+};
+
+export default LeftMenu;
