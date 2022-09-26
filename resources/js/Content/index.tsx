@@ -1,17 +1,13 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Menu from './menu';
+import SideBar from '../SideBar';
 
 const LeftMenu = () => {
   return (
     <Container maxWidth={false}>
-      <Grid
-        container
-        spacing={2}
-        sx={{ height: 50, marginTop: 0, paddingTop: 0 }}
-      >
-        <Menu></Menu>
+      <Grid container spacing={2} sx={{ height: 50, mt: 0, pd: 0 }}>
+        <SideBar />
       </Grid>
     </Container>
   );
