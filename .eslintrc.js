@@ -1,4 +1,4 @@
-const globalExcludeRegexp = '^(AppConfig|.+_Id)$';
+// const globalExcludeRegexp = '^(AppConfig|.+_Id)$';
 
 module.exports = {
   env: {

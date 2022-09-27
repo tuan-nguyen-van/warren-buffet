@@ -14,6 +14,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SideBarItem from './SideBarItem';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -63,15 +64,60 @@ const SideBar = () => {
     >
       <Drawer variant="permanent" open={menuOpen}>
         <List>
-          <SideBarItem text="Add Stock" icon={<AddCircleIcon />} />
-          <SideBarItem text="Stock List" icon={<ListAltIcon />} />
-          <SideBarItem text="Discount Rate: 8%" icon={<TrendingDownIcon />} />
+          <NavLink
+            to="add-stock"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem text="Add Stock" icon={<AddCircleIcon />} />
+          </NavLink>
+          <NavLink
+            to="stock-list"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem text="Stock List" icon={<ListAltIcon />} />
+          </NavLink>
+          <NavLink
+            to="discount-rate"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem text="Discount Rate: 8%" icon={<TrendingDownIcon />} />
+          </NavLink>
         </List>
         <Divider />
         <List>
-          <SideBarItem text="Stock tenets" icon={<AssignmentIcon />} />
-          <SideBarItem text="Financial index types" icon={<AnalyticsIcon />} />
-          <SideBarItem text="Famous Quotes" icon={<FormatQuoteIcon />} />
+          <NavLink
+            to="stock-tenets"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem text="Stock tenets" icon={<AssignmentIcon />} />
+          </NavLink>
+          <NavLink
+            to="finnancial-index-types"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem
+              text="Financial index types"
+              icon={<AnalyticsIcon />}
+            />
+          </NavLink>
+          <NavLink
+            to="famous-quotes"
+            className={({ isActive }) =>
+              isActive ? 'nav-active nav-link' : 'nav-link'
+            }
+          >
+            <SideBarItem text="Famous Quotes" icon={<FormatQuoteIcon />} />
+          </NavLink>
         </List>
       </Drawer>
       <Content />

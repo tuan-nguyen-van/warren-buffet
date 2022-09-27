@@ -30,3 +30,22 @@
   @include float-right;
   @include cursor-pointer-imp;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-active {
+  .MuiTypography-root {
+    color: #001d35;
+    font-weight: bold;
+  }
+  .MuiListItem-root {
+    background-color: #d3e3fd;
+    border-radius: 0 16px 16px 0;
+  }
+  .MuiSvgIcon-root path {
+    color: rgba(0, 0, 0, 0.84);
+  }
+}
