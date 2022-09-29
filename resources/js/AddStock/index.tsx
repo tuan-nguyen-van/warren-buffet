@@ -52,7 +52,7 @@ const AddStock = () => {
           <Grid item xs={12} lg={4}>
             <TextField fullWidth label="Website" variant="standard" />
           </Grid>
-          <Grid item xs={12} lg={2}>
+          <Grid item xs={12} lg={2} sx={{ textAlign: 'center' }}>
             <IconButton color="primary" size="large">
               <AddBoxIcon sx={{ fontSize: 50 }} />
             </IconButton>
