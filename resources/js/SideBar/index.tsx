@@ -100,7 +100,7 @@ const SideBar = () => {
             <SideBarItem text="Stock tenets" icon={<AssignmentIcon />} />
           </NavLink>
           <NavLink
-            to="finnancial-index-types"
+            to="financial-metrics"
             className={({ isActive }) =>
               isActive ? 'nav-active nav-link' : 'nav-link'
             }

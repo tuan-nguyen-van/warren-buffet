@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 const Content = () => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box component="div" sx={{ flexGrow: 1, p: 3 }}>
       <Outlet />
     </Box>
   );
