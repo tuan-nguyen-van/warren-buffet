@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\FinancialMetricController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('financial-metrics', FinancialMetricController::class);
+
+Route::resource('stocks', StockController::class)->except([
+    'create', 'edit',
+]);
+Route::resource('financial-metrics', FinancialMetricController::class)->except([
+    'create', 'edit',
+]);
 Route::get('/{name?}', function () {
     return view('app');
 });
