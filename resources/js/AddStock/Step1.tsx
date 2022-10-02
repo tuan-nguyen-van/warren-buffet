@@ -10,14 +10,15 @@ import EditIcon from '@mui/icons-material/Edit';
 
 type Props = {
   setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
+  stockId: number;
+  setStockId: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Step1 = ({ setDisableStep2 }: Props) => {
+const Step1 = ({ setDisableStep2, stockId, setStockId }: Props) => {
   const [tickerSymbol, setTickerSymbol] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [website, setWebsite] = useState('');
   const [disableStep1, setDisableStep1] = useState(false);
-  const [stockId, setStockId] = useState(0);
 
   const handleAddStock = () => {
     if (!stockId) {
