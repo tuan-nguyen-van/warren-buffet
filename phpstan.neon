@@ -9,3 +9,4 @@ parameters:
 		- tests
 	ignoreErrors:
 		- '#Call to an undefined static method App\\Models(.*)::.*#'
+		- '#Call to an undefined method Illuminate\\(.*)::.*#'
