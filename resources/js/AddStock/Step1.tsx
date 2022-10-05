@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
+import Divider from '@mui/material/Divider';
 
 type Props = {
   setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
@@ -54,7 +55,10 @@ const Step1 = ({ setDisableStep2, stockId, setStockId }: Props) => {
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
-      <Typography variant="h5">Step 1: Company Information</Typography>
+      <Divider>
+        <Typography variant="h5">Step 1: Company Information</Typography>
+      </Divider>
+
       <Grid container spacing={2}>
         <Grid item xs={6} lg={3}>
           <TextField

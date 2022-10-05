@@ -22,6 +22,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import Divider from '@mui/material/Divider';
 
 type Props = {
   disableStep2: boolean;
@@ -212,11 +213,18 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
+      <Divider>
+        <Typography
+          variant="h5"
+          sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
+        >
+          Step 2: Growth rate
+        </Typography>
+      </Divider>
       <Typography
         variant="h5"
         sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
       >
-        Step 2: Growth rate <br />
         {editID ? `(Edit ID: ${editID})` : ''}
       </Typography>
       <Grid container spacing={2}>
