@@ -46,6 +46,8 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
   for (let i = currentYear - 12; i < currentYear; i++) {
     years.push(i);
   }
+  const chosenYearsFrom = years.filter((year) => year <= currentYear - 4);
+  const chosenYearsTo = years.filter((year) => year > currentYear - 6);
 
   const [EPS, setEPS] = useState('');
   const [money_dividend, setMoney_dividend] = useState('');
@@ -58,6 +60,14 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
   const [profitError, setProfitError] = useState(false);
   const [tableDatas, setTableDatas] = useState<TableData[]>([]);
   const [editID, setEditID] = useState(0);
+  const [growthRatesText, setGrowthRatesText] = useState('');
+  const [fromYear, setFromYear] = useState('');
+  const [fromYearError, setFromYearError] = useState(false);
+  const [fromYearErrorText, setFromYearErrorText] = useState('');
+  const [toYear, setToYear] = useState('');
+  const [toYearError, setToYearError] = useState(false);
+  const [toYearErrorText, setToYearErrorText] = useState('');
+  const [averageGrowthRate, setAverageGrowthRate] = useState('');
 
   const addStockData = () => {
     // Validate Year, EPS, Profit
@@ -143,22 +153,57 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
     setROEA('');
   };
 
-  const handleCalculate = () => {
+  const handleCalculation = () => {
     if (tableDatas.length < 3) {
       alert('Need at least 3 year records to start calculation');
     }
-    //Send a post request to server for staring calculation.
     axios
-      .post('/financial-metrics', stockData)
+      .post('/calculate-growth-rates', { stock_id: stockId })
       .then(function (response) {
-        setTableDatas([
-          ...tableDatas,
-          {
-            id: +response.data.id,
-            ...stockData,
-          },
-        ]);
-        resetInputs();
+        let text = '';
+        for (const [key, value] of Object.entries(response.data)) {
+          text += ` ${key}: ${value};`;
+        }
+        setGrowthRatesText(text.trim());
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleCaculateChosenYears = () => {
+    //Validate from year and to year must have value
+    if (!fromYear) {
+      setFromYearError(true);
+      setFromYearErrorText('Choose year');
+    } else {
+      setFromYearError(false);
+      setFromYearErrorText('');
+    }
+
+    if (!toYear) {
+      setToYearError(true);
+      setToYearErrorText('Choose year');
+    } else {
+      setToYearError(false);
+      setToYearErrorText('Choose year');
+    }
+
+    if (toYear < 3 + fromYear) {
+      setToYearError(true);
+      setFromYearError(true);
+      setToYearErrorText('Choose To Year at least From Year plus 3');
+    }
+
+    //Send years to server with stockID
+    axios
+      .post('/calculate-growth-rate-with-chosen-years', {
+        stock_id: stockId,
+        fromYear: fromYear,
+        toYear: toYear,
+      })
+      .then(function (response) {
+        setAverageGrowthRate(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -166,12 +211,13 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
+    <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
       <Typography
         variant="h5"
         sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
       >
-        Step 2: {editID ? `(Edit ID: ${editID})` : ''}
+        Step 2: Growth rate <br />
+        {editID ? `(Edit ID: ${editID})` : ''}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
@@ -323,10 +369,86 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      {growthRatesText && (
+        <Box component="div" sx={{ textAlign: 'left', mt: 4 }}>
+          {growthRatesText}
+        </Box>
+      )}
       <Box component="div" sx={{ textAlign: 'center' }}>
-        <Button variant="contained" sx={{ mt: 8 }} onClick={handleCalculate}>
+        <Button variant="contained" sx={{ mt: 4 }} onClick={handleCalculation}>
           <CalculateIcon sx={{ mr: 0.5 }} /> Calculate Growth Rates
         </Button>
+      </Box>
+
+      <Box component="div" sx={{ textAlign: 'center', mt: 5 }}>
+        <Typography variant="h5">
+          Decide chosen years to calculate growth rate for this stock.
+        </Typography>
+        <Typography variant="h5" sx={{ mt: 3 }}>
+          Average growth rate from {fromYear ? fromYear : '(year)'} to{' '}
+          {toYear ? toYear : '(year)'} : {averageGrowthRate}
+        </Typography>
+        <Grid container spacing={0} sx={{ textAlign: 'center', mt: 2 }}>
+          <Grid item xs={0} lg={3} />
+          <Grid item xs={6} lg={2} sx={{ mr: 1 }}>
+            <FormControl fullWidth error={fromYearError}>
+              <InputLabel id="year-label">From Year</InputLabel>
+              <Select
+                labelId="year-label"
+                value={fromYear}
+                label="Year"
+                onChange={(e) => setFromYear(e.target.value)}
+                fullWidth
+                variant="standard"
+                sx={{ position: 'relative', mt: 2 }}
+              >
+                {chosenYearsFrom.map((year) => (
+                  <MenuItem value={year} key={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+              </Select>
+              {fromYearError && (
+                <FormHelperText>{fromYearErrorText}</FormHelperText>
+              )}
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={6} lg={2} sx={{ ml: 1 }}>
+            <FormControl fullWidth error={toYearError}>
+              <InputLabel id="year-label">To Year</InputLabel>
+              <Select
+                labelId="year-label"
+                value={toYear}
+                label="Year"
+                onChange={(e) => setToYear(e.target.value)}
+                fullWidth
+                variant="standard"
+                sx={{ position: 'relative', mt: 2 }}
+              >
+                {chosenYearsTo.map((year) => (
+                  <MenuItem value={year} key={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+              </Select>
+              {toYearError && (
+                <FormHelperText>{toYearErrorText}</FormHelperText>
+              )}
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={6} lg={2} sx={{ textAlign: 'left', ml: 2 }}>
+            <Button
+              variant="contained"
+              sx={{ mt: 1.5 }}
+              onClick={handleCaculateChosenYears}
+            >
+              <CalculateIcon sx={{ mr: 0.5 }} /> Calculate
+            </Button>
+          </Grid>
+          <Grid item xs={0} lg={3} />
+        </Grid>
       </Box>
     </Box>
   );

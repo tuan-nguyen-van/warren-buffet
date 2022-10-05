@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Typography from '@mui/material/Typography';
+import Step3 from './Step3';
 
 const AddStock = () => {
   const [disableStep2, setDisableStep2] = useState(true);
@@ -16,6 +17,7 @@ const AddStock = () => {
         setStockId={setStockId}
       />
       <Step2 disableStep2={disableStep2} stockId={stockId} />
+      <Step3 />
     </div>
   );
 };

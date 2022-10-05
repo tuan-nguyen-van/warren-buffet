@@ -54,7 +54,7 @@ const Step1 = ({ setDisableStep2, stockId, setStockId }: Props) => {
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
-      <Typography variant="h5">Step 1</Typography>
+      <Typography variant="h5">Step 1: Company Information</Typography>
       <Grid container spacing={2}>
         <Grid item xs={6} lg={3}>
           <TextField
