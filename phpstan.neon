@@ -10,3 +10,4 @@ parameters:
 	ignoreErrors:
 		- '#Call to an undefined static method App\\Models(.*)::.*#'
 		- '#Call to an undefined method Illuminate\\(.*)::.*#'
+		- '#Access to an undefined property Illuminate\\Http\\(.*)::.*#'
