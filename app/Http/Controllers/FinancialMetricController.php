@@ -36,4 +36,16 @@ class FinancialMetricController extends Controller
 
         return 'success';
     }
+
+    /**
+     * @param int $stockId
+     * 
+     * @return FinancialMetric[]
+     */
+    public function show($stockId)
+    {
+        $financialMetrics = FinancialMetric::where('stock_id', $stockId)->orderBy('year')->get();
+
+        return $financialMetrics;
+    }
 }

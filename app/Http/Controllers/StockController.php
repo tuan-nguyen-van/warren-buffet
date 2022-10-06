@@ -30,16 +30,17 @@ class StockController extends Controller
         return $stock->id;
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Stock  $stock
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Stock $stock)
-    // {
-    //     //
-    // }
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Stock $stock
+     *
+     * @return \App\Models\Stock
+     */
+    public function show(Stock $stock)
+    {
+        return $stock;
+    }
 
     /**
      * Update the specified resource in storage.

@@ -42,10 +42,31 @@ class GrowthRateController extends Controller
                 'year_to' => $financialMetrics[$i + 1]->year,
                 'value' => $growthRate,
             ]);
-            $calculatedGrowthRates[$financialMetrics[$i]->year . '-' . $financialMetrics[$i + 1]->year] = $growthRate . '%';
+            $calculatedGrowthRates[$this->formatYears($financialMetrics[$i]->year, $financialMetrics[$i + 1]->year)] = $growthRate . '%';
         }
 
         return $calculatedGrowthRates;
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public function show(int $stockId)
+    {
+        // Get all the growth rate for stockId then return array like calculate method above
+        $calculatedGrowthRates = GrowthRate::where('stock_id', $stockId)
+            ->where('chosen', 0)->get();
+        $growthRates = [];
+        foreach ($calculatedGrowthRates as $calculatedGrowthRate) {
+            $growthRates[$this->formatYears($calculatedGrowthRate->year_from, $calculatedGrowthRate->year_to)] = $calculatedGrowthRate->value . '%';
+        }
+
+        return $growthRates;
+    }
+
+    private function formatYears(string $yearFrom, string $yearTo): string
+    {
+        return $yearFrom . '-' . $yearTo;
     }
 
     /**
@@ -109,6 +130,8 @@ class GrowthRateController extends Controller
             1 / ($request->toYear - $request->fromYear)
         ) - 1;
 
+        $averageGrowthRate = round($averageGrowthRate * 100, 2);
+
         GrowthRate::create([
             'stock_id' => $request->stock_id,
             'year_from' => $request->fromYear,
@@ -117,7 +140,19 @@ class GrowthRateController extends Controller
             'chosen' => 1,
         ]);
 
-        return (string) round($averageGrowthRate * 100, 1) . '%';
+        return (string) $averageGrowthRate;
+    }
+
+    /**
+     * @param int $stockId
+     *
+     * @return GrowthRate
+     */
+    public function getChosen($stockId)
+    {
+        $chosenGrowthRate = GrowthRate::where('stock_id', $stockId)->where('chosen', 1)->first();
+
+        return $chosenGrowthRate;
     }
 
     // /**
