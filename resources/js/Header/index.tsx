@@ -40,7 +40,7 @@ const Header: React.FunctionComponent = () => {
         <Grid item xs={2}>
           <Avatar
             alt="avatar"
-            src="images/warren-buffett.png"
+            src="/images/warren-buffett.png"
             className="avatar"
           />
         </Grid>

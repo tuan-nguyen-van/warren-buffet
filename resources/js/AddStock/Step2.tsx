@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -27,6 +27,8 @@ import Divider from '@mui/material/Divider';
 type Props = {
   disableStep2: boolean;
   stockId: number;
+  edit: boolean;
+  setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type TableData = {
@@ -38,9 +40,26 @@ type TableData = {
   stock_dividend: number;
   profit: number;
   ROEA: number;
+  created_at?: string;
+  updated_at?: string;
 };
 
-const Step2 = ({ disableStep2, stockId }: Props) => {
+type ChosenData = {
+  chosen: number;
+  created_at: string;
+  id: number;
+  stock_id: number;
+  updated_at: string;
+  value: string;
+  year_from: string;
+  year_to: string;
+};
+
+type GrowthTextData = {
+  [index: string]: string;
+};
+
+const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
   const [year, setYear] = useState('');
   const currentYear = new Date().getFullYear();
   const years = [];
@@ -69,6 +88,54 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
   const [toYearError, setToYearError] = useState(false);
   const [toYearErrorText, setToYearErrorText] = useState('');
   const [averageGrowthRate, setAverageGrowthRate] = useState('');
+
+  const getGrowthRatesText = (data: GrowthTextData) => {
+    let text = '';
+    for (const [key, value] of Object.entries(data)) {
+      text += ` ${key}: ${value};`;
+    }
+    setGrowthRatesText(text.trim());
+  };
+
+  console.log(stockId);
+  useEffect(() => {
+    if (stockId && edit) {
+      axios
+        .get('/financial-metrics/' + stockId)
+        .then(function (response) {
+          setTableDatas(response.data);
+          setDisableStep2(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      axios
+        .get('/calculated-growth-rates/' + stockId)
+        .then(function (response) {
+          getGrowthRatesText(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [stockId, edit]);
+
+  useEffect(() => {
+    if (stockId && edit) {
+      axios
+        .get('/chosen-growth-rates/' + stockId)
+        .then(function (response) {
+          const data: ChosenData = response.data;
+          setFromYear(data.year_from);
+          setToYear(data.year_to);
+          setAverageGrowthRate(data.value + '%');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [stockId, edit]);
 
   const addStockData = () => {
     // Validate Year, EPS, Profit
@@ -161,11 +228,7 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
     axios
       .post('/calculate-growth-rates', { stock_id: stockId })
       .then(function (response) {
-        let text = '';
-        for (const [key, value] of Object.entries(response.data)) {
-          text += ` ${key}: ${value};`;
-        }
-        setGrowthRatesText(text.trim());
+        getGrowthRatesText(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -189,8 +252,9 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
       setToYearError(false);
       setToYearErrorText('Choose year');
     }
-
-    if (toYear < 3 + fromYear) {
+    console.log(toYear, fromYear);
+    if (+toYear < 3 + parseInt(fromYear)) {
+      console.log(toYear, fromYear);
       setToYearError(true);
       setFromYearError(true);
       setToYearErrorText('Choose To Year at least From Year plus 3');
@@ -204,7 +268,7 @@ const Step2 = ({ disableStep2, stockId }: Props) => {
         toYear: toYear,
       })
       .then(function (response) {
-        setAverageGrowthRate(response.data);
+        setAverageGrowthRate(response.data + '%');
       })
       .catch(function (error) {
         console.log(error);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
@@ -13,13 +13,39 @@ type Props = {
   setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
   stockId: number;
   setStockId: React.Dispatch<React.SetStateAction<number>>;
+  edit: boolean;
 };
 
-const Step1 = ({ setDisableStep2, stockId, setStockId }: Props) => {
+type StockData = {
+  ticker_symbol: string;
+  company_name: string;
+  website: string;
+  id: number;
+};
+
+const Step1 = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
   const [tickerSymbol, setTickerSymbol] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [website, setWebsite] = useState('');
   const [disableStep1, setDisableStep1] = useState(false);
+
+  //Retrieve information for editStockId
+  useEffect(() => {
+    if (stockId && edit) {
+      axios
+        .get('/stocks/' + stockId)
+        .then(function (response) {
+          const data: StockData = response.data;
+          setTickerSymbol(data.ticker_symbol);
+          setCompanyName(data.company_name);
+          setWebsite(data.website);
+          setDisableStep1(true);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [stockId, edit]);
 
   const handleAddStock = () => {
     if (!stockId) {
@@ -54,7 +80,7 @@ const Step1 = ({ setDisableStep2, stockId, setStockId }: Props) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
+    <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7, mt: 4 }}>
       <Divider>
         <Typography variant="h5">Step 1: Company Information</Typography>
       </Divider>
