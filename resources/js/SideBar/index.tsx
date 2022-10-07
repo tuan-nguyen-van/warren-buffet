@@ -15,6 +15,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SideBarItem from './SideBarItem';
 import { NavLink } from 'react-router-dom';
+import { getDiscountRate } from '../DiscountRate/discountSlice';
 
 const drawerWidth = 240;
 
@@ -58,6 +59,8 @@ const Drawer = styled(MuiDrawer, {
 
 const SideBar = () => {
   const menuOpen = useAppSelector(selectOpen);
+  const discountRate = useAppSelector(getDiscountRate);
+
   return (
     <Box
       sx={{ display: 'flex', '& .MuiPaper-root': { top: '50px !important' } }}
@@ -86,7 +89,10 @@ const SideBar = () => {
               isActive ? 'nav-active nav-link' : 'nav-link'
             }
           >
-            <SideBarItem text="Discount Rate: 8%" icon={<TrendingDownIcon />} />
+            <SideBarItem
+              text={`Discount Rate: ${discountRate}%`}
+              icon={<TrendingDownIcon />}
+            />
           </NavLink>
         </List>
         <Divider />

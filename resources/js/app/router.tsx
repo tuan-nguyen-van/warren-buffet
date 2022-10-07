@@ -6,6 +6,7 @@ import {
 import App from './App';
 import AddStock from '../AddStock';
 import React from 'react';
+import DiscountRate from '../DiscountRate';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,7 +14,7 @@ const router = createBrowserRouter(
       <Route path="add-stock" element={<AddStock />} />
       <Route path="edit-stock/:editStockId" element={<AddStock />} />
       <Route path="stock-list" element={<h1>Stock List</h1>} />
-      <Route path="discount-rate" element={<h1>Discount Rate</h1>} />
+      <Route path="discount-rate" element={<DiscountRate />} />
       <Route path="stock-tenets" element={<h1>Stock Tenets</h1>} />
       <Route path="financial-metrics" element={<h1>Finnancial Metrics</h1>} />
       <Route path="famous-quotes" element={<h1>Famous Quotes</h1>} />
