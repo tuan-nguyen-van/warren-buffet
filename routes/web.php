@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ChosenEpsController;
+use App\Http\Controllers\DiscountRateController;
 use App\Http\Controllers\FinancialMetricController;
 use App\Http\Controllers\GrowthAssumptionController;
 use App\Http\Controllers\GrowthRateController;
@@ -42,6 +43,10 @@ Route::get('growth_assumptions', [GrowthAssumptionController::class, 'show']);
 Route::post('chosen-eps', [ChosenEpsController::class, 'store']);
 
 Route::get('chosen-eps/{stockId}', [ChosenEpsController::class, 'show']);
+
+Route::post('store-discount-rate', [DiscountRateController::class, 'store']);
+
+Route::get('get-discount-rate', [DiscountRateController::class, 'show']);
 
 Route::get('/{all?}', function () {
     return view('app');
