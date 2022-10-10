@@ -462,8 +462,8 @@ const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
         </Typography>
         <Grid container spacing={0} sx={{ textAlign: 'center', mt: 2 }}>
           <Grid item xs={0} lg={3} />
-          <Grid item xs={6} lg={2} sx={{ mr: 1 }}>
-            <FormControl fullWidth error={fromYearError}>
+          <Grid item xs={6} lg={2} sx={{ mr: 1, ml: 1 }}>
+            <FormControl fullWidth error={fromYearError} sx={{ mt: 2 }}>
               <InputLabel id="year-label">From Year</InputLabel>
               <Select
                 labelId="year-label"
@@ -486,8 +486,8 @@ const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={6} lg={2} sx={{ ml: 1 }}>
-            <FormControl fullWidth error={toYearError}>
+          <Grid item xs={6} lg={2} sx={{ ml: 1, mr: 1 }}>
+            <FormControl fullWidth error={toYearError} sx={{ mt: 2 }}>
               <InputLabel id="year-label">To Year</InputLabel>
               <Select
                 labelId="year-label"
@@ -510,7 +510,7 @@ const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={6} lg={2} sx={{ textAlign: 'left', ml: 2 }}>
+          <Grid item xs={6} lg={2} sx={{ textAlign: 'left', ml: 2, mt: 2 }}>
             <Button
               variant="contained"
               sx={{ mt: 1.5 }}

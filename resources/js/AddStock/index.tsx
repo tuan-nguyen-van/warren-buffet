@@ -3,6 +3,7 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import { useParams } from 'react-router-dom';
+import Step4 from './Step4';
 
 const AddStock = () => {
   const [disableStep2, setDisableStep2] = useState(true);
@@ -24,6 +25,7 @@ const AddStock = () => {
         setDisableStep2={setDisableStep2}
       />
       <Step3 stockId={stockId} edit={editStockId ? true : false} />
+      <Step4 stockId={stockId} edit={editStockId ? true : false} />
     </div>
   );
 };
