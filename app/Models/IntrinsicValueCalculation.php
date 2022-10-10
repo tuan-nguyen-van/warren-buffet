@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChosenEps extends Model
+class IntrinsicValueCalculation extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,4 @@ class ChosenEps extends Model
      * @var string[] $guarded
      */
     protected $guarded = [];
-
-    /**
-     * @property chosen_eps
-     */
 }

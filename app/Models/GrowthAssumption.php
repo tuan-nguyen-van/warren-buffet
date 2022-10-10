@@ -14,4 +14,9 @@ class GrowthAssumption extends Model
      * @var string[] $guarded
      */
     protected $guarded = [];
+
+    /**
+     * @property string next_10_years
+     * @property string next_10_to_20_years
+     */
 }

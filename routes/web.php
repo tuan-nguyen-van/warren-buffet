@@ -7,6 +7,7 @@ use App\Http\Controllers\DiscountRateController;
 use App\Http\Controllers\FinancialMetricController;
 use App\Http\Controllers\GrowthAssumptionController;
 use App\Http\Controllers\GrowthRateController;
+use App\Http\Controllers\IntrinsicValueCalculationController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,17 +37,21 @@ Route::get('/calculated-growth-rates/{stockId}', [GrowthRateController::class, '
 
 Route::post('/calculate-growth-rate-with-chosen-years', [GrowthRateController::class, 'calculateForChosenYears']);
 
-Route::post('growth_assumptions', [GrowthAssumptionController::class, 'store']);
+Route::post('/growth_assumptions', [GrowthAssumptionController::class, 'store']);
 
-Route::get('growth_assumptions', [GrowthAssumptionController::class, 'show']);
+Route::get('/growth_assumptions', [GrowthAssumptionController::class, 'show']);
 
-Route::post('chosen-eps', [ChosenEpsController::class, 'store']);
+Route::post('/chosen-eps', [ChosenEpsController::class, 'store']);
 
-Route::get('chosen-eps/{stockId}', [ChosenEpsController::class, 'show']);
+Route::get('/chosen-eps/{stockId}', [ChosenEpsController::class, 'show']);
 
-Route::post('store-discount-rate', [DiscountRateController::class, 'store']);
+Route::post('/store-discount-rate', [DiscountRateController::class, 'store']);
 
-Route::get('get-discount-rate', [DiscountRateController::class, 'show']);
+Route::get('/get-discount-rate', [DiscountRateController::class, 'show']);
+
+Route::post('/calculate-intrinsic-value', [IntrinsicValueCalculationController::class, 'store']);
+
+Route::get('/intrinsic-value-calculation/{stockId}', [IntrinsicValueCalculationController::class, 'show']);
 
 Route::get('/{all?}', function () {
     return view('app');
