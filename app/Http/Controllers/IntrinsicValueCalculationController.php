@@ -13,7 +13,7 @@ class IntrinsicValueCalculationController extends Controller
     /** @var array<array<mixed>> $calculationStep */
     private $calculationStep = [];
 
-    /** @var array<mixed|array<mixed>> $steps */
+    /** @var array<string|int,int|float|mixed[]> $steps */
     private $steps = [];
 
     /** 
@@ -26,6 +26,8 @@ class IntrinsicValueCalculationController extends Controller
 
         // Get the growth assumption option 1 and option 2 from db
         $growthAssuptions = GrowthAssumption::where('stock_id', $stockId)->orderBy('option')->get();
+
+        $discountRate = DiscountRate::first()->value / 100;
 
         foreach ($growthAssuptions as $growthAssuption) {
             $this->steps = [];
@@ -48,7 +50,6 @@ class IntrinsicValueCalculationController extends Controller
             // For remained years, we assumed the growth rate is flat (0%)
             // So the intrinsic value of company from 20+1 years to infinity is
             // $totalRemainedYearValue = $discountedValue(20 + 1) * $futureValue(20) * $discount rate
-            $discountRate = DiscountRate::first()->value / 100;
             $totalRemainedYearValue = round(round((1 - $discountRate) ** 21, 2)
                 * $this->steps[$year - 1]['future_value']
                 / $discountRate, 2);
@@ -69,7 +70,6 @@ class IntrinsicValueCalculationController extends Controller
 
         IntrinsicValueCalculation::create([
             'stock_id' => $stockId,
-            /** @phpstan-ignore-next-line */
             'discount_rate' => $discountRate * 100,
             'calculation_step' => json_encode($this->calculationStep),
         ]);
@@ -81,6 +81,7 @@ class IntrinsicValueCalculationController extends Controller
     {
         $baseYear = (int) date('Y') - 1;
         $futureValue = round((1 + $growthRate) ** ($year - $baseYear), 2);
+        /** @phpstan-ignore-next-line */
         $this->steps[$year]['future_value'] = $futureValue;
         $discountedValueForYears = $this->discountedValueForYears();
         $this->steps[$year]['discounted_value'] = $discountedValueForYears[$year];
