@@ -13,7 +13,7 @@
     "jsx": "react",
     "typeRoots": [
       "./node_modules/@types",
-      "./resources/types"
+      "resources/js/types"
     ],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

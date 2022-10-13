@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { DataValue } from './Step4';
+import { DataValue } from './Calculation';
 import { Typography } from '@mui/material';
 
 type Props = {
@@ -29,11 +29,11 @@ const CalculationTable = ({ option }: Props) => {
   const [yearDatas, setYearDatas] = useState<YearDatas>([]);
   useEffect(() => {
     const entries = Object.entries(option);
-    // @ts-ignore
-    setYearDatas(entries.filter((entry) => Number.isInteger(+entry[0])));
+    setYearDatas(
+      entries.filter((entry) => Number.isInteger(+entry[0])) as YearDatas
+    );
   }, [option]);
 
-  console.log(yearDatas);
   return (
     <TableContainer component={Paper} sx={{ mt: 4 }}>
       <Table sx={{ minWidth: 650 }} aria-label="spanning table">

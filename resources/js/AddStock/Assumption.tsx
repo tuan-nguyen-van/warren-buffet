@@ -10,11 +10,11 @@ type Props = {
   edit: boolean;
 };
 
-const Step3 = ({ stockId, edit }: Props) => {
+const Assumption = ({ stockId, edit }: Props) => {
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
       <Divider>
-        <Typography variant="h5">Step 3: Assumption</Typography>
+        <Typography variant="h5">Step 4: Assumption</Typography>
       </Divider>
 
       <AssumedOption option={1} stockId={stockId} edit={edit} />
@@ -24,4 +24,4 @@ const Step3 = ({ stockId, edit }: Props) => {
   );
 };
 
-export default Step3;
+export default Assumption;

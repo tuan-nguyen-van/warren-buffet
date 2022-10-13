@@ -33,7 +33,7 @@ export type DataValue = {
   chosen_eps: number;
 };
 
-const Step4 = ({ edit, stockId }: Props) => {
+const Calculation = ({ edit, stockId }: Props) => {
   const [data, setData] = useState<Data>([]);
 
   const handleCalculation = () => {
@@ -67,7 +67,7 @@ const Step4 = ({ edit, stockId }: Props) => {
   return (
     <Box component="div" sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
       <Divider>
-        <Typography variant="h5">Step 4: Calculation</Typography>
+        <Typography variant="h5">Step 5: Calculation</Typography>
       </Divider>
 
       <Box component="div" sx={{ textAlign: 'center' }}>
@@ -83,4 +83,4 @@ const Step4 = ({ edit, stockId }: Props) => {
   );
 };
 
-export default Step4;
+export default Calculation;

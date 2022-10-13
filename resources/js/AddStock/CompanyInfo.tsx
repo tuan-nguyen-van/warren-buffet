@@ -23,7 +23,7 @@ type StockData = {
   id: number;
 };
 
-const Step1 = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
+const CompanyInfo = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
   const [tickerSymbol, setTickerSymbol] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [website, setWebsite] = useState('');
@@ -138,4 +138,4 @@ const Step1 = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
   );
 };
 
-export default Step1;
+export default CompanyInfo;

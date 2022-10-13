@@ -59,7 +59,12 @@ type GrowthTextData = {
   [index: string]: string;
 };
 
-const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
+const GrowthRate = ({
+  disableStep2,
+  stockId,
+  edit,
+  setDisableStep2,
+}: Props) => {
   const [year, setYear] = useState('');
   const currentYear = new Date().getFullYear();
   const years = [];
@@ -282,7 +287,7 @@ const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
           variant="h5"
           sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
         >
-          Step 2: Growth rate
+          Step 3: Growth rate
         </Typography>
       </Divider>
       <Typography
@@ -526,4 +531,4 @@ const Step2 = ({ disableStep2, stockId, edit, setDisableStep2 }: Props) => {
   );
 };
 
-export default Step2;
+export default GrowthRate;

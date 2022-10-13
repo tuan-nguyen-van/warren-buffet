@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
+import CompanyInfo from './CompanyInfo';
+import GrowthRate from './GrowthRate';
+import Assumption from './Assumption';
 import { useParams } from 'react-router-dom';
-import Step4 from './Step4';
+import Calculation from './Calculation';
+import CheckTenets from './CheckTenets';
 
 const AddStock = () => {
   const [disableStep2, setDisableStep2] = useState(true);
@@ -12,20 +13,21 @@ const AddStock = () => {
 
   return (
     <div style={{ width: '100%', textAlign: 'center' }}>
-      <Step1
+      <CompanyInfo
         setDisableStep2={setDisableStep2}
         stockId={stockId}
         setStockId={setStockId}
         edit={editStockId ? true : false}
       />
-      <Step2
+      <CheckTenets />
+      <GrowthRate
         disableStep2={disableStep2}
         stockId={stockId}
         edit={editStockId ? true : false}
         setDisableStep2={setDisableStep2}
       />
-      <Step3 stockId={stockId} edit={editStockId ? true : false} />
-      <Step4 stockId={stockId} edit={editStockId ? true : false} />
+      <Assumption stockId={stockId} edit={editStockId ? true : false} />
+      <Calculation stockId={stockId} edit={editStockId ? true : false} />
     </div>
   );
 };
