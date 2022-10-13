@@ -56,6 +56,14 @@ Route::get('/intrinsic-value-calculation/{stockId}', [IntrinsicValueCalculationC
 
 Route::get('/tenet-types', [TenetController::class, 'tenetTypes']);
 
+Route::post('/tenets', [TenetController::class, 'store']);
+
+Route::get('/tenets', [TenetController::class, 'index']);
+
+Route::put('/tenets/{tenet}', [TenetController::class, 'update']);
+
+Route::delete('/tenets/{tenet}', [TenetController::class, 'destroy']);
+
 Route::get('/{all?}', function () {
     return view('app');
 })->where(['all' => '.*']);
