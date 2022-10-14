@@ -6,36 +6,16 @@ import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import axios from 'axios';
 import CalculationTable from './CalculationTable';
+import { useAppSelector } from '../app/redux-hooks';
+import { getAddStockState } from './addStockSlice';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-  edit: boolean;
-  stockId: number;
-};
+type Data = App.AddStock.Calculation.DataValue[];
 
-type Data = DataValue[];
-
-export type DataValue = {
-  [index: string]:
-    | {
-        discounted_value?: number;
-        future_value?: number;
-        intrinsic_value: number;
-        growth_rate?: number;
-      }
-    | number
-    | string;
-  total_pe: number;
-  total_remained_years: { intrinsic_value: number };
-  intrinsic_price: number;
-  option: number;
-  next_10_years: string;
-  next_10_to_20_years: string;
-  chosen_eps: number;
-};
-
-const Calculation = ({ edit, stockId }: Props) => {
+const Calculation = () => {
   const [data, setData] = useState<Data>([]);
-
+  const { stockId } = useAppSelector(getAddStockState);
+  const { editStockId } = useParams();
   const handleCalculation = () => {
     axios
       .post('/calculate-intrinsic-value', {
@@ -51,7 +31,7 @@ const Calculation = ({ edit, stockId }: Props) => {
   };
 
   useEffect(() => {
-    if (edit && stockId) {
+    if (editStockId && stockId) {
       axios
         .get('/intrinsic-value-calculation/' + stockId)
         .then(function (response) {
@@ -62,7 +42,7 @@ const Calculation = ({ edit, stockId }: Props) => {
           console.log(error);
         });
     }
-  }, []);
+  }, [editStockId, stockId]);
 
   return (
     <Box component="div" sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>

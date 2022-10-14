@@ -12,8 +12,8 @@ import Tenets from '../Tenets';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="add-stock" element={<AddStock />} />
-      <Route path="edit-stock/:editStockId" element={<AddStock />} />
+      <Route path="add-stock" element={<AddStock key="add" />} />
+      <Route path="edit-stock/:editStockId" element={<AddStock key="edit" />} />
       <Route path="stock-list" element={<h1>Stock List</h1>} />
       <Route path="discount-rate" element={<DiscountRate />} />
       <Route path="stock-tenets" element={<Tenets />} />

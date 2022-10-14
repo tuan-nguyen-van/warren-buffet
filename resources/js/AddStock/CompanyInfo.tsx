@@ -8,12 +8,12 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
+import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
+import { getAddStockState, changeStockId } from './addStockSlice';
+import { useParams } from 'react-router-dom';
 
 type Props = {
   setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
-  stockId: number;
-  setStockId: React.Dispatch<React.SetStateAction<number>>;
-  edit: boolean;
 };
 
 type StockData = {
@@ -23,15 +23,18 @@ type StockData = {
   id: number;
 };
 
-const CompanyInfo = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
+const CompanyInfo = ({ setDisableStep2 }: Props) => {
+  const { stockId } = useAppSelector(getAddStockState);
   const [tickerSymbol, setTickerSymbol] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [website, setWebsite] = useState('');
   const [disableStep1, setDisableStep1] = useState(false);
+  const dispatch = useAppDispatch();
+  const { editStockId } = useParams();
 
   //Retrieve information for editStockId
   useEffect(() => {
-    if (stockId && edit) {
+    if (editStockId && stockId) {
       axios
         .get('/stocks/' + stockId)
         .then(function (response) {
@@ -45,7 +48,7 @@ const CompanyInfo = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
           console.log(error);
         });
     }
-  }, [stockId, edit]);
+  }, [stockId, editStockId]);
 
   const handleAddStock = () => {
     if (!stockId) {
@@ -58,7 +61,7 @@ const CompanyInfo = ({ setDisableStep2, stockId, setStockId, edit }: Props) => {
         .then(function (response) {
           setDisableStep1(true);
           setDisableStep2(false);
-          setStockId(response.data);
+          dispatch(changeStockId(response.data as number));
         })
         .catch(function (error) {
           console.log(error);

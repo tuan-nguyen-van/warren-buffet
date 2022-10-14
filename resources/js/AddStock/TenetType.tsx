@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
+import EachTenetAndNote from './EachTenetAndNote';
 
 type Props = {
   tenets: App.Tenet[];
   type: string;
   index: number;
   count: number;
+  stockHasTenets?: App.StockHasTenet[];
 };
 
 const verticallyCenter = {
@@ -21,13 +19,7 @@ const verticallyCenter = {
   transform: 'translateY(-50%)',
 };
 
-const TenetType = ({ tenets, type, index, count }: Props) => {
-  const handleChange = (e: React.SyntheticEvent<Element, Event>) => {
-    console.log((e.target as HTMLInputElement).getAttribute('name'));
-  };
-
-  const [checked] = useState(false);
-
+const TenetType = ({ tenets, type, index, count, stockHasTenets }: Props) => {
   return (
     <Grid container>
       <Grid item xs={2} sx={{ position: 'relative' }}>
@@ -38,28 +30,11 @@ const TenetType = ({ tenets, type, index, count }: Props) => {
       <Grid item xs={10}>
         <Grid container>
           {tenets.map((tenet) => (
-            <React.Fragment key={tenet.id}>
-              <Grid item xs={12} lg={6}>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label={tenet.description}
-                    name={'' + tenet.id}
-                    onChange={handleChange}
-                    checked={checked}
-                  />
-                </FormGroup>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <TextField
-                  label="Note"
-                  multiline
-                  rows={1}
-                  fullWidth
-                  sx={{ mb: 2 }}
-                />
-              </Grid>
-            </React.Fragment>
+            <EachTenetAndNote
+              key={tenet.id}
+              tenet={tenet}
+              stockHasTenets={stockHasTenets}
+            />
           ))}
         </Grid>
       </Grid>

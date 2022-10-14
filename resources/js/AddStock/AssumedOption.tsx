@@ -5,24 +5,15 @@ import { Typography } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
+import { getAddStockState } from './addStockSlice';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../app/redux-hooks';
 
 type Props = {
   option: number;
-  stockId: number;
-  edit: boolean;
 };
 
-type GrowthData = {
-  id: number;
-  next_10_to_20_years: string;
-  next_10_years: string;
-  option: number;
-  stock_id: number;
-  updated_at: string;
-  created_at: string;
-};
-
-const AssumedOption = ({ option, stockId, edit }: Props) => {
+const AssumedOption = ({ option }: Props) => {
   const [nextTen, setNextTen] = useState('');
   const [nextTenError, setNextTenError] = useState(false);
   const [nextTenHelperText, setNextTenHelperText] = useState('');
@@ -31,13 +22,15 @@ const AssumedOption = ({ option, stockId, edit }: Props) => {
   const [nextTenToTwentyHelperText, setNextTenToTwentyHelperText] =
     useState('');
   const [valid, setValid] = useState(true);
+  const { stockId } = useAppSelector(getAddStockState);
+  const { editStockId } = useParams();
 
   useEffect(() => {
-    if (stockId && edit) {
+    if (stockId && editStockId) {
       axios
         .get(`/growth_assumptions?stock_id=${stockId}&option=${option}`)
         .then(function (response) {
-          const data: GrowthData = response.data;
+          const data: App.AssumedOption.GrowthData = response.data;
           setNextTen(data.next_10_years);
           setNextTenToTwenty(data.next_10_to_20_years);
         })
@@ -45,7 +38,7 @@ const AssumedOption = ({ option, stockId, edit }: Props) => {
           console.log(error);
         });
     }
-  }, []);
+  }, [stockId, editStockId]);
 
   const handleAddGrowth = () => {
     //Check nextTen and nextTenToTwenty have value
@@ -84,8 +77,6 @@ const AssumedOption = ({ option, stockId, edit }: Props) => {
           console.log(error);
         });
     }
-
-    //Otherwise send axios post request contains information to server to save data
   };
 
   return (

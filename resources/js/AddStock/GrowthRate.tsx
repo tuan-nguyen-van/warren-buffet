@@ -23,48 +23,23 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import Divider from '@mui/material/Divider';
+import { useAppSelector } from '../app/redux-hooks';
+import { getAddStockState } from './addStockSlice';
+import { useParams } from 'react-router-dom';
 
 type Props = {
   disableStep2: boolean;
-  stockId: number;
-  edit: boolean;
   setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-type TableData = {
-  id: number;
-  stock_id: number;
-  year: number;
-  EPS: number;
-  money_dividend: number;
-  stock_dividend: number;
-  profit: number;
-  ROEA: number;
-  created_at?: string;
-  updated_at?: string;
-};
-
-type ChosenData = {
-  chosen: number;
-  created_at: string;
-  id: number;
-  stock_id: number;
-  updated_at: string;
-  value: string;
-  year_from: string;
-  year_to: string;
 };
 
 type GrowthTextData = {
   [index: string]: string;
 };
 
-const GrowthRate = ({
-  disableStep2,
-  stockId,
-  edit,
-  setDisableStep2,
-}: Props) => {
+const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
+  const { editStockId } = useParams();
+  const { stockId } = useAppSelector(getAddStockState);
+
   const [year, setYear] = useState('');
   const currentYear = new Date().getFullYear();
   const years = [];
@@ -83,7 +58,7 @@ const GrowthRate = ({
   const [yearErrorText, setYearErrorText] = useState('Choose Year');
   const [epsError, setEpsError] = useState(false);
   const [profitError, setProfitError] = useState(false);
-  const [tableDatas, setTableDatas] = useState<TableData[]>([]);
+  const [tableDatas, setTableDatas] = useState<App.GrowthRate.TableData[]>([]);
   const [editID, setEditID] = useState(0);
   const [growthRatesText, setGrowthRatesText] = useState('');
   const [fromYear, setFromYear] = useState('');
@@ -102,9 +77,8 @@ const GrowthRate = ({
     setGrowthRatesText(text.trim());
   };
 
-  console.log(stockId);
   useEffect(() => {
-    if (stockId && edit) {
+    if (stockId && editStockId) {
       axios
         .get('/financial-metrics/' + stockId)
         .then(function (response) {
@@ -124,14 +98,14 @@ const GrowthRate = ({
           console.log(error);
         });
     }
-  }, [stockId, edit]);
+  }, [stockId, editStockId]);
 
   useEffect(() => {
-    if (stockId && edit) {
+    if (stockId && editStockId) {
       axios
         .get('/chosen-growth-rates/' + stockId)
         .then(function (response) {
-          const data: ChosenData = response.data;
+          const data: App.GrowthRate.ChosenData = response.data;
           setFromYear(data.year_from);
           setToYear(data.year_to);
           setAverageGrowthRate(data.value + '%');
@@ -140,7 +114,7 @@ const GrowthRate = ({
           console.log(error);
         });
     }
-  }, [stockId, edit]);
+  }, [stockId, editStockId]);
 
   const addStockData = () => {
     // Validate Year, EPS, Profit

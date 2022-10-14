@@ -5,11 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import axios from 'axios';
-
-type Props = {
-  stockId: number;
-  edit: boolean;
-};
+import { useAppSelector } from '../app/redux-hooks';
+import { getAddStockState } from './addStockSlice';
+import { useParams } from 'react-router-dom';
 
 type EpsData = {
   chosen_eps: number;
@@ -19,12 +17,14 @@ type EpsData = {
   created_at: string;
 };
 
-const EpsToCalculate = ({ stockId, edit }: Props) => {
+const EpsToCalculate = () => {
   const [eps, setEps] = useState<string | number>('');
   const [epsError, setEpsError] = useState(false);
+  const { stockId } = useAppSelector(getAddStockState);
+  const { editStockId } = useParams();
 
   useEffect(() => {
-    if (stockId && edit) {
+    if (stockId && editStockId) {
       axios
         .get(`/chosen-eps/${stockId}`)
         .then(function (response) {
@@ -35,7 +35,7 @@ const EpsToCalculate = ({ stockId, edit }: Props) => {
           console.log(error);
         });
     }
-  }, []);
+  }, [stockId, editStockId]);
 
   const handleAddEps = () => {
     if (!eps) {
