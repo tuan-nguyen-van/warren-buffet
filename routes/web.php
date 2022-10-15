@@ -8,6 +8,7 @@ use App\Http\Controllers\FinancialMetricController;
 use App\Http\Controllers\GrowthAssumptionController;
 use App\Http\Controllers\GrowthRateController;
 use App\Http\Controllers\IntrinsicValueCalculationController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StockHasTenetController;
 use App\Http\Controllers\TenetController;
@@ -68,6 +69,14 @@ Route::delete('/tenets/{tenet}', [TenetController::class, 'destroy']);
 Route::post('/stock-has-tenets', [StockHasTenetController::class, 'store']);
 
 Route::get('/stock-has-tenets/{stockId}', [StockHasTenetController::class, 'show']);
+
+Route::post('/quotes', [QuoteController::class, 'store']);
+
+Route::get('/quotes', [QuoteController::class, 'index']);
+
+Route::put('/quotes/{quote}', [QuoteController::class, 'update']);
+
+Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy']);
 
 Route::get('/{all?}', function () {
     return view('app');
