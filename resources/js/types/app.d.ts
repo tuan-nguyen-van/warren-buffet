@@ -85,4 +85,14 @@ declare namespace App {
       chosen_eps: number;
     }
   }
+
+  namespace Quotes {
+    export interface Data {
+      id: number;
+      author: string;
+      description: string;
+      created_at: string;
+      updated_at: string;
+    }
+  }
 }

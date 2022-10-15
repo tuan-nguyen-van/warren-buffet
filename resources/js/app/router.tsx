@@ -8,6 +8,7 @@ import AddStock from '../AddStock';
 import React from 'react';
 import DiscountRate from '../DiscountRate';
 import Tenets from '../Tenets';
+import Quotes from '../Quotes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="discount-rate" element={<DiscountRate />} />
       <Route path="stock-tenets" element={<Tenets />} />
       <Route path="financial-metrics" element={<h1>Finnancial Metrics</h1>} />
-      <Route path="famous-quotes" element={<h1>Famous Quotes</h1>} />
+      <Route path="famous-quotes" element={<Quotes />} />
     </Route>
   )
 );
