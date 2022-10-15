@@ -11,7 +11,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SideBarItem from './SideBarItem';
 import { NavLink } from 'react-router-dom';
@@ -104,17 +103,6 @@ const SideBar = () => {
             }
           >
             <SideBarItem text="Stock tenets" icon={<AssignmentIcon />} />
-          </NavLink>
-          <NavLink
-            to="financial-metrics"
-            className={({ isActive }) =>
-              isActive ? 'nav-active nav-link' : 'nav-link'
-            }
-          >
-            <SideBarItem
-              text="Financial index types"
-              icon={<AnalyticsIcon />}
-            />
           </NavLink>
           <NavLink
             to="famous-quotes"
