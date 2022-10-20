@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom';
 import FullBorderTableCell from '../components/FullBorderTableCell';
 
 const Home = () => {
-  const [followedStocks, setFollowedStock] =
-    useState<App.intrinsicValueCalculation.StockData[]>();
+  const [followedStocks, setFollowedStock] = useState<App.Stocks.StockData[]>();
   const [quotes, setQuotes] = useState<App.Quotes.Data[]>();
   let quotesCount = 1;
 
@@ -111,14 +110,14 @@ const Home = () => {
                     <FullBorderTableCell>
                       {
                         JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
+                          stock.intrinsic_value_caculations!.calculation_step
                         )[0].total_pe
                       }
                     </FullBorderTableCell>
                     <FullBorderTableCell>
                       {
                         JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
+                          stock.intrinsic_value_caculations!.calculation_step
                         )[1]?.total_pe
                       }
                     </FullBorderTableCell>
@@ -127,14 +126,14 @@ const Home = () => {
                     <FullBorderTableCell>
                       {
                         JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
+                          stock.intrinsic_value_caculations!.calculation_step
                         )[0].intrinsic_price
                       }
                     </FullBorderTableCell>
                     <FullBorderTableCell>
                       {
                         JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
+                          stock.intrinsic_value_caculations!.calculation_step
                         )[1]?.intrinsic_price
                       }
                     </FullBorderTableCell>
