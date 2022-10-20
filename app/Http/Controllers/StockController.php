@@ -7,15 +7,13 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     //
-    // }
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return Stock::has('intrinsicValueCaculations')->with('intrinsicValueCaculations')->get();
+    }
 
     /**
      * Store a newly created resource in storage.

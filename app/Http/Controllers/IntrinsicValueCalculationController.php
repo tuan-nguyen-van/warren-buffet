@@ -22,6 +22,7 @@ class IntrinsicValueCalculationController extends Controller
     public function store(Request $request)
     {
         $stockId = $request->stockId;
+
         $currentYear = (int) date('Y');
 
         // Get the growth assumption option 1 and option 2 from db
@@ -66,7 +67,7 @@ class IntrinsicValueCalculationController extends Controller
             $this->steps['option'] = $growthAssuption->option;
             $this->calculationStep[] = $this->steps;
         }
-        IntrinsicValueCalculation::where('stock_id', 37)->delete();
+        IntrinsicValueCalculation::where('stock_id', $stockId)->delete();
 
         IntrinsicValueCalculation::create([
             'stock_id' => $stockId,
@@ -89,7 +90,7 @@ class IntrinsicValueCalculationController extends Controller
         $intrinsicValue = round($discountedValueForYears[$year] * $futureValue, 2);
         $this->steps[$year]['intrinsic_value'] = $intrinsicValue;
 
-        $this->steps[$year]['growth_rate'] = $growthRate * 100;
+        $this->steps[$year]['growth_rate'] = round($growthRate * 100, 2);
 
         $this->steps['total_pe'] = round($this->steps['total_pe'] + $intrinsicValue, 2);
     }

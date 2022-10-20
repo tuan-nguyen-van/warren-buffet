@@ -13,16 +13,11 @@ class GrowthRateController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return array<string>
+     * @return array<array<string,int|float|string>>
      */
     public function calculate(Request $request)
     {
         $financialMetrics = FinancialMetric::where('stock_id', $request->stock_id)->orderBy('year')->get();
-        // Return json to api like this: {
-        // "2011-2012" : "10%",
-        // "2012-2013" : "9%",
-        // "2013-2014" : "12%",
-        // }
         GrowthRate::where('stock_id', $request->stock_id)->where('chosen', 0)->delete();
         $calculatedGrowthRates = [];
         for ($i = 0; $i < count($financialMetrics) - 1; ++$i) {
@@ -42,14 +37,14 @@ class GrowthRateController extends Controller
                 'year_to' => $financialMetrics[$i + 1]->year,
                 'value' => $growthRate,
             ]);
-            $calculatedGrowthRates[$this->formatYears($financialMetrics[$i]->year, $financialMetrics[$i + 1]->year)] = $growthRate . '%';
+            $calculatedGrowthRates[] = $this->formatGrowthRate($financialMetrics[$i]->year, $growthRate);
         }
 
-        return $calculatedGrowthRates;
+        return $this->addAverage($calculatedGrowthRates);
     }
 
     /**
-     * @return array<string,string>
+     * @return array<array<string,int|float|string>>
      */
     public function show(int $stockId)
     {
@@ -58,15 +53,40 @@ class GrowthRateController extends Controller
             ->where('chosen', 0)->get();
         $growthRates = [];
         foreach ($calculatedGrowthRates as $calculatedGrowthRate) {
-            $growthRates[$this->formatYears($calculatedGrowthRate->year_from, $calculatedGrowthRate->year_to)] = $calculatedGrowthRate->value . '%';
+            $growthRates[] = $this->formatGrowthRate($calculatedGrowthRate->year_from, $calculatedGrowthRate->value);
         }
 
-        return $growthRates;
+        return $this->addAverage($growthRates);
     }
 
-    private function formatYears(string $yearFrom, string $yearTo): string
+    /** 
+     * @param string       $yearFrom
+     * @param string|float $percent
+     *
+     * @return array{'year': int, "percent": float}
+     */
+    private function formatGrowthRate($yearFrom, $percent)
     {
-        return $yearFrom . '-' . $yearTo;
+        return [
+            'year' => (int) $yearFrom,
+            'percent' => (float) $percent,
+        ];
+    }
+
+    /**
+     * @param array<array<string,int|float|string>> $growthRates
+     *
+     * @return array<array<string,int|float|string>>
+     */
+    private function addAverage(array &$growthRates)
+    {
+        $sum = 0;
+        foreach ($growthRates as $growthRate) {
+            $sum += $growthRate['percent'];
+        }
+        $growthRates[] = ['year' => 'Average', 'percent' => round($sum / count($growthRates), 1)];
+
+        return $growthRates;
     }
 
     /**

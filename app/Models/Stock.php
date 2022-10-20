@@ -15,4 +15,12 @@ class Stock extends Model
      * @var string[] $guarded
      */
     protected $guarded = [];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function intrinsicValueCaculations()
+    {
+        return $this->hasOne(IntrinsicValueCalculation::class, 'stock_id');
+    }
 }
