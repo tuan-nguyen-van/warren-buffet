@@ -95,4 +95,30 @@ declare namespace App {
       updated_at: string;
     }
   }
+
+  namespace intrinsicValueCalculation {
+    export interface intrinsicValueCalculation {
+      id: number;
+      calculation_step: string;
+      discount_rate: string;
+      stock_id: number;
+      updated_at: string;
+      created_at: string;
+    }
+  }
+
+  namespace Stocks {
+    export interface StockData {
+      id: number;
+      company_name: string;
+      intrinsic_value_caculations?: intrinsicValueCalculation.intrinsicValueCalculation;
+      ticker_symbol: string;
+      website: string;
+      current_market_price: number;
+      status: 'Unfinished' | 'Followed' | 'Unfollowed';
+      vietstock_crawl_link: string;
+      updated_at: string;
+      created_at: string;
+    }
+  }
 }

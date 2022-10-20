@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import { useAppDispatch } from '../app/redux-hooks';
 import { toggle } from '../Content/sideBarSlice';
+import { NavLink } from 'react-router-dom';
 
 const Header: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,9 @@ const Header: React.FunctionComponent = () => {
               className="menu-icon"
               onClick={() => dispatch(toggle())}
             />
-            <HomeIcon className="home-icon" />
+            <NavLink to="/">
+              <HomeIcon className="home-icon" />
+            </NavLink>
           </Stack>
         </Grid>
         <Grid item xs={8}>

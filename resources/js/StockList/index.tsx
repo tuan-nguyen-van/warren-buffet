@@ -1,153 +1,164 @@
 import React, { useState, useEffect } from 'react';
-import Paper from '@mui/material/Paper';
-import { Box } from '@mui/material';
+
+import FullBorderTableCell from '../components/FullBorderTableCell';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+import UnpublishedIcon from '@mui/icons-material/Unpublished';
+import { Link } from 'react-router-dom';
 
-const StyledTableCell = styled(TableCell)(() => ({
-  [`&.${tableCellClasses.root}`]: {
-    border: '1px solid rgba(224, 224, 224, 1)',
-  },
-}));
-
-interface StockData {
-  id: number;
-  company_name: string;
-  intrinsic_value_caculations: intrinsicValueCalculation;
-  ticker_symbol: string;
-  website: string;
-  updated_at: string;
-  created_at: string;
-}
-
-interface intrinsicValueCalculation {
-  id: number;
-  calculation_step: string;
-  discount_rate: string;
-  stock_id: number;
-  updated_at: string;
-  created_at: string;
-}
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const StockList = () => {
-  const [followedStocks, setFollowedStock] = useState<StockData[]>();
-  let stockNo = 0;
+  const [openModal, setOpenModal] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [stocks, setStocks] = useState<App.Stocks.StockData[]>();
+  const [deleteStock, setDeleteStock] = useState<{
+    id: number;
+    symbol: string;
+    index: number;
+  }>();
+  let stockNo = 1;
+
+  const handleModalClose = () => {
+    setOpenModal(false);
+  };
+
+  const handleAgree = () => {
+    //Post axios to delete the stock id
+    axios
+      .delete('/stocks/' + deleteStock?.id)
+      .then(function () {
+        delete stocks![deleteStock!.index];
+        setOpenModal(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     axios
       .get('/stocks')
       .then(function ({ data }) {
-        setFollowedStock(data as StockData[]);
+        setStocks(data as App.Stocks.StockData[]);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
 
+  const handleFollowed = (
+    id: number,
+    index: number,
+    action: 'Followed' | 'Unfollowed'
+  ) => {
+    axios
+      .patch('/stocks/status/' + id, {
+        status: action,
+      })
+      .then(function () {
+        stocks![index].status = action;
+        setStocks([...stocks!]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
-    <Box sx={{ width: '100%', textAlign: 'center', mt: 5 }}>
-      <Paper elevation={5} sx={{ p: 1.5, fontSize: '18px' }} component="span">
-        Rule number 1: Don&rsquo;t lose money. Rule number 2, 3, 4, 5: See rule
-        number 1.
-      </Paper>
-      <Box sx={{ mt: 4 }}>
-        <Paper
-          elevation={5}
-          sx={{ p: 1.5, fontSize: '20px', mt: 5 }}
-          component="span"
-        >
-          Followed stocks
-        </Paper>
-        <Paper sx={{ width: '100%' }}></Paper>
-
-        <TableContainer sx={{ maxHeight: 600, mt: 2 }}>
-          <Table stickyHeader sx={{ borderCollapse: 'collapse' }}>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center" colSpan={4}>
-                  Details
-                </StyledTableCell>
-                <StyledTableCell align="center" colSpan={2}>
-                  PE
-                </StyledTableCell>
-                <StyledTableCell align="center" colSpan={2}>
-                  Margin of safety
-                </StyledTableCell>
-
-                <StyledTableCell align="center" colSpan={2}>
-                  Intrinsic Price
-                </StyledTableCell>
+    <div style={{ width: '100%', textAlign: 'center' }}>
+      <TableContainer sx={{ mt: 5, mb: 5 }}>
+        <Table stickyHeader sx={{ borderCollapse: 'collapse' }}>
+          <TableHead>
+            <TableRow>
+              <FullBorderTableCell align="center">No</FullBorderTableCell>
+              <FullBorderTableCell align="center">Action</FullBorderTableCell>
+              <FullBorderTableCell align="center">Symbol</FullBorderTableCell>
+              <FullBorderTableCell align="center">Name</FullBorderTableCell>
+              <FullBorderTableCell align="center">Status</FullBorderTableCell>
+              <FullBorderTableCell align="center">
+                Market Price
+              </FullBorderTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {stocks?.map((stock, index) => (
+              <TableRow key={stock.id}>
+                <FullBorderTableCell>{stockNo++}</FullBorderTableCell>
+                <FullBorderTableCell>
+                  <Link
+                    to={`/edit-stock/${stock.id}`}
+                    style={{ color: 'rgba(0, 0, 0, 0.87)' }}
+                  >
+                    <EditIcon sx={{ cursor: 'pointer' }} />
+                  </Link>
+                  <DeleteIcon
+                    onClick={() => {
+                      setOpenModal(true);
+                      setDeleteStock({
+                        symbol: stock.ticker_symbol,
+                        id: stock.id,
+                        index,
+                      });
+                    }}
+                    sx={{ cursor: 'pointer' }}
+                  />
+                  {stock.status === 'Unfinished' ? (
+                    <UnpublishedIcon sx={{ cursor: 'pointer' }} />
+                  ) : stock.status === 'Followed' ? (
+                    <BookmarkRemoveIcon
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        handleFollowed(stock.id, index, 'Unfollowed');
+                      }}
+                    />
+                  ) : (
+                    <BookmarkAddIcon
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        handleFollowed(stock.id, index, 'Followed');
+                      }}
+                    />
+                  )}
+                </FullBorderTableCell>
+                <FullBorderTableCell>{stock.ticker_symbol}</FullBorderTableCell>
+                <FullBorderTableCell>{stock.company_name}</FullBorderTableCell>
+                <FullBorderTableCell>{stock.status}</FullBorderTableCell>
+                <FullBorderTableCell>Market Price</FullBorderTableCell>
               </TableRow>
-              <TableRow>
-                <StyledTableCell>No</StyledTableCell>
-                <StyledTableCell sx={{ width: 115 }}>Action</StyledTableCell>
-                <StyledTableCell>Symbol</StyledTableCell>
-                <StyledTableCell>Market Price</StyledTableCell>
-                <StyledTableCell>Opt 1</StyledTableCell>
-                <StyledTableCell>Opt2</StyledTableCell>
-                <StyledTableCell>Opt1</StyledTableCell>
-                <StyledTableCell>Opt2</StyledTableCell>
-                <StyledTableCell>Opt1</StyledTableCell>
-                <StyledTableCell>Opt2</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {followedStocks &&
-                followedStocks.map((stock) => (
-                  <TableRow key={stock.id}>
-                    <StyledTableCell>{stockNo++}</StyledTableCell>
-                    <StyledTableCell>
-                      <EditIcon />
-                      <DeleteIcon />
-                      <BookmarkRemoveIcon />
-                    </StyledTableCell>
-                    <StyledTableCell>{stock.ticker_symbol}</StyledTableCell>
-                    <StyledTableCell>{stock.ticker_symbol}</StyledTableCell>
-                    <StyledTableCell>
-                      {
-                        JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
-                        )[0].total_pe
-                      }
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {
-                        JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
-                        )[1]?.total_pe
-                      }
-                    </StyledTableCell>
-                    <StyledTableCell>50%</StyledTableCell>
-                    <StyledTableCell>50%</StyledTableCell>
-                    <StyledTableCell>
-                      {
-                        JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
-                        )[0].intrinsic_price
-                      }
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {
-                        JSON.parse(
-                          stock.intrinsic_value_caculations.calculation_step
-                        )[1]?.intrinsic_price
-                      }
-                    </StyledTableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </Box>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={openModal}
+        onClose={handleModalClose}
+      >
+        <DialogTitle>
+          Are you sure want to delete this stock: {deleteStock?.symbol}
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleAgree}>Agree</Button>
+          <Button onClick={handleModalClose}>Disagree</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 
