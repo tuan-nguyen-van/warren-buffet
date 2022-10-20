@@ -47,6 +47,11 @@ use Illuminate\Support\Facades\Route;
 Route::resource('stocks', StockController::class)->except([
     'create', 'edit',
 ]);
+
+Route::patch('stocks/status/{stock}', [StockController::class, 'updateStatus']);
+
+Route::get('stocks-for-home', [StockController::class, 'indexHome']);
+
 Route::resource('financial-metrics', FinancialMetricController::class)->except([
     'create', 'edit', 'index',
 ]);

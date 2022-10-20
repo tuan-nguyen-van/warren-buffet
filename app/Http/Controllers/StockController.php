@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 class StockController extends Controller
 {
     /**
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection<int,Stock>
+     */
+    public function indexHome()
+    {
+        return Stock::has('intrinsicValueCaculations')->with('intrinsicValueCaculations')->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int,Stock>
      */
     public function index()
     {
-        return Stock::has('intrinsicValueCaculations')->with('intrinsicValueCaculations')->get();
+        return Stock::all();
     }
 
     /**
@@ -54,16 +62,12 @@ class StockController extends Controller
         return 'success';
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Stock  $stock
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Stock $stock)
-    // {
-    //     //
-    // }
+    public function destroy(Stock $stock): string
+    {
+        $stock->delete();
+
+        return 'success';
+    }
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -76,5 +80,12 @@ class StockController extends Controller
             'company_name' => "required$needUnique|min:10|max:255",
             'website' => "required$needUnique|min:10|max:50",
         ]);
+    }
+
+    public function updateStatus(Request $request, Stock $stock): string
+    {
+        $stock->update($request->all());
+
+        return 'success';
     }
 }
