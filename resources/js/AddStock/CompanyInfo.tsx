@@ -9,12 +9,12 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
 import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
-import { getAddStockState, changeStockId } from './addStockSlice';
+import {
+  getAddStockState,
+  changeStockId,
+  changeDisableStep,
+} from './addStockSlice';
 import { useParams } from 'react-router-dom';
-
-type Props = {
-  setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
-};
 
 type StockData = {
   ticker_symbol: string;
@@ -23,12 +23,11 @@ type StockData = {
   id: number;
 };
 
-const CompanyInfo = ({ setDisableStep2 }: Props) => {
-  const { stockId } = useAppSelector(getAddStockState);
+const CompanyInfo = () => {
+  const { stockId, disableStep } = useAppSelector(getAddStockState);
   const [tickerSymbol, setTickerSymbol] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [website, setWebsite] = useState('');
-  const [disableStep1, setDisableStep1] = useState(false);
   const dispatch = useAppDispatch();
   const { editStockId } = useParams();
 
@@ -42,7 +41,7 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
           setTickerSymbol(data.ticker_symbol);
           setCompanyName(data.company_name);
           setWebsite(data.website);
-          setDisableStep1(true);
+          dispatch(changeDisableStep(['CompanyInfo', true]));
         })
         .catch(function (error) {
           console.log(error);
@@ -59,8 +58,9 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
           website: website,
         })
         .then(function (response) {
-          setDisableStep1(true);
-          setDisableStep2(false);
+          dispatch(changeDisableStep(['CompanyInfo', true]));
+          dispatch(changeDisableStep(['CheckTenets', false]));
+          dispatch(changeDisableStep(['GrowthRate', false]));
           dispatch(changeStockId(response.data as number));
         })
         .catch(function (error) {
@@ -74,7 +74,7 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
           website: website,
         })
         .then(function () {
-          setDisableStep1(true);
+          dispatch(changeDisableStep(['CompanyInfo', true]));
         })
         .catch(function (error) {
           console.log(error);
@@ -96,7 +96,7 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
             variant="standard"
             value={tickerSymbol}
             onChange={(e) => setTickerSymbol(e.target.value)}
-            disabled={disableStep1}
+            disabled={disableStep.CompanyInfo}
           />
         </Grid>
       </Grid>
@@ -108,7 +108,7 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
             variant="standard"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
-            disabled={disableStep1}
+            disabled={disableStep.CompanyInfo}
           />
         </Grid>
         <Grid item xs={12} lg={4}>
@@ -118,15 +118,15 @@ const CompanyInfo = ({ setDisableStep2 }: Props) => {
             variant="standard"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
-            disabled={disableStep1}
+            disabled={disableStep.CompanyInfo}
           />
         </Grid>
         <Grid item xs={12} lg={2} sx={{ textAlign: 'center' }}>
-          {disableStep1 ? (
+          {disableStep.CompanyInfo ? (
             <IconButton
               color="primary"
               size="large"
-              onClick={() => setDisableStep1(false)}
+              onClick={() => dispatch(changeDisableStep(['CompanyInfo', true]))}
             >
               <EditIcon sx={{ fontSize: 50 }} />
             </IconButton>

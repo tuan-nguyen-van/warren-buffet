@@ -73,7 +73,7 @@ const CalculationTable = ({ option }: Props) => {
             <TableCell align="left">{option.total_pe}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell align="left">Total PE</TableCell>
+            <TableCell align="left">Chosen EPS</TableCell>
             <TableCell align="left">{option.chosen_eps}</TableCell>
           </TableRow>
           <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

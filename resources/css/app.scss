@@ -49,3 +49,9 @@
     color: rgba(0, 0, 0, 0.84);
   }
 }
+
+.disabledText {
+  p, span, h4, h5, h6, th {
+    color: rgba(0, 0, 0, 0.38) !important;
+  }
+}

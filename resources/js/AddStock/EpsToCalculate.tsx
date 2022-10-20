@@ -5,8 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import axios from 'axios';
-import { useAppSelector } from '../app/redux-hooks';
-import { getAddStockState } from './addStockSlice';
+import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
+import { getAddStockState, changeDisableStep } from './addStockSlice';
 import { useParams } from 'react-router-dom';
 
 type EpsData = {
@@ -20,8 +20,9 @@ type EpsData = {
 const EpsToCalculate = () => {
   const [eps, setEps] = useState<string | number>('');
   const [epsError, setEpsError] = useState(false);
-  const { stockId } = useAppSelector(getAddStockState);
+  const { stockId, disableStep } = useAppSelector(getAddStockState);
   const { editStockId } = useParams();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (stockId && editStockId) {
@@ -51,6 +52,7 @@ const EpsToCalculate = () => {
       })
       .then(function (response) {
         console.log(response);
+        dispatch(changeDisableStep(['Calculation', false]));
       })
       .catch(function (error) {
         console.log(error);
@@ -72,8 +74,14 @@ const EpsToCalculate = () => {
         onChange={(e) => setEps(e.target.value)}
         error={epsError}
         helperText={epsError ? 'Enter EPS' : ''}
+        disabled={disableStep.GrowthRate}
       />
-      <IconButton color="primary" size="large" onClick={handleAddEps}>
+      <IconButton
+        color="primary"
+        size="large"
+        onClick={handleAddEps}
+        disabled={disableStep.GrowthRate}
+      >
         <AddBoxIcon sx={{ fontSize: 50 }} />
       </IconButton>
     </Box>

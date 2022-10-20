@@ -14,7 +14,7 @@ type Data = App.AddStock.Calculation.DataValue[];
 
 const Calculation = () => {
   const [data, setData] = useState<Data>([]);
-  const { stockId } = useAppSelector(getAddStockState);
+  const { stockId, disableStep } = useAppSelector(getAddStockState);
   const { editStockId } = useParams();
   const handleCalculation = () => {
     axios
@@ -45,13 +45,22 @@ const Calculation = () => {
   }, [editStockId, stockId]);
 
   return (
-    <Box component="div" sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
+    <Box
+      component="div"
+      sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}
+      className={disableStep.Calculation ? 'disabledText' : ''}
+    >
       <Divider>
         <Typography variant="h5">Step 5: Calculation</Typography>
       </Divider>
 
       <Box component="div" sx={{ textAlign: 'center' }}>
-        <Button variant="contained" sx={{ mt: 4 }} onClick={handleCalculation}>
+        <Button
+          variant="contained"
+          sx={{ mt: 4 }}
+          onClick={handleCalculation}
+          disabled={disableStep.Calculation}
+        >
           <CalculateIcon sx={{ mr: 0.5 }} />
           Calculate Intrinsic Stock Value
         </Button>

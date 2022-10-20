@@ -9,13 +9,14 @@ import React from 'react';
 import DiscountRate from '../DiscountRate';
 import Tenets from '../Tenets';
 import Quotes from '../Quotes';
+import StockList from '../StockList';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="add-stock" element={<AddStock key="add" />} />
       <Route path="edit-stock/:editStockId" element={<AddStock key="edit" />} />
-      <Route path="stock-list" element={<h1>Stock List</h1>} />
+      <Route path="stock-list" element={<StockList />} />
       <Route path="discount-rate" element={<DiscountRate />} />
       <Route path="stock-tenets" element={<Tenets />} />
       <Route path="famous-quotes" element={<Quotes />} />

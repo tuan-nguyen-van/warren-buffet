@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 const CheckTenets = () => {
   const [tenets, setTenets] = useState<App.Tenets>();
   const [tenetTypes, setTenetTypes] = useState<App.TenetTypes>();
-  const { stockId } = useAppSelector(getAddStockState);
+  const { stockId, disableStep } = useAppSelector(getAddStockState);
   const [stockHasTenets, setStockHasTenets] = useState<App.StockHasTenet[]>();
   const { editStockId } = useParams();
 
@@ -52,7 +52,15 @@ const CheckTenets = () => {
   }, [editStockId, stockId]);
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7, mt: 4 }}>
+    <Box
+      className={disableStep.CheckTenets ? 'disabledText' : ''}
+      sx={{
+        flexGrow: 1,
+        textAlign: 'left',
+        mb: 7,
+        mt: 4,
+      }}
+    >
       <Divider>
         <Typography variant="h5">Step 2: Check Tenets</Typography>
       </Divider>

@@ -24,6 +24,7 @@ const AssumedOption = ({ option }: Props) => {
   const [valid, setValid] = useState(true);
   const { stockId } = useAppSelector(getAddStockState);
   const { editStockId } = useParams();
+  const { disableStep } = useAppSelector(getAddStockState);
 
   useEffect(() => {
     if (stockId && editStockId) {
@@ -99,6 +100,7 @@ const AssumedOption = ({ option }: Props) => {
               onChange={(e) => setNextTen(e.target.value)}
               error={nextTenError}
               helperText={nextTenHelperText}
+              disabled={disableStep.Assumption}
             />
           </Grid>
           <Grid item xs={12} lg={6}>
@@ -112,12 +114,18 @@ const AssumedOption = ({ option }: Props) => {
               onChange={(e) => setNextTenToTwenty(e.target.value)}
               error={nextTenToTwentyError}
               helperText={nextTenToTwentyHelperText}
+              disabled={disableStep.Assumption}
             />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={1}>
-        <IconButton color="primary" size="large" onClick={handleAddGrowth}>
+        <IconButton
+          color="primary"
+          size="large"
+          onClick={handleAddGrowth}
+          disabled={disableStep.Assumption}
+        >
           <AddBoxIcon sx={{ fontSize: 50 }} />
         </IconButton>
       </Grid>

@@ -23,22 +23,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import Divider from '@mui/material/Divider';
-import { useAppSelector } from '../app/redux-hooks';
-import { getAddStockState } from './addStockSlice';
+import { getAddStockState, changeDisableStep } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  LabelList,
+} from 'recharts';
 
-type Props = {
-  disableStep2: boolean;
-  setDisableStep2: React.Dispatch<React.SetStateAction<boolean>>;
-};
+type GrowthRateData = {
+  year: number;
+  percent: number;
+}[];
 
-type GrowthTextData = {
-  [index: string]: string;
-};
-
-const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
+const GrowthRate = () => {
   const { editStockId } = useParams();
-  const { stockId } = useAppSelector(getAddStockState);
+  const { stockId, disableStep } = useAppSelector(getAddStockState);
 
   const [year, setYear] = useState('');
   const currentYear = new Date().getFullYear();
@@ -48,7 +53,6 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
   }
   const chosenYearsFrom = years.filter((year) => year <= currentYear - 4);
   const chosenYearsTo = years.filter((year) => year > currentYear - 6);
-
   const [EPS, setEPS] = useState('');
   const [money_dividend, setMoney_dividend] = useState('');
   const [stock_dividend, setStock_dividend] = useState('');
@@ -60,7 +64,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
   const [profitError, setProfitError] = useState(false);
   const [tableDatas, setTableDatas] = useState<App.GrowthRate.TableData[]>([]);
   const [editID, setEditID] = useState(0);
-  const [growthRatesText, setGrowthRatesText] = useState('');
+  const [editYear, setEditYear] = useState(0);
   const [fromYear, setFromYear] = useState('');
   const [fromYearError, setFromYearError] = useState(false);
   const [fromYearErrorText, setFromYearErrorText] = useState('');
@@ -68,13 +72,11 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
   const [toYearError, setToYearError] = useState(false);
   const [toYearErrorText, setToYearErrorText] = useState('');
   const [averageGrowthRate, setAverageGrowthRate] = useState('');
+  const dispatch = useAppDispatch();
+  const [graphData, setGraphData] = useState<GrowthRateData>();
 
-  const getGrowthRatesText = (data: GrowthTextData) => {
-    let text = '';
-    for (const [key, value] of Object.entries(data)) {
-      text += ` ${key}: ${value};`;
-    }
-    setGrowthRatesText(text.trim());
+  const getGrowthRatesText = (data: GrowthRateData) => {
+    setGraphData(data);
   };
 
   useEffect(() => {
@@ -83,7 +85,8 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
         .get('/financial-metrics/' + stockId)
         .then(function (response) {
           setTableDatas(response.data);
-          setDisableStep2(false);
+          dispatch(changeDisableStep(['GrowthRate', false]));
+          // setDisableStep2(false);
         })
         .catch(function (error) {
           console.log(error);
@@ -167,6 +170,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
             setTableDatas(newTableDatas);
             resetInputs();
             setEditID(0);
+            setEditYear(0);
           })
           .catch(function (error) {
             console.log(error);
@@ -248,6 +252,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
       })
       .then(function (response) {
         setAverageGrowthRate(response.data + '%');
+        dispatch(changeDisableStep(['Assumption', false]));
       })
       .catch(function (error) {
         console.log(error);
@@ -255,20 +260,15 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}>
+    <Box
+      sx={{ flexGrow: 1, textAlign: 'left', mb: 7 }}
+      className={disableStep.GrowthRate ? 'disabledText' : ''}
+    >
       <Divider>
-        <Typography
-          variant="h5"
-          sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
-        >
-          Step 3: Growth rate
-        </Typography>
+        <Typography variant="h5">Step 3: Growth rate</Typography>
       </Divider>
-      <Typography
-        variant="h5"
-        sx={{ color: disableStep2 ? 'text.disabled' : 'inherit' }}
-      >
-        {editID ? `(Edit ID: ${editID})` : ''}
+      <Typography variant="h5" sx={{ textAlign: 'center' }}>
+        {editYear ? `(Edit Year: ${editYear})` : ''}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
@@ -281,7 +281,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
               onChange={(e) => setYear(e.target.value)}
               fullWidth
               variant="standard"
-              disabled={disableStep2}
+              disabled={disableStep.GrowthRate}
               sx={{ position: 'relative', mt: 2 }}
             >
               {years.map((year) => (
@@ -299,7 +299,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
             fullWidth
             label="EPS (VND)"
             variant="standard"
-            disabled={disableStep2}
+            disabled={disableStep.GrowthRate}
             name="EPS"
             value={EPS}
             onChange={(e) => setEPS(e.target.value)}
@@ -314,7 +314,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
             fullWidth
             label="Money Dividend (VND)"
             variant="standard"
-            disabled={disableStep2}
+            disabled={disableStep.GrowthRate}
             name="money_dividend"
             value={money_dividend}
             onChange={(e) => setMoney_dividend(e.target.value)}
@@ -325,9 +325,9 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
         <Grid item xs={12} lg={4}>
           <TextField
             fullWidth
-            label="Stock Dividend (VND)"
+            label="Stock Dividend (%)"
             variant="standard"
-            disabled={disableStep2}
+            disabled={disableStep.GrowthRate}
             name="stock_dividend"
             value={stock_dividend}
             onChange={(e) => setStock_dividend(e.target.value)}
@@ -340,7 +340,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
             fullWidth
             label="Profit (Billion VND)"
             variant="standard"
-            disabled={disableStep2}
+            disabled={disableStep.GrowthRate}
             name="profit"
             value={profit}
             onChange={(e) => setProfit(e.target.value)}
@@ -355,7 +355,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
             fullWidth
             label="ROEA"
             variant="standard"
-            disabled={disableStep2}
+            disabled={disableStep.GrowthRate}
             name="ROEA"
             value={ROEA}
             onChange={(e) => setROEA(e.target.value)}
@@ -364,7 +364,12 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
         </Grid>
 
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <IconButton color="primary" size="large" onClick={addStockData}>
+          <IconButton
+            color="primary"
+            size="large"
+            onClick={addStockData}
+            disabled={disableStep.GrowthRate}
+          >
             <AddBoxIcon sx={{ fontSize: 50 }} />
           </IconButton>
         </Grid>
@@ -375,7 +380,6 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell>ID</TableCell>
               <TableCell>Year</TableCell>
               <TableCell align="left">EPS</TableCell>
               <TableCell align="left">Money Dividend</TableCell>
@@ -400,6 +404,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
                       setStock_dividend(tableData.stock_dividend.toString());
                       setProfit(tableData.profit.toString());
                       setROEA(tableData.ROEA.toString());
+                      setEditYear(tableData.year);
                       setEditID(tableData.id);
                     }}
                   />
@@ -408,25 +413,55 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
                     onClick={() => console.log('btn click')}
                   />
                 </TableCell>
-                <TableCell align="left">{tableData.id}</TableCell>
                 <TableCell align="left">{tableData.year}</TableCell>
                 <TableCell align="left">{tableData.EPS}</TableCell>
                 <TableCell align="left">{tableData.money_dividend}</TableCell>
-                <TableCell align="left">{tableData.stock_dividend}</TableCell>
-                <TableCell align="left">{tableData.profit}</TableCell>
-                <TableCell align="left">{tableData.ROEA}</TableCell>
+                <TableCell align="left">
+                  {Math.round(tableData.stock_dividend)}
+                </TableCell>
+                <TableCell align="left">
+                  {Math.round(tableData.profit)}
+                </TableCell>
+                <TableCell align="left">
+                  {(+tableData.ROEA).toFixed(2)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      {growthRatesText && (
+      {graphData && (
         <Box component="div" sx={{ textAlign: 'left', mt: 4 }}>
-          {growthRatesText}
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart
+              data={graphData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="5 5" />
+              <XAxis dataKey="year" />
+              <YAxis
+                dataKey="percent"
+                label={{ value: '%', position: 'insideTopLeft' }}
+              />
+              <Bar dataKey="percent" fill="#8884d8">
+                <LabelList dataKey="percent" position="top" />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </Box>
       )}
       <Box component="div" sx={{ textAlign: 'center' }}>
-        <Button variant="contained" sx={{ mt: 4 }} onClick={handleCalculation}>
+        <Button
+          variant="contained"
+          sx={{ mt: 4 }}
+          onClick={handleCalculation}
+          disabled={disableStep.GrowthRate}
+        >
           <CalculateIcon sx={{ mr: 0.5 }} /> Calculate Growth Rates
         </Button>
       </Box>
@@ -452,6 +487,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
                 fullWidth
                 variant="standard"
                 sx={{ position: 'relative', mt: 2 }}
+                disabled={disableStep.GrowthRate}
               >
                 {chosenYearsFrom.map((year) => (
                   <MenuItem value={year} key={year}>
@@ -476,6 +512,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
                 fullWidth
                 variant="standard"
                 sx={{ position: 'relative', mt: 2 }}
+                disabled={disableStep.GrowthRate}
               >
                 {chosenYearsTo.map((year) => (
                   <MenuItem value={year} key={year}>
@@ -494,6 +531,7 @@ const GrowthRate = ({ disableStep2, setDisableStep2 }: Props) => {
               variant="contained"
               sx={{ mt: 1.5 }}
               onClick={handleCaculateChosenYears}
+              disabled={disableStep.GrowthRate}
             >
               <CalculateIcon sx={{ mr: 0.5 }} /> Calculate
             </Button>
