@@ -105,7 +105,7 @@ const Home = () => {
                       </Link>
                     </FullBorderTableCell>
                     <FullBorderTableCell>
-                      {stock.ticker_symbol}
+                      {stock.current_market_price}
                     </FullBorderTableCell>
                     <FullBorderTableCell>
                       {

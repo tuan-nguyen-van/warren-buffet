@@ -16,13 +16,6 @@ import {
 } from './addStockSlice';
 import { useParams } from 'react-router-dom';
 
-type StockData = {
-  ticker_symbol: string;
-  company_name: string;
-  website: string;
-  id: number;
-};
-
 const CompanyInfo = () => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
   const [tickerSymbol, setTickerSymbol] = useState('');
@@ -30,6 +23,7 @@ const CompanyInfo = () => {
   const [website, setWebsite] = useState('');
   const dispatch = useAppDispatch();
   const { editStockId } = useParams();
+  const [crawlLink, setCrawlLink] = useState('');
 
   //Retrieve information for editStockId
   useEffect(() => {
@@ -37,10 +31,11 @@ const CompanyInfo = () => {
       axios
         .get('/stocks/' + stockId)
         .then(function (response) {
-          const data: StockData = response.data;
+          const data: App.Stocks.StockData = response.data;
           setTickerSymbol(data.ticker_symbol);
           setCompanyName(data.company_name);
           setWebsite(data.website);
+          setCrawlLink(data.vietstock_crawl_link);
           dispatch(changeDisableStep(['CompanyInfo', true]));
         })
         .catch(function (error) {
@@ -56,6 +51,7 @@ const CompanyInfo = () => {
           ticker_symbol: tickerSymbol,
           company_name: companyName,
           website: website,
+          vietstock_crawl_link: crawlLink,
         })
         .then(function (response) {
           dispatch(changeDisableStep(['CompanyInfo', true]));
@@ -99,9 +95,7 @@ const CompanyInfo = () => {
             disabled={disableStep.CompanyInfo}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={7}>
           <TextField
             fullWidth
             label="Company Name"
@@ -111,6 +105,8 @@ const CompanyInfo = () => {
             disabled={disableStep.CompanyInfo}
           />
         </Grid>
+      </Grid>
+      <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
           <TextField
             fullWidth
@@ -121,12 +117,24 @@ const CompanyInfo = () => {
             disabled={disableStep.CompanyInfo}
           />
         </Grid>
+        <Grid item xs={12} lg={6}>
+          <TextField
+            fullWidth
+            label="Vietstock crawl link"
+            variant="standard"
+            value={crawlLink}
+            onChange={(e) => setCrawlLink(e.target.value)}
+            disabled={disableStep.CompanyInfo}
+          />
+        </Grid>
         <Grid item xs={12} lg={2} sx={{ textAlign: 'center' }}>
           {disableStep.CompanyInfo ? (
             <IconButton
               color="primary"
               size="large"
-              onClick={() => dispatch(changeDisableStep(['CompanyInfo', true]))}
+              onClick={() =>
+                dispatch(changeDisableStep(['CompanyInfo', false]))
+              }
             >
               <EditIcon sx={{ fontSize: 50 }} />
             </IconButton>

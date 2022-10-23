@@ -138,7 +138,9 @@ const StockList = () => {
                 <FullBorderTableCell>{stock.ticker_symbol}</FullBorderTableCell>
                 <FullBorderTableCell>{stock.company_name}</FullBorderTableCell>
                 <FullBorderTableCell>{stock.status}</FullBorderTableCell>
-                <FullBorderTableCell>Market Price</FullBorderTableCell>
+                <FullBorderTableCell>
+                  {stock.current_market_price}
+                </FullBorderTableCell>
               </TableRow>
             ))}
           </TableBody>
