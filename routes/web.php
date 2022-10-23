@@ -25,25 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/crawl', function () {
-//     $context = stream_context_create(
-//         [
-//             'http' => [
-//                 'header' => 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
-//             ],
-//         ]
-//     );
-
-//     $html = file_get_contents('https://finance.vietstock.vn/VNM-ctcp-sua-viet-nam.htm', false, $context);
-//     $remainedStringWithPrice = stristr($html, '<span class="txt-green price">') ?: (stristr($html, '<span class="txt-red price">') ?: stristr($html, '<span class="txt-orange price">'));
-//     $firstLessThan = strpos($remainedStringWithPrice, '>');
-//     $secondMoreThan = strpos($remainedStringWithPrice, '<', $firstLessThan);
-//     $vietnamesePrice = substr($remainedStringWithPrice, $firstLessThan + 1, $secondMoreThan - $firstLessThan - 2); // 15,95
-//     $priceToNumber = str_replace(',', '.', $vietnamesePrice);
-
-//     return $priceToNumber;
-// });
-
 Route::resource('stocks', StockController::class)->except([
     'create', 'edit',
 ]);
