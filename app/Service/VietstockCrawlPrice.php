@@ -28,7 +28,7 @@ class VietstockCrawlPrice
         if (isset($matches)) {
             preg_match('/[0-9,]+/', $matches[0], $price);
             $priceToNumber = str_replace(',', '.', $price[0]);
-            $stock->update(['current_market_price' => (float) $priceToNumber]);
+            $stock->update(['current_market_price' => ((float) $priceToNumber) * 1000]);
         }
     }
 }

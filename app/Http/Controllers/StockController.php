@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
@@ -16,11 +17,13 @@ class StockController extends Controller
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection<int,Stock>
+     * @return \Illuminate\Support\Collection<int,Stock>
      */
     public function index()
     {
-        return Stock::all();
+        return DB::table('stocks')
+            ->orderByRaw("FIELD(status, 'Followed', 'Unfollowed', 'Unfinished')")
+            ->get();
     }
 
     /**
