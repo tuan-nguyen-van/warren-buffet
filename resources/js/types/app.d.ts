@@ -105,6 +105,8 @@ declare namespace App {
       updated_at: string;
       created_at: string;
     }
+
+    export type CalculationStep = AddStock.Calculation.DataValue;
   }
 
   namespace Stocks {
@@ -119,6 +121,10 @@ declare namespace App {
       vietstock_crawl_link: string;
       updated_at: string;
       created_at: string;
+    }
+
+    export interface OrderStock extends StockData {
+      marginOfSafetyOpt1?: number;
     }
   }
 }

@@ -15,6 +15,11 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SideBarItem from './SideBarItem';
 import { NavLink } from 'react-router-dom';
 import { getDiscountRate } from '../DiscountRate/discountSlice';
+import Stack from '@mui/material/Stack';
+import HomeIcon from '@mui/icons-material/Home';
+import MenuButton from '../components/MenuButton';
+import { useAppDispatch } from '../app/redux-hooks';
+import { toggle } from '../Content/sideBarSlice';
 
 const drawerWidth = 240;
 
@@ -33,7 +38,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: window.isMobile ? '0px' : `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
@@ -45,6 +50,8 @@ const Drawer = styled(MuiDrawer, {
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
+  position: window.isMobile ? 'absolute' : 'inherit',
+  zIndex: 100,
   boxSizing: 'border-box',
   ...(open && {
     ...openedMixin(theme),
@@ -59,12 +66,37 @@ const Drawer = styled(MuiDrawer, {
 const SideBar = () => {
   const menuOpen = useAppSelector(selectOpen);
   const discountRate = useAppSelector(getDiscountRate);
+  const dispatch = useAppDispatch();
 
   return (
-    <Box
-      sx={{ display: 'flex', '& .MuiPaper-root': { top: '50px !important' } }}
-    >
+    <Box sx={{ display: 'flex' }}>
+      <Box
+        component="div"
+        sx={{
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
+          zIndex: 99,
+          left: '0px',
+          display: window.isMobile && menuOpen ? 'block' : 'none',
+        }}
+        onClick={() => dispatch(toggle())}
+      ></Box>
       <Drawer variant="permanent" open={menuOpen}>
+        <List>
+          <Stack direction="row" spacing={2} sx={{ px: 2.5 }}>
+            {!window.isMobile && <MenuButton />}
+            <NavLink to="/">
+              <HomeIcon
+                className={'home-icon'}
+                sx={{
+                  color: 'rgba(232, 230, 227, 0.54)',
+                  marginLeft: window.isMobile ? '80px !important' : 'inherit',
+                }}
+              />
+            </NavLink>
+          </Stack>
+        </List>
         <List>
           <NavLink
             to="add-stock"

@@ -1,54 +1,39 @@
 import React from 'react';
-import Container from '@mui/material/Container';
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
-import { useAppDispatch } from '../app/redux-hooks';
-import { toggle } from '../Content/sideBarSlice';
-import { NavLink } from 'react-router-dom';
+import MenuButton from '../components/MenuButton';
+import Stack from '@mui/material/Stack';
 
 const Header: React.FunctionComponent = () => {
-  const dispatch = useAppDispatch();
-
   return (
-    <Container sx={{ height: 50, paddingTop: '10px' }} maxWidth={false}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <Stack direction="row" spacing={2}>
-            <MenuIcon
-              className="menu-icon"
-              onClick={() => dispatch(toggle())}
-            />
-            <NavLink to="/">
-              <HomeIcon className="home-icon" />
-            </NavLink>
-          </Stack>
-        </Grid>
-        <Grid item xs={8}>
+    <Grid container spacing={2} sx={{ position: 'relative' }}>
+      <Grid item xs={10} sx={{ paddingLeft: '0px !important' }}>
+        <Stack direction="row">
+          {window.isMobile && <MenuButton />}
           <Autocomplete
             id="free-solo-demo"
             freeSolo
             options={[]}
             renderInput={(params) => <TextField {...params} label="Search" />}
             sx={{
+              ml: window.isMobile ? 1 : 0,
               maxWidth: 600,
             }}
             size="small"
+            fullWidth
           />
-        </Grid>
-        <Grid item xs={2}>
-          <Avatar
-            alt="avatar"
-            src="/images/warren-buffett.png"
-            className="avatar"
-          />
-        </Grid>
+        </Stack>
       </Grid>
-    </Container>
+      <Grid item xs={2}>
+        <Avatar
+          alt="avatar"
+          src="/images/warren-buffett.png"
+          className="avatar"
+        />
+      </Grid>
+    </Grid>
   );
 };
 

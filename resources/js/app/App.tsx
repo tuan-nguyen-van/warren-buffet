@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from '../Header';
 import Content from '../Content';
 import axios from 'axios';
 import { useAppDispatch } from './redux-hooks';
@@ -23,7 +22,6 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Header />
       <Content />
     </>
   );
