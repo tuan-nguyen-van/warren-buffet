@@ -5,7 +5,6 @@ import { Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
 import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
@@ -15,6 +14,7 @@ import {
   changeDisableStep,
 } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import useAxios from '../CustomHooks/useAxios';
 
 const CompanyInfo = () => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
@@ -28,53 +28,55 @@ const CompanyInfo = () => {
   //Retrieve information for editStockId
   useEffect(() => {
     if (editStockId && stockId) {
-      axios
-        .get('/stocks/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/stocks/' + stockId },
+        function (response) {
           const data: App.Stocks.StockData = response.data;
           setTickerSymbol(data.ticker_symbol);
           setCompanyName(data.company_name);
           setWebsite(data.website);
           setCrawlLink(data.vietstock_crawl_link);
           dispatch(changeDisableStep(['CompanyInfo', true]));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [stockId, editStockId]);
 
   const handleAddStock = () => {
     if (!stockId) {
-      axios
-        .post('/stocks', {
-          ticker_symbol: tickerSymbol,
-          company_name: companyName,
-          website: website,
-          vietstock_crawl_link: crawlLink,
-        })
-        .then(function (response) {
+      useAxios(
+        {
+          method: 'post',
+          url: '/stocks',
+          data: {
+            ticker_symbol: tickerSymbol,
+            company_name: companyName,
+            website: website,
+            vietstock_crawl_link: crawlLink,
+          },
+        },
+        function (response) {
           dispatch(changeDisableStep(['CompanyInfo', true]));
           dispatch(changeDisableStep(['CheckTenets', false]));
           dispatch(changeDisableStep(['GrowthRate', false]));
           dispatch(changeStockId(response.data as number));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     } else {
-      axios
-        .put('/stocks/' + stockId, {
-          ticker_symbol: tickerSymbol,
-          company_name: companyName,
-          website: website,
-        })
-        .then(function () {
+      useAxios(
+        {
+          method: 'put',
+          url: '/stocks/' + stockId,
+          data: {
+            ticker_symbol: tickerSymbol,
+            company_name: companyName,
+            website: website,
+          },
+        },
+        function () {
           dispatch(changeDisableStep(['CompanyInfo', true]));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   };
 

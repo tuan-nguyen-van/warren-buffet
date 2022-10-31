@@ -1,0 +1,46 @@
+.h-stock-number {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -3px;
+}
+
+.h-company-name {
+  font-weight: 700;
+  font-size: 24px;
+  color: rgb(114, 193, 254);
+  margin-left: 16px;
+}
+
+.h-stock-price {
+  font-size: 30px;
+  color: rgb(224, 34, 0);
+  font-weight: 700;
+}
+
+.h-stock-card {
+  min-width: 275px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.h-card-last-row {
+  margin-top: 10px !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .h-first-card-row {
+    margin-top: 15px !important;
+  }
+}
+
+.h-card-btn-group {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}

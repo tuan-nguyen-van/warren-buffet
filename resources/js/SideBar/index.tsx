@@ -20,6 +20,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import MenuButton from '../components/MenuButton';
 import { useAppDispatch } from '../app/redux-hooks';
 import { toggle } from '../Content/sideBarSlice';
+import RightBtnGroup from '../Header/RightBtnGroup';
 
 const drawerWidth = 240;
 
@@ -86,11 +87,10 @@ const SideBar = () => {
         <List>
           <Stack direction="row" spacing={2} sx={{ px: 2.5 }}>
             {!window.isMobile && <MenuButton />}
-            <NavLink to="/">
+            <NavLink to="/" className="color-inherit">
               <HomeIcon
                 className={'home-icon'}
                 sx={{
-                  color: 'rgba(232, 230, 227, 0.54)',
                   marginLeft: window.isMobile ? '80px !important' : 'inherit',
                 }}
               />
@@ -144,6 +144,9 @@ const SideBar = () => {
           >
             <SideBarItem text="Famous Quotes" icon={<FormatQuoteIcon />} />
           </NavLink>
+          <Box component={'div'} sx={{ textAlign: 'center' }}>
+            <RightBtnGroup sidebar />
+          </Box>
         </List>
       </Drawer>
       <Content />

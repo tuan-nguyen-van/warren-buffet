@@ -3,10 +3,10 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import useAxios from '../CustomHooks/useAxios';
 
 type Props = {
   key: number;
@@ -43,34 +43,24 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
       value: checked ? 0 : 1,
     };
     if (checkBoxId) {
-      axios
-        .post('/stock-has-tenets', requestData)
-        .then(function (response) {
+      useAxios(
+        { method: 'post', url: '/stock-has-tenets', data: requestData },
+        function (response) {
           console.log(response);
           setChecked(!checked);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   };
 
-  const handleFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
-    const idName = e.target?.getAttribute('name');
+  const handleFocusOut = () => {
     if (noteValue) {
-      axios
-        .post('/stock-has-tenets/note', {
-          tenet_id: idName,
-          stock_id: stockId,
-          note: noteValue,
-        })
-        .then(function ({ data }: { data: string }) {
+      useAxios(
+        { method: 'post', url: '/stock-has-tenets/note' },
+        function ({ data }: { data: string }) {
           console.log(data);
-        })
-        .catch(function (error) {
-          console.log(error);
-          setNoteValue('');
-        });
+        }
+      );
     }
   };
 
@@ -95,9 +85,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
           sx={{ mb: 2 }}
           disabled={disableStep.CheckTenets}
           name={'' + tenet.id}
-          onBlur={(e) =>
-            handleFocusOut(e as React.FocusEvent<HTMLInputElement>)
-          }
+          onBlur={handleFocusOut}
           value={noteValue}
           onChange={(e) => setNoteValue(e.target.value)}
         />

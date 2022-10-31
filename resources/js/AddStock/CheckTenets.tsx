@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import axios from 'axios';
 import TenetType from './TenetType';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import useAxios from '../CustomHooks/useAxios';
 
 const CheckTenets = () => {
   const [tenets, setTenets] = useState<App.Tenets>();
@@ -16,38 +16,26 @@ const CheckTenets = () => {
   const { editStockId } = useParams();
 
   useEffect(() => {
-    axios
-      .get('/tenets')
-      .then(function (response) {
-        const data: App.Tenets = response.data;
-        setTenets(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/tenets' }, function (response) {
+      const data: App.Tenets = response.data;
+      setTenets(data);
+    });
 
-    axios
-      .get('/tenet-types')
-      .then(function (response) {
-        const data: App.TenetTypes = response.data;
-        setTenetTypes(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/tenet-types' }, function (response) {
+      const data: App.TenetTypes = response.data;
+      setTenetTypes(data);
+    });
   }, []);
 
   useEffect(() => {
     if (stockId && editStockId) {
-      axios
-        .get('/stock-has-tenets/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/stock-has-tenets/' + stockId },
+        function (response) {
           const data: App.StockHasTenet[] = response.data;
           setStockHasTenets(data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [editStockId, stockId]);
 

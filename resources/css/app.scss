@@ -1,3 +1,5 @@
+@import "home";
+
 @mixin font-40-imp {
   font-size: 40px !important;
 }
@@ -10,11 +12,6 @@
   margin-left: 40px !important;
 }
 
-@mixin float-right {
-  float: right;
-}
-
-
 .home-icon {
   @include font-40-imp;
   @include cursor-pointer-imp;
@@ -26,9 +23,33 @@
   @include cursor-pointer-imp;
 }
 
+@media only screen and (max-width: 1100px) {
+
+  .light-mode,
+  .dark-mode {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+
+  .sidebar-light-mode,
+  .sidebar-dark-mode {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 1009px) {
+
+  .sidebar-light-mode,
+  .sidebar-dark-mode {
+    display: inherit !important;
+  }
+}
+
 .avatar {
-  @include float-right;
   @include cursor-pointer-imp;
+  margin-left: 10px;
 }
 
 .nav-link {
@@ -41,17 +62,36 @@
     color: #001d35;
     font-weight: bold;
   }
+
   .MuiListItem-root {
     background-color: #d3e3fd;
     border-radius: 0 16px 16px 0;
   }
+
   .MuiSvgIcon-root path {
     color: rgba(0, 0, 0, 0.84);
   }
 }
 
 .disabledText {
-  p, span, h4, h5, h6, th {
-    color: rgba(0, 0, 0, 0.38) !important;
+
+  p,
+  span,
+  h4,
+  h5,
+  h6,
+  th {
+    opacity: 0.4 !important;
   }
+}
+
+.color-inherit {
+  color: inherit;
+}
+
+.guest-action-alert {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }

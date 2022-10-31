@@ -4,10 +4,10 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import axios from 'axios';
 import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
 import { getAddStockState, changeDisableStep } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import useAxios from '../CustomHooks/useAxios';
 
 type EpsData = {
   chosen_eps: number;
@@ -26,15 +26,13 @@ const EpsToCalculate = () => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      axios
-        .get(`/chosen-eps/${stockId}`)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: `/chosen-eps/${stockId}` },
+        function (response) {
           const data: EpsData = response.data;
           setEps(data.chosen_eps);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [stockId, editStockId]);
 
@@ -45,18 +43,20 @@ const EpsToCalculate = () => {
       setEpsError(false);
     }
 
-    axios
-      .post('/chosen-eps', {
-        chosen_eps: +eps,
-        stock_id: stockId,
-      })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'post',
+        url: '/chosen-eps',
+        data: {
+          chosen_eps: +eps,
+          stock_id: stockId,
+        },
+      },
+      function (response) {
         console.log(response);
         dispatch(changeDisableStep(['Calculation', false]));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

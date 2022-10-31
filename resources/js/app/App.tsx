@@ -1,29 +1,44 @@
 import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Content from '../Content';
-import axios from 'axios';
 import { useAppDispatch } from './redux-hooks';
 import { changeDiscountRate } from '../DiscountRate/discountSlice';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { changeMode, getMode } from './lightModeSlice';
+import { useAppSelector } from './redux-hooks';
+import AlertError from '../Guest/AlertError';
+import useAxios from '../CustomHooks/useAxios';
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  useEffect(() => {
+    dispatch(changeMode(prefersDarkMode ? 'dark' : 'light'));
+  }, [prefersDarkMode]);
+  const { mode } = useAppSelector(getMode);
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: mode === 'dark' ? 'dark' : 'light',
+        },
+      }),
+    [mode]
+  );
 
   useEffect(() => {
-    axios
-      .get('/get-discount-rate')
-      .then(function (response) {
-        dispatch(changeDiscountRate(response.data.value));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/get-discount-rate' }, function (response) {
+      dispatch(changeDiscountRate(response.data.value));
+    });
   }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
+      <AlertError />
       <Content />
-    </>
+    </ThemeProvider>
   );
 };
 

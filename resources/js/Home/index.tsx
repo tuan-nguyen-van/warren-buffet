@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import FullBorderTableCell from '../components/FullBorderTableCell';
-import TableSortLabel from '@mui/material/TableSortLabel';
 import orderBy from 'lodash/orderBy';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import EditIcon from '@mui/icons-material/Edit';
+import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+import useAxios from '../CustomHooks/useAxios';
 
 const Home = () => {
   const [followedStocks, setFollowedStock] =
@@ -18,26 +17,18 @@ const Home = () => {
   const [sortedStocks, setSortedStocks] = useState<App.Stocks.OrderStock[]>();
   const [quotes, setQuotes] = useState<App.Quotes.Data[]>();
   let quotesCount = 1;
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+  let stockNumber = 1;
+  const [totalTenets, setTotalTenets] = useState<number>();
 
   useEffect(() => {
-    axios
-      .get('/stocks-for-home')
-      .then(function ({ data }) {
-        setFollowedStock(data as App.Stocks.StockData[]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/stocks-for-home' }, function ({ data }) {
+      setTotalTenets(data.totalTenets as number);
+      setFollowedStock(data.stocks as App.Stocks.StockData[]);
+    });
 
-    axios
-      .get('/quotes')
-      .then(function ({ data }) {
-        setQuotes(data as App.Quotes.Data[]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/quotes' }, function ({ data }) {
+      setQuotes(data as App.Quotes.Data[]);
+    });
   }, []);
 
   useEffect(() => {
@@ -69,14 +60,18 @@ const Home = () => {
     );
   };
 
-  const handleSort = () => {
-    const newSortedStocks = orderBy(
-      sortedStocks,
-      ['marginOfSafetyOpt1'],
-      [order === 'desc' ? 'asc' : 'desc']
+  const handleUnfollow = (stockId: number, index: number) => {
+    useAxios(
+      {
+        method: 'patch',
+        url: '/stocks/status/' + stockId,
+        data: { status: 'Unfollowed' },
+      },
+      function () {
+        sortedStocks?.splice(index, 1);
+        setSortedStocks([...sortedStocks!]);
+      }
     );
-    setOrder(order === 'desc' ? 'asc' : 'desc');
-    setSortedStocks([...newSortedStocks]);
   };
 
   return (
@@ -95,101 +90,145 @@ const Home = () => {
           </React.Fragment>
         ))}
       </Paper>
-      <Box sx={{ mt: 5 }}>
-        <Paper
-          elevation={5}
-          sx={{ p: 1.5, fontSize: '18px', mt: 5 }}
-          component="span"
-        >
-          Followed Stocks
-        </Paper>
-        <Paper sx={{ width: '100%' }}></Paper>
+      {sortedStocks &&
+        sortedStocks.map((stock, index) => {
+          const calculationStep: App.intrinsicValueCalculation.CalculationStep[] =
+            JSON.parse(stock.intrinsic_value_caculations!.calculation_step);
+          const financialMetrics = stock.financial_metrics;
 
-        <TableContainer sx={{ maxHeight: 600, mt: 2 }}>
-          <Table stickyHeader sx={{ borderCollapse: 'collapse' }}>
-            <TableHead>
-              <TableRow>
-                <FullBorderTableCell align="center" colSpan={2}>
-                  Details
-                </FullBorderTableCell>
-                <FullBorderTableCell
-                  align="center"
-                  colSpan={2}
-                  sortDirection="asc"
-                >
-                  <TableSortLabel
-                    active={true}
-                    direction={order}
-                    onClick={handleSort}
+          let fiveRecentYearRoea = 0;
+          let fiveRecentYearsMoneyDividend = 0;
+          let i = 0;
+          for (; i < 5 && i < stock.financial_metrics!.length; i++) {
+            fiveRecentYearRoea += Number(stock.financial_metrics![i].ROEA);
+            fiveRecentYearsMoneyDividend +=
+              stock.financial_metrics![i].money_dividend;
+          }
+          fiveRecentYearRoea /= i;
+          fiveRecentYearsMoneyDividend /= i;
+          return (
+            <Card className="h-stock-card" key={stock.id}>
+              <CardContent sx={{ position: 'relative' }}>
+                <Box component="div" sx={{ textAlign: 'left', mt: 1, mr: 4 }}>
+                  <Box component="span" className="h-stock-number">
+                    <span>{stockNumber++}</span>
+                  </Box>
+                  <Box component="span" className="h-company-name">
+                    {stock.ticker_symbol} | {stock.company_name}
+                  </Box>
+                </Box>
+                <Box component={'div'} className="h-card-btn-group">
+                  <Link
+                    to={'/edit-stock/' + stock.id}
+                    className="color-inherit"
                   >
-                    Margin of safety (%)
-                  </TableSortLabel>
-                </FullBorderTableCell>
-                <FullBorderTableCell align="center" colSpan={2}>
-                  PE
-                </FullBorderTableCell>
-                <FullBorderTableCell align="center" colSpan={2}>
-                  Intrinsic Price
-                </FullBorderTableCell>
-              </TableRow>
-              <TableRow>
-                <FullBorderTableCell>Symbol</FullBorderTableCell>
-                <FullBorderTableCell>Market Price</FullBorderTableCell>
-                <FullBorderTableCell>Opt1</FullBorderTableCell>
-                <FullBorderTableCell>Opt2</FullBorderTableCell>
-                <FullBorderTableCell>Opt1</FullBorderTableCell>
-                <FullBorderTableCell>Opt2</FullBorderTableCell>
-                <FullBorderTableCell>Opt1</FullBorderTableCell>
-                <FullBorderTableCell>Opt2</FullBorderTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sortedStocks &&
-                sortedStocks.map((stock) => {
-                  const calculationStep: App.intrinsicValueCalculation.CalculationStep[] =
-                    JSON.parse(
-                      stock.intrinsic_value_caculations!.calculation_step
-                    );
-                  return (
-                    <TableRow key={stock.id}>
-                      <FullBorderTableCell>
-                        <Link to={`/edit-stock/${stock.id}`}>
-                          {stock.ticker_symbol}
-                        </Link>
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {stock.current_market_price}
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {stock.marginOfSafetyOpt1}
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {calculationStep[1]?.intrinsic_price &&
-                          marginOfSafety(
-                            stock,
-                            calculationStep[1]?.intrinsic_price
-                          )}
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {calculationStep[0].total_pe}
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {calculationStep[1]?.total_pe}
-                      </FullBorderTableCell>
+                    <EditIcon />
+                  </Link>
 
-                      <FullBorderTableCell>
-                        {calculationStep[0].intrinsic_price}
-                      </FullBorderTableCell>
-                      <FullBorderTableCell>
-                        {calculationStep[1]?.intrinsic_price}
-                      </FullBorderTableCell>
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+                  <BookmarkRemoveIcon
+                    onClick={() => handleUnfollow(stock.id, index)}
+                  />
+                </Box>
+                <Grid container sx={{ mt: 2 }}>
+                  <Grid
+                    item
+                    xs={6}
+                    lg={3}
+                    className="h-stock-price h-first-card-row"
+                  >
+                    {stock.current_market_price}
+                  </Grid>
+                  <Grid item xs={6} lg={3} className="h-first-card-row">
+                    Margin Of Safety
+                    <br />
+                    {stock.marginOfSafetyOpt1}%{' '}
+                    {calculationStep[1]?.intrinsic_price &&
+                      '| ' +
+                        marginOfSafety(
+                          stock,
+                          calculationStep[1]?.intrinsic_price
+                        ) +
+                        '%'}
+                  </Grid>
+                  <Grid item xs={6} lg={3} className="h-first-card-row">
+                    PE
+                    <br />
+                    {calculationStep[0].total_pe}{' '}
+                    {calculationStep[1] ? '|' : ''}{' '}
+                    {calculationStep[1]?.total_pe}
+                  </Grid>
+                  <Grid item xs={6} lg={3} className="h-first-card-row">
+                    Intrinsic Price
+                    <br />
+                    {calculationStep[0].intrinsic_price}{' '}
+                    {calculationStep[1] ? '|' : ''}{' '}
+                    {calculationStep[1]?.intrinsic_price}
+                  </Grid>
+                </Grid>
+                <Divider sx={{ my: 2.5 }} />
+                <Grid container>
+                  <Grid item xs={12}>
+                    Growth Assumption
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box component="div">Option 1</Box>
+                    <Grid container>
+                      <Grid item xs={12} md={6}>
+                        <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
+                          Next 10 years:{' '}
+                          {stock.growth_assumptions![0].next_10_years}%
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
+                          Next 10 - 20 years:{' '}
+                          {stock.growth_assumptions![0].next_10_to_20_years}%
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box component="div">Option 2</Box>
+                    <Grid container>
+                      <Grid item xs={12} md={6}>
+                        <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
+                          Next 10 years:{' '}
+                          {stock.growth_assumptions![1]?.next_10_years}%
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
+                          Next 10 - 20 years:{' '}
+                          {stock.growth_assumptions![1]?.next_10_to_20_years}%
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Divider sx={{ my: 2.5 }} />
+                <Grid container>
+                  <Grid item xs={12} md={3} className="h-card-last-row">
+                    Tenets: {stock.stock_has_tenets!.length + '/' + totalTenets}
+                  </Grid>
+                  <Grid item xs={12} md={3} className="h-card-last-row">
+                    Dividend Paid:{' '}
+                    {
+                      financialMetrics!.filter((value) => value.money_dividend)
+                        .length
+                    }
+                    /{stock.financial_metrics!.length} years
+                  </Grid>
+                  <Grid item xs={12} md={3} className="h-card-last-row">
+                    5 years ROEA: {fiveRecentYearRoea}%
+                  </Grid>
+                  <Grid item xs={12} md={3} className="h-card-last-row">
+                    5 years average dividend: {fiveRecentYearsMoneyDividend}
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          );
+        })}
     </Box>
   );
 };

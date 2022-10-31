@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -35,6 +34,7 @@ import {
   ResponsiveContainer,
   LabelList,
 } from 'recharts';
+import useAxios from '../CustomHooks/useAxios';
 
 type GrowthRateData = {
   year: number;
@@ -81,41 +81,35 @@ const GrowthRate = () => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      axios
-        .get('/financial-metrics/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/financial-metrics/' + stockId },
+        function (response) {
           setTableDatas(response.data);
           dispatch(changeDisableStep(['GrowthRate', false]));
           // setDisableStep2(false);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
 
-      axios
-        .get('/calculated-growth-rates/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/calculated-growth-rates/' + stockId },
+        function (response) {
           getGrowthRatesText(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [stockId, editStockId]);
 
   useEffect(() => {
     if (stockId && editStockId) {
-      axios
-        .get('/chosen-growth-rates/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/chosen-growth-rates/' + stockId },
+        function (response) {
           const data: App.GrowthRate.ChosenData = response.data;
           setFromYear(data.year_from);
           setToYear(data.year_to);
           setAverageGrowthRate(data.value + '%');
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [stockId, editStockId]);
 
@@ -157,9 +151,13 @@ const GrowthRate = () => {
       };
 
       if (editID) {
-        axios
-          .put('/financial-metrics/' + editID, stockData)
-          .then(function () {
+        useAxios(
+          {
+            method: 'put',
+            url: '/financial-metrics/' + editID,
+            data: stockData,
+          },
+          function () {
             const newTableDatas = [...tableDatas];
             newTableDatas[
               tableDatas.findIndex((tableData) => tableData.id === editID)
@@ -171,14 +169,12 @@ const GrowthRate = () => {
             resetInputs();
             setEditID(0);
             setEditYear(0);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          }
+        );
       } else {
-        axios
-          .post('/financial-metrics', stockData)
-          .then(function (response) {
+        useAxios(
+          { method: 'post', url: '/financial-metrics', data: stockData },
+          function (response) {
             setTableDatas([
               ...tableDatas,
               {
@@ -187,10 +183,8 @@ const GrowthRate = () => {
               },
             ]);
             resetInputs();
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          }
+        );
       }
     }
   };
@@ -208,14 +202,16 @@ const GrowthRate = () => {
     if (tableDatas.length < 3) {
       alert('Need at least 3 year records to start calculation');
     }
-    axios
-      .post('/calculate-growth-rates', { stock_id: stockId })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'post',
+        url: '/calculate-growth-rates',
+        data: { stock_id: stockId },
+      },
+      function (response) {
         getGrowthRatesText(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   const handleCaculateChosenYears = () => {
@@ -244,19 +240,21 @@ const GrowthRate = () => {
     }
 
     //Send years to server with stockID
-    axios
-      .post('/calculate-growth-rate-with-chosen-years', {
-        stock_id: stockId,
-        fromYear: fromYear,
-        toYear: toYear,
-      })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'post',
+        url: '/calculate-growth-rate-with-chosen-years',
+        data: {
+          stock_id: stockId,
+          fromYear: fromYear,
+          toYear: toYear,
+        },
+      },
+      function (response) {
         setAverageGrowthRate(response.data + '%');
         dispatch(changeDisableStep(['Assumption', false]));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

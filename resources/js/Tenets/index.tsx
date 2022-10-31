@@ -21,10 +21,10 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import axios from 'axios';
 import EachTenet from './EachTenet';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import useAxios from '../CustomHooks/useAxios';
 
 export type HandleEdit = (tenet: App.Tenet) => void;
 
@@ -48,27 +48,17 @@ const Tenets = () => {
   });
 
   useEffect(() => {
-    axios
-      .get('/tenet-types')
-      .then(function (response) {
-        const tenetTypes: App.TenetTypes = response.data;
-        setTenetTypes(tenetTypes);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/tenet-types' }, function (response) {
+      const tenetTypes: App.TenetTypes = response.data;
+      setTenetTypes(tenetTypes);
+    });
   }, []);
 
   useEffect(() => {
-    axios
-      .get('/tenets')
-      .then(function (response) {
-        const tenets: App.Tenets = response.data;
-        setTenets(tenets);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/tenets' }, function (response) {
+      const tenets: App.Tenets = response.data;
+      setTenets(tenets);
+    });
   }, []);
 
   const handleClickCreate = () => {
@@ -89,19 +79,21 @@ const Tenets = () => {
     !description ? setDescriptionError(true) : setDescriptionError(false);
 
     if (type && description) {
-      axios
-        .post('/tenets', {
-          type,
-          description,
-        })
-        .then(function (response) {
+      useAxios(
+        {
+          method: 'post',
+          url: '/tenets',
+          data: {
+            type,
+            description,
+          },
+        },
+        function (response) {
           const tenets: App.Tenets = response.data;
           setTenets(tenets);
           setOpenModal(false);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   };
 
@@ -118,19 +110,21 @@ const Tenets = () => {
   };
 
   const handleUpdate = () => {
-    axios
-      .put('/tenets/' + updateDestroyTenetId, {
-        type,
-        description,
-      })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'put',
+        url: '/tenets/' + updateDestroyTenetId,
+        data: {
+          type,
+          description,
+        },
+      },
+      function (response) {
         const tenets: App.Tenets = response.data;
         setTenets(tenets);
         setOpenModal(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   const handleDelete: HandleDelete = (tenet) => {
@@ -146,16 +140,14 @@ const Tenets = () => {
   };
 
   const handleDestroy = () => {
-    axios
-      .delete('/tenets/' + updateDestroyTenetId)
-      .then(function (response) {
+    useAxios(
+      { method: 'delete', url: '/tenets/' + updateDestroyTenetId },
+      function (response) {
         const tenets: App.Tenets = response.data;
         setTenets(tenets);
         setOpenModal(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

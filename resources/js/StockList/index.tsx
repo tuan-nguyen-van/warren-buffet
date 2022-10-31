@@ -6,20 +6,19 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import { Link } from 'react-router-dom';
-
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import useAxios from '../CustomHooks/useAxios';
 
 const StockList = () => {
   const [openModal, setOpenModal] = React.useState(false);
@@ -39,26 +38,19 @@ const StockList = () => {
 
   const handleAgree = () => {
     //Post axios to delete the stock id
-    axios
-      .delete('/stocks/' + deleteStock?.id)
-      .then(function () {
+    useAxios(
+      { method: 'delete', url: '/stocks/' + deleteStock?.id },
+      function () {
         delete stocks![deleteStock!.index];
         setOpenModal(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   useEffect(() => {
-    axios
-      .get('/stocks')
-      .then(function ({ data }) {
-        setStocks(data as App.Stocks.StockData[]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/stocks' }, function ({ data }) {
+      setStocks(data as App.Stocks.StockData[]);
+    });
   }, []);
 
   const handleFollowed = (
@@ -66,17 +58,19 @@ const StockList = () => {
     index: number,
     action: 'Followed' | 'Unfollowed'
   ) => {
-    axios
-      .patch('/stocks/status/' + id, {
-        status: action,
-      })
-      .then(function () {
+    useAxios(
+      {
+        method: 'patch',
+        url: '/stocks/status/' + id,
+        data: {
+          status: action,
+        },
+      },
+      function () {
         stocks![index].status = action;
         setStocks([...stocks!]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

@@ -27,6 +27,20 @@ declare namespace App {
     updated_at: string;
     created_at: string;
   }
+
+  export interface FinancialMetrics {
+    EPS: number;
+    ROEA: string;
+    created_at: string;
+    id: number;
+    money_dividend: number;
+    profit: string;
+    stock_dividend: string;
+    stock_id: number;
+    updated_at: string;
+    year: string;
+  }
+
   namespace GrowthRate {
     export interface TableData {
       id: number;
@@ -114,6 +128,9 @@ declare namespace App {
       id: number;
       company_name: string;
       intrinsic_value_caculations?: intrinsicValueCalculation.intrinsicValueCalculation;
+      growth_assumptions?: AssumedOption.GrowthData[];
+      stock_has_tenets?: App.StockHasTenet[];
+      financial_metrics?: App.FinancialMetrics[];
       ticker_symbol: string;
       website: string;
       current_market_price: number;
@@ -125,6 +142,23 @@ declare namespace App {
 
     export interface OrderStock extends StockData {
       marginOfSafetyOpt1?: number;
+    }
+
+    export interface SearchStock {
+      id: number;
+      title: string;
+    }
+  }
+
+  namespace User {
+    export interface User {
+      id: number;
+      email: string;
+      email_verified_at: string;
+      name: string;
+      role: string;
+      created_at: string;
+      updated_at: string;
     }
   }
 }

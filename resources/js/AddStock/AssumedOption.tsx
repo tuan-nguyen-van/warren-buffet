@@ -4,10 +4,10 @@ import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IconButton from '@mui/material/IconButton';
-import axios from 'axios';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../app/redux-hooks';
+import useAxios from '../CustomHooks/useAxios';
 
 type Props = {
   option: number;
@@ -28,16 +28,17 @@ const AssumedOption = ({ option }: Props) => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      axios
-        .get(`/growth_assumptions?stock_id=${stockId}&option=${option}`)
-        .then(function (response) {
+      useAxios(
+        {
+          method: 'get',
+          url: `/growth_assumptions?stock_id=${stockId}&option=${option}`,
+        },
+        function (response) {
           const data: App.AssumedOption.GrowthData = response.data;
           setNextTen(data.next_10_years);
           setNextTenToTwenty(data.next_10_to_20_years);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [stockId, editStockId]);
 
@@ -64,19 +65,21 @@ const AssumedOption = ({ option }: Props) => {
     }
 
     if (valid) {
-      axios
-        .post('/growth_assumptions', {
-          stock_id: stockId,
-          next_10_years: nextTen,
-          next_10_to_20_years: nextTenToTwenty,
-          option: option,
-        })
-        .then(function (response) {
+      useAxios(
+        {
+          method: 'post',
+          url: '/growth_assumptions',
+          data: {
+            stock_id: stockId,
+            next_10_years: nextTen,
+            next_10_to_20_years: nextTenToTwenty,
+            option: option,
+          },
+        },
+        function (response) {
           console.log(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   };
 

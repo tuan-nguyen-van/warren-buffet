@@ -3,10 +3,10 @@ import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import axios from 'axios';
 import { useAppSelector } from '../app/redux-hooks';
 import { changeDiscountRate, getDiscountRate } from './discountSlice';
 import { useAppDispatch } from '../app/redux-hooks';
+import useAxios from '../CustomHooks/useAxios';
 
 type DiscountRateData = {
   id: number;
@@ -30,17 +30,14 @@ const DiscountRate = () => {
       setError(true);
       return;
     }
-    axios
-      .post('/store-discount-rate', {
-        value: value,
-      })
-      .then(function (response) {
+
+    useAxios(
+      { method: 'post', url: '/store-discount-rate', data: { value: value } },
+      function (response) {
         const data: DiscountRateData = response.data;
         dispatch(changeDiscountRate(data.value));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

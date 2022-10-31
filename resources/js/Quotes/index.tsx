@@ -10,11 +10,11 @@ import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
+import useAxios from '../CustomHooks/useAxios';
 
 const Quotes = () => {
   const theme = useTheme();
@@ -43,58 +43,51 @@ const Quotes = () => {
       setAuthorError(true);
     }
     if (description && author) {
-      axios
-        .post('/quotes', { description, author })
-        .then(function (response) {
+      useAxios(
+        { method: 'post', url: '/quotes', data: { description, author } },
+        function (response) {
           const data: App.Quotes.Data[] = response.data;
           setQuotes(data);
           setOpenModal(false);
-        })
-        .catch(function (response) {
-          console.log(response);
-        });
+        }
+      );
     }
   };
 
   useEffect(() => {
-    axios
-      .get('/quotes')
-      .then(function (response) {
-        const data: App.Quotes.Data[] = response.data;
-        setQuotes(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    useAxios({ method: 'get', url: '/quotes' }, function (response) {
+      const data: App.Quotes.Data[] = response.data;
+      setQuotes(data);
+    });
   }, []);
 
   const handleUpdate = () => {
-    axios
-      .put('/quotes/' + editDeleteId, {
-        description,
-        author,
-      })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'put',
+        url: '/quotes/' + editDeleteId,
+        data: {
+          description,
+          author,
+        },
+      },
+      function (response) {
         const data: App.Quotes.Data[] = response.data;
         setQuotes(data);
         setOpenModal(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   const handleDelete = () => {
-    axios
-      .delete('/quotes/' + editDeleteId)
-      .then(function (response) {
+    useAxios(
+      { method: 'delete', url: '/quotes/' + editDeleteId },
+      function (response) {
         const data: App.Quotes.Data[] = response.data;
         setQuotes(data);
         setOpenModal(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   return (

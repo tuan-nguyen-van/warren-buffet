@@ -4,11 +4,11 @@ import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
-import axios from 'axios';
 import CalculationTable from './CalculationTable';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
+import useAxios from '../CustomHooks/useAxios';
 
 type Data = App.AddStock.Calculation.DataValue[];
 
@@ -17,30 +17,30 @@ const Calculation = () => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
   const { editStockId } = useParams();
   const handleCalculation = () => {
-    axios
-      .post('/calculate-intrinsic-value', {
-        stockId: stockId,
-      })
-      .then(function (response) {
+    useAxios(
+      {
+        method: 'post',
+        url: '/calculate-intrinsic-value',
+        data: {
+          stockId: stockId,
+        },
+      },
+      function (response) {
         const responseData: Data = response.data;
         setData(responseData);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   };
 
   useEffect(() => {
     if (editStockId && stockId) {
-      axios
-        .get('/intrinsic-value-calculation/' + stockId)
-        .then(function (response) {
+      useAxios(
+        { method: 'get', url: '/intrinsic-value-calculation/' + stockId },
+        function (response) {
           const responseData: Data = response.data;
           setData(responseData);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        }
+      );
     }
   }, [editStockId, stockId]);
 
