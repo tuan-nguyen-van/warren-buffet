@@ -13,4 +13,4 @@ parameters:
 		- '#Call to an undefined method Illuminate\\(.*)::.*#'
 		- '#Access to an undefined property Illuminate\\Http\\(.*)::.*#'
 		- '#Access to an undefined property App\\Models\\(.*)::.*#'
-	
+		- '#Cannot call method previous\(\) on Illuminate\\(.*)#'

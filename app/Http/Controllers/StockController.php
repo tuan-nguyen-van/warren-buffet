@@ -3,17 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stock;
+use App\Models\Tenet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Collection<int,Stock>
+     * @return \Illuminate\Http\JsonResponse
      */
     public function indexHome()
     {
-        return Stock::has('intrinsicValueCaculations')->with('intrinsicValueCaculations')->get();
+        /** $stocks \Illuminate\Database\Eloquent\Collection<int,Stock> */
+        $stocks = Stock::has('intrinsicValueCaculations')
+            ->where('status', 'Followed')
+            ->with([
+                'intrinsicValueCaculations',
+                'growthAssumptions',
+                'stockHasTenets' => function ($query) {
+                    $query->where('value', 1);
+                },
+                'financialMetrics' => function ($query) {
+                    $query->orderBy('year', 'desc');
+                },
+            ])
+            ->get();
+
+        $totalTenets = Tenet::all()->count();
+
+        // Retrieve all financial metrics for stocks.
+
+        return response()->json([
+            'stocks' => $stocks,
+            'totalTenets' => $totalTenets,
+        ]);
     }
 
     /**
@@ -90,5 +113,15 @@ class StockController extends Controller
         $stock->update($request->all());
 
         return 'success';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int,Stock>
+     */
+    public function search()
+    {
+        return Stock::where('status', '<>', 'Unfinished')
+            ->selectRaw("concat_ws(' | ', ticker_symbol, company_name) as title, id")
+            ->get();
     }
 }

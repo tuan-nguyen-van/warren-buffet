@@ -33,4 +33,28 @@ class Stock extends Model
     {
         return $this->hasOne(IntrinsicValueCalculation::class, 'stock_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function growthAssumptions()
+    {
+        return $this->hasMany(GrowthAssumption::class, 'stock_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockHasTenets()
+    {
+        return $this->hasMany(StockHasTenet::class, 'stock_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function financialMetrics()
+    {
+        return $this->hasMany(FinancialMetric::class, 'stock_id');
+    }
 }
