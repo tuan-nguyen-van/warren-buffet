@@ -12,9 +12,11 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $passwordRegex = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*\-?~`]).{8,}$/";
+
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => ['required', 'email', 'min:5', 'max:100'],
+            'password' => ['required', 'min:5', "regex:$passwordRegex"],
         ]);
 
         if (Auth::attempt($credentials, $request->remember)) {

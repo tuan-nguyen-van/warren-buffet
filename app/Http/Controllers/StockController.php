@@ -97,14 +97,21 @@ class StockController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
+     *
+     * @return void
      */
-    public function validateStockInputs($request, string $method): void
+    public function validateStockInputs($request, string $method)
     {
+        $vietnameseSignedChars = 'àáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ';
+        $companyRegex = "/^[a-zA-Z$vietnameseSignedChars]{1,20}(\s+[a-zA-Z$vietnameseSignedChars\(\)\.\/\\\&\-\+\:\,]{1,20})+$/";
         $needUnique = $method === 'store' ? '|unique:stocks' : '';
+        $websiteRegex = "/^(https?:\/\/)?(www.)?[a-zA-z0-9._]{1,256}\.[a-z]{1,6}\b([-a-zA-Z0-9\/.]*)$/";
+        $vietstockCrawlLinkRegex = "/^(https:\/\/)?finance.vietstock.vn\/[A-Za-z0-9-:\/\\()\&]{1,256}.htm$/";
         $request->validate([
-            'ticker_symbol' => "required$needUnique|min:3|max:4",
-            'company_name' => "required$needUnique|min:10|max:255",
-            'website' => "required$needUnique|min:10|max:50",
+            'ticker_symbol' => "required$needUnique|min:3|max:4|regex:/^[A-Z1-9]{3,4}$/",
+            'company_name' => "required$needUnique|min:5|max:255|regex:$companyRegex",
+            'website' => "required$needUnique|min:10|max:50|regex:$websiteRegex",
+            'vietstock_crawl_link' => "required|min:10|max:100|regex:$vietstockCrawlLinkRegex",
         ]);
     }
 
