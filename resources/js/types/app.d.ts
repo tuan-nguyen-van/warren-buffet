@@ -161,4 +161,13 @@ declare namespace App {
       updated_at: string;
     }
   }
+
+  namespace AddStock {
+    export interface CompanyInfoErrors {
+      company_name?: string[];
+      ticker_symbol?: string[];
+      vietstock_crawl_link?: string[];
+      website?: string[];
+    }
+  }
 }

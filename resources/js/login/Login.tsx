@@ -25,8 +25,8 @@ const Login = () => {
     signInAsGuest: false,
   });
   const [inputErrors, setInputErrors] = useState({
-    email: false,
-    password: false,
+    email: '',
+    password: '',
   });
   const [serverErrors, setServerErrors] = useState<Errors>();
   const theme = React.useMemo(
@@ -40,10 +40,25 @@ const Login = () => {
   );
 
   const handleSignIn = () => {
-    // If the email or password does not have value then show error inside input.
     const errors = { ...inputErrors };
-    if (!loginState.email) errors.email = true;
-    if (!loginState.password) errors.password = true;
+    const emailTest =
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+    if (!emailTest.test(loginState.email)) {
+      errors.email = 'Please enter correct email address';
+    } else {
+      errors.email = '';
+    }
+
+    const passwordTest =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*\-?~`]).{8,}$/;
+    if (!passwordTest.test(loginState.password)) {
+      errors.password =
+        'Please enter correct password with at least 1 lowercase,' +
+        '1 uppercase, 1 digit and 1 special characters';
+    } else {
+      errors.password = '';
+    }
+    console.log(errors);
     setInputErrors(errors);
 
     if (!errors.email && !errors.password) {
@@ -58,9 +73,11 @@ const Login = () => {
           },
         },
         function () {
-          window.previousURL!.includes('/login')
-            ? window.location.replace('/')
-            : window.location.replace(window.previousURL!);
+          setTimeout(() => {
+            window.previousURL!.includes('/login')
+              ? window.location.replace('/')
+              : window.location.replace(window.previousURL!);
+          }, 100);
         },
         function (error) {
           setServerErrors(error.response.data.errors);
@@ -94,7 +111,8 @@ const Login = () => {
                 email: e.target.value,
               })
             }
-            error={inputErrors.email}
+            error={!!inputErrors.email}
+            helperText={inputErrors.email}
           />
           <TextField
             label="Password"
@@ -111,7 +129,8 @@ const Login = () => {
                 password: e.target.value,
               })
             }
-            error={inputErrors.password}
+            error={!!inputErrors.password}
+            helperText={inputErrors.password}
           />
 
           <FormControlLabel

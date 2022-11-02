@@ -24,6 +24,8 @@ const CompanyInfo = () => {
   const dispatch = useAppDispatch();
   const { editStockId } = useParams();
   const [crawlLink, setCrawlLink] = useState('');
+  const [inputErrors, setInputErrors] =
+    useState<App.AddStock.CompanyInfoErrors>();
 
   //Retrieve information for editStockId
   useEffect(() => {
@@ -49,7 +51,7 @@ const CompanyInfo = () => {
           method: 'post',
           url: '/stocks',
           data: {
-            ticker_symbol: tickerSymbol,
+            ticker_symbol: tickerSymbol.toUpperCase(),
             company_name: companyName,
             website: website,
             vietstock_crawl_link: crawlLink,
@@ -60,6 +62,12 @@ const CompanyInfo = () => {
           dispatch(changeDisableStep(['CheckTenets', false]));
           dispatch(changeDisableStep(['GrowthRate', false]));
           dispatch(changeStockId(response.data as number));
+          setInputErrors(undefined);
+        },
+        function (error) {
+          if (error.response.data.errors) {
+            setInputErrors(error.response.data.errors);
+          }
         }
       );
     } else {
@@ -71,6 +79,7 @@ const CompanyInfo = () => {
             ticker_symbol: tickerSymbol,
             company_name: companyName,
             website: website,
+            vietstock_crawl_link: crawlLink,
           },
         },
         function () {
@@ -95,6 +104,10 @@ const CompanyInfo = () => {
             value={tickerSymbol}
             onChange={(e) => setTickerSymbol(e.target.value)}
             disabled={disableStep.CompanyInfo}
+            error={!!inputErrors?.ticker_symbol}
+            helperText={
+              inputErrors?.ticker_symbol ? inputErrors?.ticker_symbol[0] : ''
+            }
           />
         </Grid>
         <Grid item xs={12} lg={7}>
@@ -105,6 +118,10 @@ const CompanyInfo = () => {
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
             disabled={disableStep.CompanyInfo}
+            error={!!inputErrors?.company_name}
+            helperText={
+              inputErrors?.company_name ? inputErrors?.company_name[0] : ''
+            }
           />
         </Grid>
       </Grid>
@@ -117,6 +134,8 @@ const CompanyInfo = () => {
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
             disabled={disableStep.CompanyInfo}
+            error={!!inputErrors?.website}
+            helperText={inputErrors?.website ? inputErrors?.website[0] : ''}
           />
         </Grid>
         <Grid item xs={12} lg={6}>
@@ -127,6 +146,12 @@ const CompanyInfo = () => {
             value={crawlLink}
             onChange={(e) => setCrawlLink(e.target.value)}
             disabled={disableStep.CompanyInfo}
+            error={!!inputErrors?.vietstock_crawl_link}
+            helperText={
+              inputErrors?.vietstock_crawl_link
+                ? inputErrors?.vietstock_crawl_link[0]
+                : ''
+            }
           />
         </Grid>
         <Grid item xs={12} lg={2} sx={{ textAlign: 'center' }}>
