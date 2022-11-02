@@ -72,6 +72,7 @@ module.exports = {
     // ],
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
+    'no-useless-escape': 'off',
     'no-param-reassign': ['error', { props: false }],
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-closing-bracket-location': 'off',
