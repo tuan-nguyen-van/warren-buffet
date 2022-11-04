@@ -48,4 +48,11 @@ class FinancialMetricController extends Controller
 
         return $financialMetrics;
     }
+
+    public function destroy(FinancialMetric $financialMetric): string
+    {
+        $financialMetric->delete();
+
+        return 'success';
+    }
 }

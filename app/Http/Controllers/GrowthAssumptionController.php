@@ -22,8 +22,10 @@ class GrowthAssumptionController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
+     *
+     * @return GrowthAssumption|null
      */
-    public function show(Request $request): GrowthAssumption
+    public function show(Request $request)
     {
         return GrowthAssumption::where('stock_id', $request->stock_id)->where('option', $request->option)->first();
     }

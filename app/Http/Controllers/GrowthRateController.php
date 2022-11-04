@@ -115,7 +115,14 @@ class GrowthRateController extends Controller
             return response("Not found financial metric for year: $request->toYear", 404);
         }
 
-        GrowthRate::where('stock_id', $request->stock_id)->where('chosen', 1)->delete();
+        GrowthRate::where('stock_id', $request->stock_id)
+            ->where('year_from', $request->fromYear)
+            ->where('year_to', $request->toYear)
+            ->delete();
+
+        GrowthRate::where('stock_id', $request->stock_id)
+            ->where('chosen', 1)
+            ->delete();
         // Start calculation
         // If inside a year have stock_dividend then we have to
         // convert it back to the fromYear. Then start the calculation; Eg:
@@ -174,80 +181,4 @@ class GrowthRateController extends Controller
 
         return $chosenGrowthRate;
     }
-
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\GrowthRate  $growthRate
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(GrowthRate $growthRate)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\GrowthRate  $growthRate
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(GrowthRate $growthRate)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\GrowthRate  $growthRate
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, GrowthRate $growthRate)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\GrowthRate  $growthRate
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(GrowthRate $growthRate)
-    // {
-    //     //
-    // }
 }
