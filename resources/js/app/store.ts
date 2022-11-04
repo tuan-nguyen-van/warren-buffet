@@ -3,6 +3,7 @@ import sideBarSlice from '../Content/sideBarSlice';
 import discountSlice from '../DiscountRate/discountSlice';
 import addStockSlice from '../AddStock/addStockSlice';
 import lightModeSlice from './lightModeSlice';
+import errorAlertSlice from '../Error/errorAlertSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     discount: discountSlice,
     addStock: addStockSlice,
     lightMode: lightModeSlice,
+    errorAlert: errorAlertSlice,
   },
 });
 

@@ -9,6 +9,7 @@ import { changeMode, getMode } from './lightModeSlice';
 import { useAppSelector } from './redux-hooks';
 import AlertError from '../Guest/AlertError';
 import useAxios from '../CustomHooks/useAxios';
+import ErrorAlertBox from '../Error/ErrorAlertBox';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -37,6 +38,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AlertError />
+      <ErrorAlertBox />
       <Content />
     </ThemeProvider>
   );

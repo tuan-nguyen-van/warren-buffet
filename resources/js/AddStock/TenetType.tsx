@@ -12,18 +12,11 @@ type Props = {
   stockHasTenets?: App.StockHasTenet[];
 };
 
-const verticallyCenter = {
-  margin: 0,
-  position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-};
-
 const TenetType = ({ tenets, type, index, count, stockHasTenets }: Props) => {
   return (
     <Grid container>
       <Grid item xs={2} sx={{ position: 'relative' }}>
-        <Typography variant="body1" sx={verticallyCenter}>
+        <Typography variant="body1" className="vertical-center">
           {type}
         </Typography>
       </Grid>

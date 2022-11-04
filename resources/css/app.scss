@@ -1,4 +1,6 @@
 @import "home";
+@import "graph";
+@import "alert.scss";
 
 @mixin font-40-imp {
   font-size: 40px !important;
@@ -89,9 +91,9 @@
   color: inherit;
 }
 
-.guest-action-alert {
-  position: fixed;
-  top: 100px;
-  left: 50%;
-  transform: translate(-50%, 0%);
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

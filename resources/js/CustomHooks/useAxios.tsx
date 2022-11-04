@@ -9,7 +9,7 @@ interface Config {
 const useAxios = (
   config: Config,
   // eslint-disable-next-line
-  handleSuccess: (response: any) => void,
+  handleSuccess?: (response: any) => void,
   // eslint-disable-next-line
   handleError?: (error: any) => void
 ) => {
@@ -19,7 +19,7 @@ const useAxios = (
     data: config.data,
   })
     .then(function (response) {
-      handleSuccess(response);
+      handleSuccess && handleSuccess(response);
     })
     .catch(function (error) {
       handleError && handleError(error);

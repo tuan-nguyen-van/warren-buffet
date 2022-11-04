@@ -7,15 +7,14 @@ const AlertError = () => {
   return (
     <Alert
       severity="error"
-      className="guest-action-alert"
+      className="alert-box"
       variant="filled"
-      sx={{ display: 'none', zIndex: '9999' }}
       id="guest-alert-box"
     >
       <AlertTitle>
         Error
         <CloseIcon
-          sx={{ float: 'right', cursor: 'pointer' }}
+          className="alert-close-icon"
           onClick={() => {
             document.getElementById('guest-alert-box')!.style.display = 'none';
           }}

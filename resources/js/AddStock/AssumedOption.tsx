@@ -35,8 +35,10 @@ const AssumedOption = ({ option }: Props) => {
         },
         function (response) {
           const data: App.AssumedOption.GrowthData = response.data;
-          setNextTen(data.next_10_years);
-          setNextTenToTwenty(data.next_10_to_20_years);
+          if (data) {
+            setNextTen(data.next_10_years);
+            setNextTenToTwenty(data.next_10_to_20_years);
+          }
         }
       );
     }
@@ -65,21 +67,16 @@ const AssumedOption = ({ option }: Props) => {
     }
 
     if (valid) {
-      useAxios(
-        {
-          method: 'post',
-          url: '/growth_assumptions',
-          data: {
-            stock_id: stockId,
-            next_10_years: nextTen,
-            next_10_to_20_years: nextTenToTwenty,
-            option: option,
-          },
+      useAxios({
+        method: 'post',
+        url: '/growth_assumptions',
+        data: {
+          stock_id: stockId,
+          next_10_years: nextTen,
+          next_10_to_20_years: nextTenToTwenty,
+          option: option,
         },
-        function (response) {
-          console.log(response.data);
-        }
-      );
+      });
     }
   };
 

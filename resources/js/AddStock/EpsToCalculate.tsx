@@ -52,8 +52,7 @@ const EpsToCalculate = () => {
           stock_id: stockId,
         },
       },
-      function (response) {
-        console.log(response);
+      function () {
         dispatch(changeDisableStep(['Calculation', false]));
       }
     );

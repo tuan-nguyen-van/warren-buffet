@@ -58,7 +58,6 @@ const Login = () => {
     } else {
       errors.password = '';
     }
-    console.log(errors);
     setInputErrors(errors);
 
     if (!errors.email && !errors.password) {

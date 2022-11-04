@@ -1,0 +1,13 @@
+.alert-box {
+  display: none!important;
+  z-index: 9999;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.alert-close-icon {
+  float: right;
+  cursor: pointer;
+}

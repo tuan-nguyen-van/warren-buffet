@@ -45,8 +45,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
     if (checkBoxId) {
       useAxios(
         { method: 'post', url: '/stock-has-tenets', data: requestData },
-        function (response) {
-          console.log(response);
+        function () {
           setChecked(!checked);
         }
       );
@@ -55,12 +54,15 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
 
   const handleFocusOut = () => {
     if (noteValue) {
-      useAxios(
-        { method: 'post', url: '/stock-has-tenets/note' },
-        function ({ data }: { data: string }) {
-          console.log(data);
-        }
-      );
+      useAxios({
+        method: 'post',
+        url: '/stock-has-tenets/note',
+        data: {
+          note: noteValue,
+          stock_id: stockId,
+          tenet_id: tenet.id,
+        },
+      });
     }
   };
 
