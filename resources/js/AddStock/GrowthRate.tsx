@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -9,8 +9,9 @@ import CalculateChosenYears from './GrowthRate/CalculateChosenYears';
 
 const GrowthRate = () => {
   const { disableStep } = useAppSelector(getAddStockState);
-  const years = [];
+
   const currentYear = new Date().getFullYear();
+  const years: number[] = [];
   for (let i = currentYear - 12; i < currentYear; i++) {
     years.push(i);
   }
@@ -23,8 +24,8 @@ const GrowthRate = () => {
       <Divider>
         <Typography variant="h5">Step 3: Growth rate</Typography>
       </Divider>
-      <YearData years={years} />
-      <CalculateChosenYears years={years} />
+      <YearData years={useMemo(() => years, [years])} />
+      <CalculateChosenYears years={useMemo(() => years, [years])} />
     </Box>
   );
 };
