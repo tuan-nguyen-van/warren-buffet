@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use App\Models\Tenet;
+use App\Service\VietstockCrawlPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -130,5 +131,12 @@ class StockController extends Controller
         return Stock::where('status', '<>', 'Unfinished')
             ->selectRaw("concat_ws(' | ', ticker_symbol, company_name) as title, id")
             ->get();
+    }
+
+    public function refreshMarketPrice(Stock $stock, VietstockCrawlPrice $vietstockCrawlPrice): float
+    {
+        $vietstockCrawlPrice->crawlPrice($stock);
+
+        return Stock::where('id', $stock->id)->first()->current_market_price;
     }
 }

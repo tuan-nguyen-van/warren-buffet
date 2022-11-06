@@ -11,9 +11,9 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 import { useParams } from 'react-router-dom';
 import { getAddStockState, changeDisableStep } from '../addStockSlice';
 import { useAppSelector, useAppDispatch } from '../../app/redux-hooks';
-import useAxios from '../../CustomHooks/useAxios';
+import applyAxios from '../../CustomHooks/applyAxios';
 import MenuItem from '@mui/material/MenuItem';
-import { toggleOpen, changeAlertText } from '../../Error/errorAlertSlice';
+import { toggleAlertOpen, changeAlertText } from '../../Error/errorAlertSlice';
 
 type Props = {
   years: number[];
@@ -31,7 +31,7 @@ const CalculateChosenYears = ({ years }: Props) => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/chosen-growth-rates/' + stockId },
         function (response) {
           const data: App.GrowthRate.ChosenData = response.data;
@@ -52,7 +52,7 @@ const CalculateChosenYears = ({ years }: Props) => {
       setFromYearErrorText('Choose From Year less than To Year');
     }
     if (!fromYearErrorText && !toYearErrorText) {
-      useAxios(
+      applyAxios(
         {
           method: 'post',
           url: '/calculate-growth-rate-with-chosen-years',
@@ -68,7 +68,7 @@ const CalculateChosenYears = ({ years }: Props) => {
         },
         function (error) {
           if (error.response.status === 404) {
-            dispatch(toggleOpen());
+            dispatch(toggleAlertOpen());
             dispatch(changeAlertText(error.response.data));
           }
         }

@@ -10,7 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 interface Errors {
   [key: string]: string;
@@ -61,7 +61,7 @@ const Login = () => {
     setInputErrors(errors);
 
     if (!errors.email && !errors.password) {
-      useAxios(
+      applyAxios(
         {
           method: 'post',
           url: '/login',

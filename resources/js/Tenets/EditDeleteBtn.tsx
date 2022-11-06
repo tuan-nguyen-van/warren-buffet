@@ -1,11 +1,11 @@
 import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Tenet, HandleEdit, HandleDelete } from './index';
+import { HandleEdit, HandleDelete } from './index';
 
 type Props = {
   handleEdit: HandleEdit;
-  tenet: Tenet;
+  tenet: App.Tenet;
   handleDelete: HandleDelete;
 };
 const EditDeleteBtn = ({ handleEdit, tenet, handleDelete }: Props) => {

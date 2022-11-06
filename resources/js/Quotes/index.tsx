@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 const Quotes = () => {
   const theme = useTheme();
@@ -43,7 +43,7 @@ const Quotes = () => {
       setAuthorError(true);
     }
     if (description && author) {
-      useAxios(
+      applyAxios(
         { method: 'post', url: '/quotes', data: { description, author } },
         function (response) {
           const data: App.Quotes.Data[] = response.data;
@@ -55,14 +55,14 @@ const Quotes = () => {
   };
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/quotes' }, function (response) {
+    applyAxios({ method: 'get', url: '/quotes' }, function (response) {
       const data: App.Quotes.Data[] = response.data;
       setQuotes(data);
     });
   }, []);
 
   const handleUpdate = () => {
-    useAxios(
+    applyAxios(
       {
         method: 'put',
         url: '/quotes/' + editDeleteId,
@@ -80,7 +80,7 @@ const Quotes = () => {
   };
 
   const handleDelete = () => {
-    useAxios(
+    applyAxios(
       { method: 'delete', url: '/quotes/' + editDeleteId },
       function (response) {
         const data: App.Quotes.Data[] = response.data;

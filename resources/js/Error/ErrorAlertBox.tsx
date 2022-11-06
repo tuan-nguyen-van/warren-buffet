@@ -3,7 +3,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAppDispatch, useAppSelector } from '../app/redux-hooks';
-import { getErrorAlertState, toggleOpen } from './errorAlertSlice';
+import { getErrorAlertState, toggleAlertOpen } from './errorAlertSlice';
 
 const ErrorAlertBox = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ const ErrorAlertBox = () => {
         Error
         <CloseIcon
           className="alert-close-icon"
-          onClick={() => dispatch(toggleOpen())}
+          onClick={() => dispatch(toggleAlertOpen())}
         />
       </AlertTitle>
       {text}

@@ -6,7 +6,7 @@ interface Config {
   data?: object;
 }
 
-const useAxios = (
+const applyAxios = (
   config: Config,
   // eslint-disable-next-line
   handleSuccess?: (response: any) => void,
@@ -30,4 +30,4 @@ const useAxios = (
     });
 };
 
-export default useAxios;
+export default applyAxios;

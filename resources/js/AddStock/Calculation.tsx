@@ -8,7 +8,7 @@ import CalculationTable from './CalculationTable';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type Data = App.AddStock.Calculation.DataValue[];
 
@@ -17,7 +17,7 @@ const Calculation = () => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
   const { editStockId } = useParams();
   const handleCalculation = () => {
-    useAxios(
+    applyAxios(
       {
         method: 'post',
         url: '/calculate-intrinsic-value',
@@ -34,7 +34,7 @@ const Calculation = () => {
 
   useEffect(() => {
     if (editStockId && stockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/intrinsic-value-calculation/' + stockId },
         function (response) {
           const responseData: Data = response.data;

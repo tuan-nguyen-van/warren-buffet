@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../app/redux-hooks';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type Props = {
   option: number;
@@ -28,7 +28,7 @@ const AssumedOption = ({ option }: Props) => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         {
           method: 'get',
           url: `/growth_assumptions?stock_id=${stockId}&option=${option}`,
@@ -42,7 +42,7 @@ const AssumedOption = ({ option }: Props) => {
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [stockId, editStockId, option]);
 
   const handleAddGrowth = () => {
     //Check nextTen and nextTenToTwenty have value
@@ -67,7 +67,7 @@ const AssumedOption = ({ option }: Props) => {
     }
 
     if (valid) {
-      useAxios({
+      applyAxios({
         method: 'post',
         url: '/growth_assumptions',
         data: {

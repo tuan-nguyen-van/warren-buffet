@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import FullBorderTableCell from '../components/FullBorderTableCell';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -18,7 +17,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 const StockList = () => {
   const [openModal, setOpenModal] = React.useState(false);
@@ -37,8 +36,7 @@ const StockList = () => {
   };
 
   const handleAgree = () => {
-    //Post axios to delete the stock id
-    useAxios(
+    applyAxios(
       { method: 'delete', url: '/stocks/' + deleteStock?.id },
       function () {
         delete stocks![deleteStock!.index];
@@ -48,7 +46,7 @@ const StockList = () => {
   };
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/stocks' }, function ({ data }) {
+    applyAxios({ method: 'get', url: '/stocks' }, function ({ data }) {
       setStocks(data as App.Stocks.StockData[]);
     });
   }, []);
@@ -58,7 +56,7 @@ const StockList = () => {
     index: number,
     action: 'Followed' | 'Unfollowed'
   ) => {
-    useAxios(
+    applyAxios(
       {
         method: 'patch',
         url: '/stocks/status/' + id,
@@ -96,7 +94,7 @@ const StockList = () => {
                 <FullBorderTableCell>
                   <Link
                     to={`/edit-stock/${stock.id}`}
-                    style={{ color: 'rgba(0, 0, 0, 0.87)' }}
+                    style={{ color: 'inherit' }}
                   >
                     <EditIcon sx={{ cursor: 'pointer' }} />
                   </Link>

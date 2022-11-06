@@ -40,6 +40,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['auth', 'auth.session', 'constrainGuest'])->group(function () {
     Route::apiResource('stocks', StockController::class);
 
+    Route::patch('/stocks/refresh-market-price/{stock}', [StockController::class, 'refreshMarketPrice']);
+
     Route::get('/stocks-search', [StockController::class, 'search']);
 
     Route::patch('/stocks/status/{stock}', [StockController::class, 'updateStatus']);

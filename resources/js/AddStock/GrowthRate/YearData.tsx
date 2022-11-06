@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Grid from '@mui/material/Grid';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,7 +17,7 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import useAxios from '../../CustomHooks/useAxios';
+import applyAxios from '../../CustomHooks/applyAxios';
 import { useAppSelector, useAppDispatch } from '../../app/redux-hooks';
 import { getAddStockState, changeDisableStep } from '../addStockSlice';
 import { useParams } from 'react-router-dom';
@@ -117,7 +117,7 @@ const YearData = ({ years }: Props) => {
       };
 
       if (editID) {
-        useAxios(
+        applyAxios(
           {
             method: 'put',
             url: '/financial-metrics/' + editID,
@@ -138,7 +138,7 @@ const YearData = ({ years }: Props) => {
           }
         );
       } else {
-        useAxios(
+        applyAxios(
           { method: 'post', url: '/financial-metrics', data: stockData },
           function (response) {
             setTableDatas([
@@ -157,7 +157,7 @@ const YearData = ({ years }: Props) => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/financial-metrics/' + stockId },
         function (response) {
           setTableDatas(response.data);
@@ -165,7 +165,7 @@ const YearData = ({ years }: Props) => {
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [stockId, editStockId, dispatch]);
 
   const resetInputs = () => {
     setYear('');
@@ -180,7 +180,7 @@ const YearData = ({ years }: Props) => {
     if (tableDatas.length < 3) {
       alert('Need at least 3 year records to start calculation');
     }
-    useAxios(
+    applyAxios(
       {
         method: 'post',
         url: '/calculate-growth-rates',
@@ -372,7 +372,10 @@ const YearData = ({ years }: Props) => {
         </Table>
       </TableContainer>
 
-      <Graph graphData={graphData} setGraphData={setGraphData} />
+      <Graph
+        graphData={graphData}
+        setGraphData={useCallback(setGraphData, [])}
+      />
 
       <Box component="div" sx={{ textAlign: 'center' }}>
         <Button

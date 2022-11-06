@@ -24,7 +24,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import EachTenet from './EachTenet';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 export type HandleEdit = (tenet: App.Tenet) => void;
 
@@ -48,14 +48,14 @@ const Tenets = () => {
   });
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/tenet-types' }, function (response) {
+    applyAxios({ method: 'get', url: '/tenet-types' }, function (response) {
       const tenetTypes: App.TenetTypes = response.data;
       setTenetTypes(tenetTypes);
     });
   }, []);
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/tenets' }, function (response) {
+    applyAxios({ method: 'get', url: '/tenets' }, function (response) {
       const tenets: App.Tenets = response.data;
       setTenets(tenets);
     });
@@ -79,7 +79,7 @@ const Tenets = () => {
     !description ? setDescriptionError(true) : setDescriptionError(false);
 
     if (type && description) {
-      useAxios(
+      applyAxios(
         {
           method: 'post',
           url: '/tenets',
@@ -110,7 +110,7 @@ const Tenets = () => {
   };
 
   const handleUpdate = () => {
-    useAxios(
+    applyAxios(
       {
         method: 'put',
         url: '/tenets/' + updateDestroyTenetId,
@@ -140,7 +140,7 @@ const Tenets = () => {
   };
 
   const handleDestroy = () => {
-    useAxios(
+    applyAxios(
       { method: 'delete', url: '/tenets/' + updateDestroyTenetId },
       function (response) {
         const tenets: App.Tenets = response.data;

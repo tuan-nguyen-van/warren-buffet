@@ -38,4 +38,4 @@ const SideBarItem = ({ text, icon }: Props) => {
   );
 };
 
-export default SideBarItem;
+export default React.memo(SideBarItem);

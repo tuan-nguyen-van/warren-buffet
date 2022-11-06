@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import useAxios from '../../CustomHooks/useAxios';
+import applyAxios from '../../CustomHooks/applyAxios';
 
 type Props = {
   open: boolean;
@@ -27,7 +27,7 @@ const DeleteYearDataDialog = ({
   };
 
   const handleAgree = () => {
-    useAxios(
+    applyAxios(
       { method: 'delete', url: '/financial-metrics/' + id },
       function () {
         setOpen(false);
@@ -54,4 +54,4 @@ const DeleteYearDataDialog = ({
   );
 };
 
-export default DeleteYearDataDialog;
+export default React.memo(DeleteYearDataDialog);

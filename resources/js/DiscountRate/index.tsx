@@ -6,7 +6,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useAppSelector } from '../app/redux-hooks';
 import { changeDiscountRate, getDiscountRate } from './discountSlice';
 import { useAppDispatch } from '../app/redux-hooks';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type DiscountRateData = {
   id: number;
@@ -31,7 +31,7 @@ const DiscountRate = () => {
       return;
     }
 
-    useAxios(
+    applyAxios(
       { method: 'post', url: '/store-discount-rate', data: { value: value } },
       function (response) {
         const data: DiscountRateData = response.data;

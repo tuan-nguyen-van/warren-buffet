@@ -7,7 +7,7 @@ import { Typography } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../app/redux-hooks';
 import { getAddStockState, changeDisableStep } from './addStockSlice';
 import { useParams } from 'react-router-dom';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type EpsData = {
   chosen_eps: number;
@@ -26,7 +26,7 @@ const EpsToCalculate = () => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: `/chosen-eps/${stockId}` },
         function (response) {
           const data: EpsData = response.data;
@@ -43,7 +43,7 @@ const EpsToCalculate = () => {
       setEpsError(false);
     }
 
-    useAxios(
+    applyAxios(
       {
         method: 'post',
         url: '/chosen-eps',

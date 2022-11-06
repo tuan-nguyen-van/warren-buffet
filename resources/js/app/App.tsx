@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { changeMode, getMode } from './lightModeSlice';
 import { useAppSelector } from './redux-hooks';
 import AlertError from '../Guest/AlertError';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 import ErrorAlertBox from '../Error/ErrorAlertBox';
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   useEffect(() => {
     dispatch(changeMode(prefersDarkMode ? 'dark' : 'light'));
-  }, [prefersDarkMode]);
+  }, [prefersDarkMode, dispatch]);
   const { mode } = useAppSelector(getMode);
   const theme = React.useMemo(
     () =>
@@ -29,10 +29,13 @@ const App = () => {
   );
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/get-discount-rate' }, function (response) {
-      dispatch(changeDiscountRate(response.data.value));
-    });
-  }, []);
+    applyAxios(
+      { method: 'get', url: '/get-discount-rate' },
+      function (response) {
+        dispatch(changeDiscountRate(response.data.value));
+      }
+    );
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

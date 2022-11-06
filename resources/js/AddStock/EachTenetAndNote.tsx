@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type Props = {
   key: number;
@@ -32,7 +32,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
         setNoteValue($thisStockHasTenet[0].note);
       }
     }
-  }, [editStockId, stockHasTenets]);
+  }, [editStockId, stockHasTenets, tenet.id]);
 
   const handleChange = (e: React.SyntheticEvent<Element, Event>) => {
     const checkBoxId = (e.target as HTMLInputElement).getAttribute('name');
@@ -43,7 +43,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
       value: checked ? 0 : 1,
     };
     if (checkBoxId) {
-      useAxios(
+      applyAxios(
         { method: 'post', url: '/stock-has-tenets', data: requestData },
         function () {
           setChecked(!checked);
@@ -54,7 +54,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
 
   const handleFocusOut = () => {
     if (noteValue) {
-      useAxios({
+      applyAxios({
         method: 'post',
         url: '/stock-has-tenets/note',
         data: {

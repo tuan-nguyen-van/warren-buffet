@@ -14,7 +14,7 @@ import {
   changeDisableStep,
 } from './addStockSlice';
 import { useParams } from 'react-router-dom';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 const CompanyInfo = () => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
@@ -30,7 +30,7 @@ const CompanyInfo = () => {
   //Retrieve information for editStockId
   useEffect(() => {
     if (editStockId && stockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/stocks/' + stockId },
         function (response) {
           const data: App.Stocks.StockData = response.data;
@@ -42,11 +42,11 @@ const CompanyInfo = () => {
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [stockId, editStockId, dispatch]);
 
   const handleAddStock = () => {
     if (!stockId) {
-      useAxios(
+      applyAxios(
         {
           method: 'post',
           url: '/stocks',
@@ -71,7 +71,7 @@ const CompanyInfo = () => {
         }
       );
     } else {
-      useAxios(
+      applyAxios(
         {
           method: 'put',
           url: '/stocks/' + stockId,

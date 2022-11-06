@@ -10,7 +10,7 @@ export const addStockSlice = createSlice({
   name: 'errorAlert',
   initialState,
   reducers: {
-    toggleOpen: (state) => {
+    toggleAlertOpen: (state) => {
       state.open = !state.open;
     },
     changeAlertText: (state, action: PayloadAction<string>) => {
@@ -19,7 +19,7 @@ export const addStockSlice = createSlice({
   },
 });
 
-export const { toggleOpen, changeAlertText } = addStockSlice.actions;
+export const { toggleAlertOpen, changeAlertText } = addStockSlice.actions;
 
 export const getErrorAlertState = (state: RootState) => state.errorAlert;
 

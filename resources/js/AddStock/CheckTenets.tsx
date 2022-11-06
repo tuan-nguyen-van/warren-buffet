@@ -6,7 +6,7 @@ import TenetType from './TenetType';
 import { useAppSelector } from '../app/redux-hooks';
 import { getAddStockState } from './addStockSlice';
 import { useParams } from 'react-router-dom';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 const CheckTenets = () => {
   const [tenets, setTenets] = useState<App.Tenets>();
@@ -16,12 +16,12 @@ const CheckTenets = () => {
   const { editStockId } = useParams();
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/tenets' }, function (response) {
+    applyAxios({ method: 'get', url: '/tenets' }, function (response) {
       const data: App.Tenets = response.data;
       setTenets(data);
     });
 
-    useAxios({ method: 'get', url: '/tenet-types' }, function (response) {
+    applyAxios({ method: 'get', url: '/tenet-types' }, function (response) {
       const data: App.TenetTypes = response.data;
       setTenetTypes(data);
     });
@@ -29,7 +29,7 @@ const CheckTenets = () => {
 
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/stock-has-tenets/' + stockId },
         function (response) {
           const data: App.StockHasTenet[] = response.data;

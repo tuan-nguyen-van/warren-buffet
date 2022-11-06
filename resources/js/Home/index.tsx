@@ -9,7 +9,8 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import EditIcon from '@mui/icons-material/Edit';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const Home = () => {
   const [followedStocks, setFollowedStock] =
@@ -21,12 +22,12 @@ const Home = () => {
   const [totalTenets, setTotalTenets] = useState<number>();
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/stocks-for-home' }, function ({ data }) {
+    applyAxios({ method: 'get', url: '/stocks-for-home' }, function ({ data }) {
       setTotalTenets(data.totalTenets as number);
       setFollowedStock(data.stocks as App.Stocks.StockData[]);
     });
 
-    useAxios({ method: 'get', url: '/quotes' }, function ({ data }) {
+    applyAxios({ method: 'get', url: '/quotes' }, function ({ data }) {
       setQuotes(data as App.Quotes.Data[]);
     });
   }, []);
@@ -34,11 +35,9 @@ const Home = () => {
   useEffect(() => {
     if (followedStocks) {
       for (const stock of followedStocks) {
-        const calculationStep: App.intrinsicValueCalculation.CalculationStep[] =
-          JSON.parse(stock.intrinsic_value_caculations!.calculation_step);
         stock.marginOfSafetyOpt1 = marginOfSafety(
           stock,
-          calculationStep[0].intrinsic_price
+          get1stIntrinsicPriceFromStock(stock)
         );
       }
       const unsortedStocks = [...followedStocks];
@@ -51,6 +50,11 @@ const Home = () => {
     }
   }, [followedStocks]);
 
+  const get1stIntrinsicPriceFromStock = (stock: App.Stocks.OrderStock) => {
+    return JSON.parse(stock.intrinsic_value_caculations!.calculation_step)[0]
+      .intrinsic_price as number;
+  };
+
   const marginOfSafety = (
     stock: App.Stocks.StockData,
     intrinsicPrice: number
@@ -61,7 +65,7 @@ const Home = () => {
   };
 
   const handleUnfollow = (stockId: number, index: number) => {
-    useAxios(
+    applyAxios(
       {
         method: 'patch',
         url: '/stocks/status/' + stockId,
@@ -69,6 +73,20 @@ const Home = () => {
       },
       function () {
         sortedStocks?.splice(index, 1);
+        setSortedStocks([...sortedStocks!]);
+      }
+    );
+  };
+
+  const handleRenew = (stockId: number, index: number) => {
+    applyAxios(
+      { method: 'patch', url: '/stocks/refresh-market-price/' + stockId },
+      function (response) {
+        sortedStocks![index].current_market_price = response.data;
+        sortedStocks![index].marginOfSafetyOpt1 = marginOfSafety(
+          sortedStocks![index],
+          get1stIntrinsicPriceFromStock(sortedStocks![index])
+        );
         setSortedStocks([...sortedStocks!]);
       }
     );
@@ -137,6 +155,10 @@ const Home = () => {
                     className="h-stock-price h-first-card-row"
                   >
                     {stock.current_market_price}
+                    <AutorenewIcon
+                      sx={{ color: 'rgb(114, 193, 254)', cursor: 'pointer' }}
+                      onClick={() => handleRenew(stock.id, index)}
+                    />
                   </Grid>
                   <Grid item xs={6} lg={3} className="h-first-card-row">
                     Margin Of Safety

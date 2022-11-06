@@ -64,6 +64,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const MemoList = React.memo(List);
+
 const SideBar = () => {
   const menuOpen = useAppSelector(selectOpen);
   const discountRate = useAppSelector(getDiscountRate);
@@ -84,7 +86,7 @@ const SideBar = () => {
         onClick={() => dispatch(toggle())}
       ></Box>
       <Drawer variant="permanent" open={menuOpen}>
-        <List>
+        <MemoList>
           <Stack direction="row" spacing={2} sx={{ px: 2.5 }}>
             {!window.isMobile && <MenuButton />}
             <NavLink to="/" className="color-inherit">
@@ -96,8 +98,8 @@ const SideBar = () => {
               />
             </NavLink>
           </Stack>
-        </List>
-        <List>
+        </MemoList>
+        <MemoList>
           <NavLink
             to="add-stock"
             className={({ isActive }) =>
@@ -125,9 +127,9 @@ const SideBar = () => {
               icon={<TrendingDownIcon />}
             />
           </NavLink>
-        </List>
+        </MemoList>
         <Divider />
-        <List>
+        <MemoList>
           <NavLink
             to="stock-tenets"
             className={({ isActive }) =>
@@ -147,7 +149,7 @@ const SideBar = () => {
           <Box component={'div'} sx={{ textAlign: 'center' }}>
             <RightBtnGroup sidebar />
           </Box>
-        </List>
+        </MemoList>
       </Drawer>
       <Content />
     </Box>

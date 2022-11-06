@@ -10,7 +10,7 @@ import {
   LabelList,
   Label,
 } from 'recharts';
-import useAxios from '../../CustomHooks/useAxios';
+import applyAxios from '../../CustomHooks/applyAxios';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../app/redux-hooks';
 import { getAddStockState } from '../addStockSlice';
@@ -30,14 +30,14 @@ const Graph = ({ graphData, setGraphData }: Props) => {
   const { mode } = useAppSelector(getMode);
   useEffect(() => {
     if (stockId && editStockId) {
-      useAxios(
+      applyAxios(
         { method: 'get', url: '/calculated-growth-rates/' + stockId },
         function (response) {
           setGraphData(response.data);
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [stockId, editStockId, setGraphData]);
 
   const labelTextColor = () => {
     return mode === 'dark' ? 'rgb(255,255,255,0.7)' : 'rgb(0,0,0,0.7)';
@@ -81,4 +81,4 @@ const Graph = ({ graphData, setGraphData }: Props) => {
   );
 };
 
-export default Graph;
+export default React.memo(Graph);

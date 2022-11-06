@@ -16,7 +16,7 @@ import Logout from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 type Props = {
   avatar?: boolean;
@@ -30,7 +30,7 @@ const RightBtnGroup = ({ avatar, sidebar }: Props) => {
   const [user, setUser] = useState<App.User.User>();
 
   useEffect(() => {
-    useAxios({ method: 'get', url: '/current-user' }, function ({ data }) {
+    applyAxios({ method: 'get', url: '/current-user' }, function ({ data }) {
       setUser(data);
     });
   }, []);

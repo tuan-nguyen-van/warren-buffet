@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import RightBtnGroup from './RightBtnGroup';
-import useAxios from '../CustomHooks/useAxios';
+import applyAxios from '../CustomHooks/applyAxios';
 
 const Header: React.FunctionComponent = () => {
   const [open, setOpen] = useState(false);
@@ -22,9 +22,12 @@ const Header: React.FunctionComponent = () => {
     }
     (async () => {
       setTimeout(() => {
-        useAxios({ method: 'get', url: '/stocks-search' }, function ({ data }) {
-          setStocksData(data as App.Stocks.SearchStock[]);
-        });
+        applyAxios(
+          { method: 'get', url: '/stocks-search' },
+          function ({ data }) {
+            setStocksData(data as App.Stocks.SearchStock[]);
+          }
+        );
       }, 1000);
     })();
   }, [loading]);
@@ -34,7 +37,7 @@ const Header: React.FunctionComponent = () => {
       navigate('/edit-stock/' + value.id);
       location.reload();
     }
-  }, [value]);
+  }, [value, navigate]);
 
   return (
     <Grid container spacing={2} sx={{ position: 'relative' }}>
@@ -93,4 +96,4 @@ const Header: React.FunctionComponent = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
