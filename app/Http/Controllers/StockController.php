@@ -57,8 +57,8 @@ class StockController extends Controller
      */
     public function store(Request $request): int
     {
-        $this->validateStockInputs($request, 'store');
-        $stock = Stock::create($request->all());
+        $validated = $this->validateStockInputs($request, 'store');
+        $stock = Stock::create($validated);
 
         return $stock->id;
     }
@@ -80,11 +80,13 @@ class StockController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Stock        $stock
+     *
+     * @return string
      */
-    public function update(Request $request, Stock $stock): string
+    public function update(Request $request, Stock $stock)
     {
-        $this->validateStockInputs($request, 'update');
-        $stock->update($request->all());
+        $validated = $this->validateStockInputs($request, 'update');
+        $stock->update($validated);
 
         return 'success';
     }
@@ -99,16 +101,17 @@ class StockController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return void
+     * @return array<string,string>
      */
-    public function validateStockInputs($request, string $method)
+    public function validateStockInputs(&$request, string $method)
     {
         $vietnameseSignedChars = 'àáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ';
         $companyRegex = "/^[a-zA-Z$vietnameseSignedChars]{1,20}(\s+[1-9a-zA-Z$vietnameseSignedChars\(\)\.\/\\\&\-\+\:\,]{1,20})+$/";
         $needUnique = $method === 'store' ? '|unique:stocks' : '';
         $websiteRegex = "/^(https?:\/\/)?(www.)?[a-zA-z0-9._]{1,256}\.[a-z]{1,6}\b([-a-zA-Z0-9\/.]*)$/";
         $vietstockCrawlLinkRegex = "/^(https:\/\/)?finance.vietstock.vn\/[A-Za-z0-9-:\/\\()\&]{1,256}.htm$/";
-        $request->validate([
+
+        return $request->validate([
             'ticker_symbol' => "required$needUnique|min:3|max:4|regex:/^[A-Z1-9]{3,4}$/",
             'company_name' => "required$needUnique|min:5|max:255|regex:$companyRegex",
             'website' => "required$needUnique|min:10|max:50|regex:$websiteRegex",
