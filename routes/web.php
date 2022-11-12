@@ -35,6 +35,10 @@ Route::get('/login', function () {
     ]);
 })->name('login');
 
+Route::get('/test-laravel-working', function () {
+    return 'Hello Laravel are working!';
+});
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth', 'auth.session', 'constrainGuest'])->group(function () {
