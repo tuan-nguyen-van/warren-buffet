@@ -24901,7 +24901,9 @@ const ez = [
         n && n(o),
           o.response.status === 401 &&
             o.response.data.not_allowed &&
-            (document.getElementById('guest-alert-box').style.display = 'flex'),
+            document
+              .getElementById('guest-alert-box')
+              .setAttribute('style', 'display:flex !important'),
           console.log(o);
       });
   };
