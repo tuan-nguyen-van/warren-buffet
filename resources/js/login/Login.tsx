@@ -153,7 +153,7 @@ const Login = () => {
                 ...loginState,
                 signInAsGuest: true,
                 email: 'guest@gmail.com',
-                password: 'Password!@#',
+                password: 'Password1@#',
               });
             }}
           >
