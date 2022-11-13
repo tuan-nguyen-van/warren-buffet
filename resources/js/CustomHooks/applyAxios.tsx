@@ -24,7 +24,9 @@ const applyAxios = (
     .catch(function (error) {
       handleError && handleError(error);
       if (error.response.status === 401 && error.response.data.not_allowed) {
-        document.getElementById('guest-alert-box')!.style.display = 'flex';
+        document
+          .getElementById('guest-alert-box')!
+          .setAttribute('style', 'display:flex !important');
       }
       console.log(error);
     });
