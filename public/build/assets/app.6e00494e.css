@@ -1,0 +1,115 @@
+.h-stock-number {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -3px;
+}
+.h-company-name {
+  font-weight: 700;
+  font-size: 24px;
+  color: #72c1fe;
+  margin-left: 16px;
+}
+.h-stock-price {
+  font-size: 30px;
+  color: #e02200;
+  font-weight: 700;
+}
+.h-stock-card {
+  min-width: 275px;
+  margin-top: 40px;
+  text-align: center;
+}
+.h-card-last-row {
+  margin-top: 10px !important;
+}
+@media only screen and (max-width: 1200px) {
+  .h-first-card-row {
+    margin-top: 15px !important;
+  }
+}
+.h-card-btn-group {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+.alert-box {
+  display: none !important;
+  z-index: 9999;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.alert-close-icon {
+  float: right;
+  cursor: pointer;
+}
+.home-icon {
+  font-size: 40px !important;
+  cursor: pointer !important;
+  margin-left: 40px !important;
+}
+.menu-icon {
+  font-size: 40px !important;
+  cursor: pointer !important;
+}
+@media only screen and (max-width: 1100px) {
+  .light-mode,
+  .dark-mode {
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .sidebar-light-mode,
+  .sidebar-dark-mode {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 1009px) {
+  .sidebar-light-mode,
+  .sidebar-dark-mode {
+    display: inherit !important;
+  }
+}
+.avatar {
+  cursor: pointer !important;
+  margin-left: 10px;
+}
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+.nav-active .MuiTypography-root {
+  color: #001d35;
+  font-weight: 700;
+}
+.nav-active .MuiListItem-root {
+  background-color: #d3e3fd;
+  border-radius: 0 16px 16px 0;
+}
+.nav-active .MuiSvgIcon-root path {
+  color: #000000d6;
+}
+.disabledText p,
+.disabledText span,
+.disabledText h4,
+.disabledText h5,
+.disabledText h6,
+.disabledText th {
+  opacity: 0.4 !important;
+}
+.color-inherit {
+  color: inherit;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

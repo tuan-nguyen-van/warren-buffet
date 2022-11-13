@@ -1,0 +1,26 @@
+{
+  "resources/js/app/index.tsx": {
+    "file": "assets/index.4f1a9b22.js",
+    "src": "resources/js/app/index.tsx",
+    "isEntry": true,
+    "imports": [
+      "_FormControlLabel.f917e857.js"
+    ]
+  },
+  "resources/js/login/index.tsx": {
+    "file": "assets/index.101dff23.js",
+    "src": "resources/js/login/index.tsx",
+    "isEntry": true,
+    "imports": [
+      "_FormControlLabel.f917e857.js"
+    ]
+  },
+  "_FormControlLabel.f917e857.js": {
+    "file": "assets/FormControlLabel.f917e857.js"
+  },
+  "resources/css/app.scss": {
+    "file": "assets/app.6e00494e.css",
+    "src": "resources/css/app.scss",
+    "isEntry": true
+  }
+}
