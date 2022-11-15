@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
             ['14:00', '14:04'],
             ['15:00', '15:04'],
         ];
+
         foreach ($crawlSchedules as $crawlSchedule) {
             $schedule->command('crawl:prices')->weekdays()
                 ->everyMinute()->between($crawlSchedule[0], $crawlSchedule[1])
