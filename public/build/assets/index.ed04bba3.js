@@ -36817,7 +36817,7 @@ const $Y = ({
     for (let l = 1; l <= n; l++) o.push(l);
     E.exports.useEffect(() => {
       i(t.order.toString());
-    }, []);
+    }, [t]);
     const s = (l) => {
       i(l.target.value),
         xe(
@@ -36979,7 +36979,7 @@ const HY = () => {
           },
           function (C) {
             const T = C.data;
-            p(T), t(!1);
+            p(T), t(!1), s(''), f('');
           }
         );
       },
@@ -36993,7 +36993,7 @@ const HY = () => {
       P = () => {
         xe({ method: 'delete', url: '/tenets/' + g }, function (C) {
           const T = C.data;
-          p(T), t(!1);
+          p(T), t(!1), s(''), f('');
         });
       };
     return y.createElement(
