@@ -16,19 +16,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $crawlSchedules = [
-            ['9:15', '9:19'],
-            ['10:00', '10:04'],
-            ['11:00', '11:04'],
-            ['13:00', '13:04'],
-            ['14:00', '14:04'],
-            ['15:00', '15:04'],
-        ];
-        foreach ($crawlSchedules as $crawlSchedule) {
-            $schedule->command('crawl:prices')->weekdays()
-                ->everyMinute()->between($crawlSchedule[0], $crawlSchedule[1])
-                ->appendOutputTo(storage_path('tasks/crawl-price.log'));
-        }
+        // $crawlSchedules = [
+        //     ['9:15', '9:19'],
+        //     ['10:00', '10:04'],
+        //     ['11:00', '11:04'],
+        //     ['13:00', '13:04'],
+        //     ['14:00', '14:04'],
+        //     ['15:00', '15:04'],
+        // ];
+        // foreach ($crawlSchedules as $crawlSchedule) {
+        //     $schedule->command('crawl:prices')->weekdays()
+        //         ->everyMinute()->between($crawlSchedule[0], $crawlSchedule[1])
+        //         ->appendOutputTo(storage_path('tasks/crawl-price.log'));
+        // }
+
+        $schedule->command('crawl:prices')->everyMinute()
+            ->appendOutputTo(storage_path('tasks/crawl-price.log'));
     }
 
     /**
