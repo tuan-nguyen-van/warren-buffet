@@ -90,6 +90,8 @@ Route::middleware(['auth', 'auth.session', 'constrainGuest'])->group(function ()
 
     Route::delete('/tenets/{tenet}', [TenetController::class, 'destroy']);
 
+    Route::patch('tenet/change-order/{tenet}', [TenetController::class, 'changeOrder']);
+
     Route::post('/stock-has-tenets', [StockHasTenetController::class, 'store']);
 
     Route::get('/stock-has-tenets/{stockId}', [StockHasTenetController::class, 'show']);

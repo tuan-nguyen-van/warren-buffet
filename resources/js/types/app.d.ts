@@ -10,6 +10,7 @@ declare namespace App {
     id: number;
     description: string;
     type: string;
+    order: number;
   }
 
   export type TenetTypes = {
