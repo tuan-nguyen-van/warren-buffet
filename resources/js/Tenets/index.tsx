@@ -92,6 +92,8 @@ const Tenets = () => {
           const tenets: App.Tenets = response.data;
           setTenets(tenets);
           setOpenModal(false);
+          setType('');
+          setDescription('');
         }
       );
     }
