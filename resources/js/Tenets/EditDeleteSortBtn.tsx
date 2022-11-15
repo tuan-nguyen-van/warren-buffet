@@ -30,7 +30,7 @@ const EditDeleteSortBtn = ({
 
   useEffect(() => {
     setOrder(tenet.order.toString());
-  }, []);
+  }, [tenet]);
 
   const handleChangeOrder = (event: SelectChangeEvent) => {
     setOrder(event.target.value);

@@ -20,7 +20,8 @@ class TenetController extends Controller
      */
     public function store(Request $request)
     {
-        Tenet::create($request->all());
+        $lastTenetThisType = Tenet::where('type', $request->type)->orderBy('order', 'desc')->first();
+        Tenet::create([...$request->all(), 'order' => $lastTenetThisType->order + 1]);
 
         return $this->returnTenetsCollection();
     }
@@ -49,6 +50,10 @@ class TenetController extends Controller
     public function destroy(Tenet $tenet)
     {
         $tenet->delete();
+        $needChangeOrderTenets = Tenet::where('order', '>', $tenet->order)->get();
+        foreach ($needChangeOrderTenets as $tenet) {
+            $tenet->update(['order' => $tenet->order - 1]);
+        }
 
         return $this->returnTenetsCollection();
     }
