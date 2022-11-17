@@ -58,7 +58,7 @@ const EditDeleteSortBtn = ({
           value={order}
           label="Order"
           onChange={handleChangeOrder}
-          sx={{ width: 60 }}
+          sx={{ width: 70 }}
         >
           {orders &&
             orders.map((order) => (
