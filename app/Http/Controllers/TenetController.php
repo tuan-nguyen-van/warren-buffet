@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TenetController extends Controller
 {
@@ -20,8 +21,9 @@ class TenetController extends Controller
      */
     public function store(Request $request)
     {
-        $lastTenetThisType = Tenet::where('type', $request->type)->orderBy('order', 'desc')->first();
-        Tenet::create([...$request->all(), 'order' => $lastTenetThisType->order + 1]);
+        $currentTotal = DB::select('SELECT COUNT(*) as total FROM tenets WHERE type = ?', [$request->type])[0]->total;
+
+        Tenet::create([...$request->all(), 'order' => $currentTotal + 1]);
 
         return $this->returnTenetsCollection();
     }
@@ -50,7 +52,9 @@ class TenetController extends Controller
     public function destroy(Tenet $tenet)
     {
         $tenet->delete();
-        $needChangeOrderTenets = Tenet::where('order', '>', $tenet->order)->get();
+        $needChangeOrderTenets = Tenet::where('order', '>', $tenet->order)
+            ->where('type', $tenet->type)
+            ->get();
         foreach ($needChangeOrderTenets as $tenet) {
             $tenet->update(['order' => $tenet->order - 1]);
         }
