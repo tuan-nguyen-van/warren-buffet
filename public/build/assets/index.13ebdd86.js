@@ -36646,6 +36646,7 @@ const $Y = ({
           onChange: c,
           checked: a,
           disabled: n.CheckTenets,
+          sx: { mt: 2 },
         })
       ),
       y.createElement(

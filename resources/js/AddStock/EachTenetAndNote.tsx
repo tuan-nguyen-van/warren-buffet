@@ -76,6 +76,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
           onChange={handleChange}
           checked={checked}
           disabled={disableStep.CheckTenets}
+          sx={{ mt: 2 }}
         />
       </Grid>
       <Grid item xs={12} lg={6}>
