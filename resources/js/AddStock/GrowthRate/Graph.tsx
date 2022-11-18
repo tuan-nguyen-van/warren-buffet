@@ -13,7 +13,6 @@ import {
 import applyAxios from '../../CustomHooks/applyAxios';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../app/redux-hooks';
-import { getAddStockState } from '../addStockSlice';
 import { GrowthRateData } from './YearData';
 import { getMode } from '../../app/lightModeSlice';
 
@@ -26,18 +25,17 @@ type Props = {
 
 const Graph = ({ graphData, setGraphData }: Props) => {
   const { editStockId } = useParams();
-  const { stockId } = useAppSelector(getAddStockState);
   const { mode } = useAppSelector(getMode);
   useEffect(() => {
-    if (stockId && editStockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/calculated-growth-rates/' + stockId },
+        { method: 'get', url: '/calculated-growth-rates/' + editStockId },
         function (response) {
-          setGraphData(response.data);
+          if (response.data.length !== 0) setGraphData(response.data);
         }
       );
     }
-  }, [stockId, editStockId, setGraphData]);
+  }, [editStockId, setGraphData]);
 
   const labelTextColor = () => {
     return mode === 'dark' ? 'rgb(255,255,255,0.7)' : 'rgb(0,0,0,0.7)';
@@ -66,7 +64,7 @@ const Graph = ({ graphData, setGraphData }: Props) => {
                   fill={labelTextColor()}
                 />
               </YAxis>
-              <Bar dataKey="percent" fill="#8884d8">
+              <Bar dataKey="percent" fill="#8884d8" isAnimationActive={false}>
                 <LabelList
                   dataKey="percent"
                   position="top"

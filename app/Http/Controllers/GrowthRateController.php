@@ -37,7 +37,7 @@ class GrowthRateController extends Controller
                 'year_to' => $financialMetrics[$i + 1]->year,
                 'value' => $growthRate,
             ]);
-            $calculatedGrowthRates[] = $this->formatGrowthRate($financialMetrics[$i]->year, $growthRate);
+            $calculatedGrowthRates[] = $this->formatGrowthRate($financialMetrics[$i + 1]->year, $growthRate);
         }
 
         return $this->addAverage($calculatedGrowthRates);
@@ -52,23 +52,24 @@ class GrowthRateController extends Controller
         $calculatedGrowthRates = GrowthRate::where('stock_id', $stockId)
             ->where('chosen', 0)->get();
         $growthRates = [];
+
         foreach ($calculatedGrowthRates as $calculatedGrowthRate) {
-            $growthRates[] = $this->formatGrowthRate($calculatedGrowthRate->year_from, $calculatedGrowthRate->value);
+            $growthRates[] = $this->formatGrowthRate($calculatedGrowthRate->year_to, $calculatedGrowthRate->value);
         }
 
-        return $this->addAverage($growthRates);
+        return $calculatedGrowthRates->count() ? $this->addAverage($growthRates) : [];
     }
 
     /** 
-     * @param string       $yearFrom
+     * @param string       $yearTo
      * @param string|float $percent
      *
      * @return array{'year': int, "percent": float}
      */
-    private function formatGrowthRate($yearFrom, $percent)
+    private function formatGrowthRate($yearTo, $percent)
     {
         return [
-            'year' => (int) $yearFrom,
+            'year' => (int) $yearTo,
             'percent' => (float) $percent,
         ];
     }

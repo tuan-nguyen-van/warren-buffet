@@ -29,9 +29,9 @@ const CompanyInfo = () => {
 
   //Retrieve information for editStockId
   useEffect(() => {
-    if (editStockId && stockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/stocks/' + stockId },
+        { method: 'get', url: '/stocks/' + editStockId },
         function (response) {
           const data: App.Stocks.StockData = response.data;
           setTickerSymbol(data.ticker_symbol);
@@ -42,7 +42,7 @@ const CompanyInfo = () => {
         }
       );
     }
-  }, [stockId, editStockId, dispatch]);
+  }, [editStockId, dispatch]);
 
   const handleAddStock = () => {
     if (!stockId) {

@@ -27,11 +27,11 @@ const AssumedOption = ({ option }: Props) => {
   const { disableStep } = useAppSelector(getAddStockState);
 
   useEffect(() => {
-    if (stockId && editStockId) {
+    if (editStockId) {
       applyAxios(
         {
           method: 'get',
-          url: `/growth_assumptions?stock_id=${stockId}&option=${option}`,
+          url: `/growth_assumptions?stock_id=${editStockId}&option=${option}`,
         },
         function (response) {
           const data: App.AssumedOption.GrowthData = response.data;
@@ -42,7 +42,7 @@ const AssumedOption = ({ option }: Props) => {
         }
       );
     }
-  }, [stockId, editStockId, option]);
+  }, [editStockId, option]);
 
   const handleAddGrowth = () => {
     //Check nextTen and nextTenToTwenty have value

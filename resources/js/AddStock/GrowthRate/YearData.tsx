@@ -156,16 +156,16 @@ const YearData = ({ years }: Props) => {
   };
 
   useEffect(() => {
-    if (stockId && editStockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/financial-metrics/' + stockId },
+        { method: 'get', url: '/financial-metrics/' + editStockId },
         function (response) {
           setTableDatas(response.data);
           dispatch(changeDisableStep(['GrowthRate', false]));
         }
       );
     }
-  }, [stockId, editStockId, dispatch]);
+  }, [editStockId, dispatch]);
 
   const resetInputs = () => {
     setYear('');
@@ -187,7 +187,7 @@ const YearData = ({ years }: Props) => {
         data: { stock_id: stockId },
       },
       function (response) {
-        setGraphData(response.data);
+        if (response.data.length !== 0) setGraphData(response.data);
       }
     );
   };
@@ -374,7 +374,7 @@ const YearData = ({ years }: Props) => {
 
       <Graph
         graphData={graphData}
-        setGraphData={useCallback(setGraphData, [])}
+        setGraphData={useCallback(setGraphData, [setGraphData])}
       />
 
       <Box component="div" sx={{ textAlign: 'center' }}>

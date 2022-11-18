@@ -30,9 +30,9 @@ const CalculateChosenYears = ({ years }: Props) => {
   const { stockId, disableStep } = useAppSelector(getAddStockState);
 
   useEffect(() => {
-    if (stockId && editStockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/chosen-growth-rates/' + stockId },
+        { method: 'get', url: '/chosen-growth-rates/' + editStockId },
         function (response) {
           const data: App.GrowthRate.ChosenData = response.data;
           if (data) {
@@ -43,7 +43,7 @@ const CalculateChosenYears = ({ years }: Props) => {
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [editStockId]);
 
   const handleCaculateChosenYears = () => {
     !fromYear ? setFromYearErrorText('Choose year') : setFromYearErrorText('');

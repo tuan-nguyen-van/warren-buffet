@@ -25,16 +25,16 @@ const EpsToCalculate = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (stockId && editStockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: `/chosen-eps/${stockId}` },
+        { method: 'get', url: `/chosen-eps/${editStockId}` },
         function (response) {
           const data: EpsData = response.data;
           setEps(data.chosen_eps);
         }
       );
     }
-  }, [stockId, editStockId]);
+  }, [editStockId]);
 
   const handleAddEps = () => {
     if (!eps) {
