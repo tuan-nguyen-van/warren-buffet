@@ -36098,7 +36098,7 @@ const $Y = ({
       ),
       y.createElement(wY, {
         graphData: S,
-        setGraphData: E.exports.useCallback($, []),
+        setGraphData: E.exports.useCallback($, [$]),
       }),
       y.createElement(
         Ve,
