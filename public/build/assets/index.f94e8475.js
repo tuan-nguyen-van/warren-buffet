@@ -36713,7 +36713,7 @@ const $Y = ({
       E.exports.useEffect(() => {
         a &&
           l &&
-          xe({ method: 'get', url: '/stock-has-tenets/' + a }, function (c) {
+          xe({ method: 'get', url: '/stock-has-tenets/' + l }, function (c) {
             const u = c.data;
             s(u);
           });

@@ -30,7 +30,7 @@ const CheckTenets = () => {
   useEffect(() => {
     if (stockId && editStockId) {
       applyAxios(
-        { method: 'get', url: '/stock-has-tenets/' + stockId },
+        { method: 'get', url: '/stock-has-tenets/' + editStockId },
         function (response) {
           const data: App.StockHasTenet[] = response.data;
           setStockHasTenets(data);
