@@ -35730,7 +35730,7 @@ const xY = ({ graphData: e, setGraphData: t }) => {
               y.createElement(Fl, { dataKey: 'year' }),
               y.createElement(
                 zl,
-                { dataKey: 'percent' },
+                { dataKey: 'percent', padding: { top: 20, bottom: 20 } },
                 y.createElement(_t, {
                   value: '%',
                   position: 'insideTopLeft',

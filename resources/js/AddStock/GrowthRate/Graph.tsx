@@ -57,7 +57,7 @@ const Graph = ({ graphData, setGraphData }: Props) => {
             >
               <CartesianGrid strokeDasharray="5 5" />
               <XAxis dataKey="year" />
-              <YAxis dataKey="percent">
+              <YAxis dataKey="percent" padding={{ top: 20, bottom: 20 }}>
                 <Label
                   value="%"
                   position="insideTopLeft"
