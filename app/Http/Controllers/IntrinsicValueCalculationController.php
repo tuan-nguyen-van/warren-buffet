@@ -43,7 +43,7 @@ class IntrinsicValueCalculationController extends Controller
             $growthRateNextTenToTwentyYears = $growthAssuption->next_10_to_20_years / 100;
 
             for ($year = $currentYear + 10; $year < $currentYear + 20; ++$year) {
-                $this->eachYearCalculation($growthRateNextTenToTwentyYears, $year);
+                $this->eachYearCalculation($growthRateNextTenToTwentyYears, $year, $growthRateNextTenYears);
             }
 
             $this->steps['next_10_to_20_years'] = $growthAssuption->next_10_to_20_years;
@@ -78,10 +78,20 @@ class IntrinsicValueCalculationController extends Controller
         return $this->calculationStep;
     }
 
-    private function eachYearCalculation(float $growthRate, int $year): void
+    private function eachYearCalculation(float $growthRate, int $year, float $growthRateNextTenYears = null): void
     {
         $baseYear = (int) date('Y') - 1;
-        $futureValue = round((1 + $growthRate) ** ($year - $baseYear), 2);
+        // Growth rate next 10 to 20 years need to have growth rate next 10 years to calculate.
+        // If the 3rd argument is null then is next 10 years otherwise is next 10 to 20 years
+        if (!$growthRateNextTenYears) {
+            $futureValue = round((1 + $growthRate) ** ($year - $baseYear), 2);
+        } else {
+            $futureValue = round(
+                ((1 + $growthRateNextTenYears) ** 10) * ((1 + $growthRate) ** ($year - $baseYear - 10)),
+                2
+            );
+        }
+
         /** @phpstan-ignore-next-line */
         $this->steps[$year]['future_value'] = $futureValue;
         $discountedValueForYears = $this->discountedValueForYears();
