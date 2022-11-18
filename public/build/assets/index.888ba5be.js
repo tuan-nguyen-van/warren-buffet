@@ -36657,7 +36657,7 @@ const $Y = ({
           multiline: !0,
           rows: 1,
           fullWidth: !0,
-          sx: { mb: 2 },
+          sx: { my: 2 },
           disabled: n.CheckTenets,
           name: '' + e.id,
           onBlur: u,
