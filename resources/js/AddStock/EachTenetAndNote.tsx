@@ -85,7 +85,7 @@ const EachTenetAndNote = ({ tenet, stockHasTenets }: Props) => {
           multiline
           rows={1}
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           disabled={disableStep.CheckTenets}
           name={'' + tenet.id}
           onBlur={handleFocusOut}
