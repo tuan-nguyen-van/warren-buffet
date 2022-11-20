@@ -60,7 +60,11 @@ const Home = () => {
     intrinsicPrice: number
   ) => {
     return Math.round(
-      ((intrinsicPrice - stock.current_market_price) * 100) / intrinsicPrice
+      ((intrinsicPrice -
+        stock.current_market_price *
+          (1 + Number(stock.current_year_stock_dividend) / 100)) *
+        100) /
+        intrinsicPrice
     );
   };
 
@@ -171,6 +175,12 @@ const Home = () => {
                           calculationStep[1]?.intrinsic_price
                         ) +
                         '%'}
+                    <br />
+                    {+stock.current_year_stock_dividend !== 0
+                      ? 'Current Year Stock Dividend: ' +
+                        parseFloat(stock.current_year_stock_dividend) +
+                        '%'
+                      : ''}
                   </Grid>
                   <Grid item xs={6} lg={3} className="h-first-card-row">
                     PE

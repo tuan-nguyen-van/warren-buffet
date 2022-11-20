@@ -116,6 +116,8 @@ class StockController extends Controller
             'company_name' => "required$needUnique|min:5|max:255|regex:$companyRegex",
             'website' => "required$needUnique|min:10|max:50|regex:$websiteRegex",
             'vietstock_crawl_link' => "required|min:10|max:100|regex:$vietstockCrawlLinkRegex",
+            'current_year_stock_dividend' => 'min:0',
+            'stock_note' => 'min:0|max:500',
         ]);
     }
 

@@ -135,6 +135,8 @@ declare namespace App {
       ticker_symbol: string;
       website: string;
       current_market_price: number;
+      current_year_stock_dividend: string;
+      stock_note: string;
       status: 'Unfinished' | 'Followed' | 'Unfollowed';
       vietstock_crawl_link: string;
       updated_at: string;

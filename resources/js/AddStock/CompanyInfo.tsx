@@ -26,6 +26,8 @@ const CompanyInfo = () => {
   const [crawlLink, setCrawlLink] = useState('');
   const [inputErrors, setInputErrors] =
     useState<App.AddStock.CompanyInfoErrors>();
+  const [curYearStockDividend, setCurYearStockDividend] = useState(0);
+  const [stockNote, setStockNote] = useState('');
 
   //Retrieve information for editStockId
   useEffect(() => {
@@ -38,6 +40,8 @@ const CompanyInfo = () => {
           setCompanyName(data.company_name);
           setWebsite(data.website);
           setCrawlLink(data.vietstock_crawl_link);
+          setCurYearStockDividend(parseFloat(data.current_year_stock_dividend));
+          setStockNote(data.stock_note);
           dispatch(changeDisableStep(['CompanyInfo', true]));
         }
       );
@@ -55,6 +59,8 @@ const CompanyInfo = () => {
             company_name: companyName,
             website: website,
             vietstock_crawl_link: crawlLink,
+            current_year_stock_dividend: curYearStockDividend,
+            stock_note: stockNote,
           },
         },
         function (response) {
@@ -80,6 +86,8 @@ const CompanyInfo = () => {
             company_name: companyName,
             website: website,
             vietstock_crawl_link: crawlLink,
+            current_year_stock_dividend: curYearStockDividend,
+            stock_note: stockNote,
           },
         },
         function () {
@@ -95,8 +103,8 @@ const CompanyInfo = () => {
         <Typography variant="h5">Step 1: Company Information</Typography>
       </Divider>
 
-      <Grid container spacing={2}>
-        <Grid item xs={6} lg={3}>
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid item xs={12} lg={3}>
           <TextField
             fullWidth
             label="Ticker Symbol"
@@ -110,7 +118,7 @@ const CompanyInfo = () => {
             }
           />
         </Grid>
-        <Grid item xs={12} lg={7}>
+        <Grid item xs={12} lg={5}>
           <TextField
             fullWidth
             label="Company Name"
@@ -124,9 +132,21 @@ const CompanyInfo = () => {
             }
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
+          <TextField
+            fullWidth
+            label="Current Year Stock Dividend (%)"
+            variant="standard"
+            value={curYearStockDividend}
+            onChange={(e) => setCurYearStockDividend(+e.target.value)}
+            disabled={disableStep.CompanyInfo}
+            type="number"
+          />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid item xs={12} lg={6}>
           <TextField
             fullWidth
             label="Website"
@@ -154,7 +174,23 @@ const CompanyInfo = () => {
             }
           />
         </Grid>
-        <Grid item xs={12} lg={2} sx={{ textAlign: 'center' }}>
+      </Grid>
+      <Grid container spacing={2} sx={{ mt: 3 }}>
+        <Grid item xs={12} lg={12}>
+          <TextField
+            label="Stock Note"
+            multiline
+            rows={3}
+            fullWidth
+            value={stockNote}
+            onChange={(e) => setStockNote(e.target.value)}
+            disabled={disableStep.CompanyInfo}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid item xs={12} lg={12} sx={{ textAlign: 'center' }}>
           {disableStep.CompanyInfo ? (
             <IconButton
               color="primary"
