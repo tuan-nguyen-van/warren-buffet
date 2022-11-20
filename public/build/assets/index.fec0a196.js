@@ -36455,7 +36455,6 @@ const $Y = ({
         'EPS to calculate stock price:'
       ),
       y.createElement(ct, {
-        label: '(%)',
         variant: 'standard',
         name: 'next-10-20',
         type: 'number',

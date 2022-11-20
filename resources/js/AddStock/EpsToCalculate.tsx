@@ -64,7 +64,6 @@ const EpsToCalculate = () => {
         EPS to calculate stock price:
       </Typography>
       <TextField
-        label="(%)"
         variant="standard"
         name="next-10-20"
         type="number"
