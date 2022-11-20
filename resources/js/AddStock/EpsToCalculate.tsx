@@ -67,7 +67,7 @@ const EpsToCalculate = () => {
         variant="standard"
         name="next-10-20"
         type="number"
-        sx={{ width: '100px', mt: 2.5, ml: 2 }}
+        sx={{ width: '100px', mt: 4, ml: 2 }}
         value={eps}
         onChange={(e) => setEps(e.target.value)}
         error={epsError}
