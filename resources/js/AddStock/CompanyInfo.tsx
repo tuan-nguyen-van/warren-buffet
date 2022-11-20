@@ -40,7 +40,9 @@ const CompanyInfo = () => {
           setCompanyName(data.company_name);
           setWebsite(data.website);
           setCrawlLink(data.vietstock_crawl_link);
-          setCurYearStockDividend(parseFloat(data.current_year_stock_dividend));
+          setCurYearStockDividend(
+            parseFloat(data.current_year_stock_dividend) || 0
+          );
           setStockNote(data.stock_note);
           dispatch(changeDisableStep(['CompanyInfo', true]));
         }

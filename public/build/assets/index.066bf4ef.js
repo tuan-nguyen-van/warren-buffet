@@ -12026,7 +12026,7 @@ const Uk = () => {
           i(b.company_name),
           s(b.website),
           f(b.vietstock_crawl_link),
-          p(parseFloat(b.current_year_stock_dividend)),
+          p(parseFloat(b.current_year_stock_dividend) || 0),
           m(b.stock_note),
           l(wt(['CompanyInfo', !0]));
       });
