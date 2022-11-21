@@ -82,6 +82,16 @@ const Home = () => {
     );
   };
 
+  const buy1Get = (
+    curYearStockDividend: number,
+    intrinsicPrice: number,
+    curMarketPrice: number
+  ) =>
+    (
+      intrinsicPrice /
+      (curMarketPrice * (1 + curYearStockDividend / 100))
+    ).toFixed(2);
+
   const handleRenew = (stockId: number, index: number) => {
     applyAxios(
       { method: 'patch', url: '/stocks/refresh-market-price/' + stockId },
@@ -152,17 +162,23 @@ const Home = () => {
                   />
                 </Box>
                 <Grid container sx={{ mt: 2 }}>
-                  <Grid
-                    item
-                    xs={6}
-                    lg={3}
-                    className="h-stock-price h-first-card-row"
-                  >
-                    {stock.current_market_price}
+                  <Grid item xs={6} lg={3} className="h-first-card-row">
+                    <Box component="span" className="h-stock-price">
+                      {stock.current_market_price}
+                    </Box>
+
                     <AutorenewIcon
                       sx={{ color: 'rgb(114, 193, 254)', cursor: 'pointer' }}
                       onClick={() => handleRenew(stock.id, index)}
                     />
+
+                    <Box component="div" sx={{ mt: 1 }}>
+                      {+stock.current_year_stock_dividend !== 0
+                        ? 'Current Year Stock Dividend: ' +
+                          parseFloat(stock.current_year_stock_dividend) +
+                          '%'
+                        : ''}
+                    </Box>
                   </Grid>
                   <Grid item xs={6} lg={3} className="h-first-card-row">
                     Margin Of Safety
@@ -175,12 +191,22 @@ const Home = () => {
                           calculationStep[1]?.intrinsic_price
                         ) +
                         '%'}
-                    <br />
-                    {+stock.current_year_stock_dividend !== 0
-                      ? 'Current Year Stock Dividend: ' +
-                        parseFloat(stock.current_year_stock_dividend) +
-                        '%'
-                      : ''}
+                    <Box component="div" sx={{ mt: 1 }}>
+                      Buy 1 Get
+                      <br />
+                      {buy1Get(
+                        +stock.current_year_stock_dividend,
+                        calculationStep[0].intrinsic_price,
+                        stock.current_market_price
+                      )}{' '}
+                      {calculationStep[1]?.intrinsic_price &&
+                        '| ' +
+                          buy1Get(
+                            +stock.current_year_stock_dividend,
+                            calculationStep[1].intrinsic_price,
+                            stock.current_market_price
+                          )}
+                    </Box>
                   </Grid>
                   <Grid item xs={6} lg={3} className="h-first-card-row">
                     PE
