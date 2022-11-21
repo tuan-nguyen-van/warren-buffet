@@ -136,8 +136,10 @@ const Home = () => {
             fiveRecentYearsMoneyDividend +=
               stock.financial_metrics![i].money_dividend;
           }
-          fiveRecentYearRoea /= i;
-          fiveRecentYearsMoneyDividend /= i;
+          fiveRecentYearRoea = +(fiveRecentYearRoea / i).toFixed(1);
+          fiveRecentYearsMoneyDividend = Math.round(
+            fiveRecentYearsMoneyDividend / i
+          );
           return (
             <Card className="h-stock-card" key={stock.id}>
               <CardContent sx={{ position: 'relative' }}>
