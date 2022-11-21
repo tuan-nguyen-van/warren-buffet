@@ -6,6 +6,7 @@ use App\Models\ChosenEps;
 use App\Models\DiscountRate;
 use App\Models\GrowthAssumption;
 use App\Models\IntrinsicValueCalculation;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class IntrinsicValueCalculationController extends Controller
@@ -74,6 +75,13 @@ class IntrinsicValueCalculationController extends Controller
             'discount_rate' => $discountRate * 100,
             'calculation_step' => json_encode($this->calculationStep),
         ]);
+
+        $stock = Stock::find($stockId);
+        if ($stock->status === 'Unfinished') {
+            $stock->update([
+                'status' => 'Unfollowed',
+            ]);
+        }
 
         return $this->calculationStep;
     }
