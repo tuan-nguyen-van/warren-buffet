@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 //     return (\Illuminate\Support\Facades\Hash::make(''));
 // });
 
+Route::get('/cv', function () {
+    return view('cv');
+});
+
 Route::get('/login', function () {
     return view('login', [
         'previousUrl' => url()->previous(),
