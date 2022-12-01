@@ -14,7 +14,8 @@
     body {
       margin: 0px;
       padding: 0px;
-      
+      width: 830px;
+      height: 1170px;
       font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial';
       font-weight: 400;
       font-size: 1rem;
@@ -23,10 +24,6 @@
     }
 
     .main {
-      width: 830px;
-      height: 1170px;
-      margin-left: auto;
-      margin-right: auto;
       font-size: 16px;
     }
 
