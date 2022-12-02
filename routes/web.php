@@ -37,6 +37,10 @@ Route::get('/email-template', function () {
     return view('email-template');
 });
 
+Route::get('/image-upload', function () {
+    return view('image-upload');
+});
+
 Route::get('/login', function () {
     return view('login', [
         'previousUrl' => url()->previous(),

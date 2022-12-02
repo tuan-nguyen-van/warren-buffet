@@ -423,7 +423,7 @@
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               All devs could not build some tough features that I required, so I had to
               learn tech and build them myself like this 
-              <a href="https://www.zillow.com/" target="_blank" class="experience-link">
+              <a href="https://tuannguyen.site/image-upload" target="_blank" class="experience-link">
                 upload image feature.
               </a>
             </div>
