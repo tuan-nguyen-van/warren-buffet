@@ -33,6 +33,10 @@ Route::get('/cv', function () {
     return view('cv');
 });
 
+Route::get('/email-template', function () {
+    return view('email-template');
+});
+
 Route::get('/login', function () {
     return view('login', [
         'previousUrl' => url()->previous(),

@@ -23,7 +23,7 @@
 
     .main {
       width: 830px;
-      height: 1170px;
+      height: 1500px;
       font-size: 14px;
     }
 
@@ -149,6 +149,15 @@
     .experience-hr {
       border: 1px solid rgb(88, 82, 82);
     }
+
+    .hexagon {
+      width: 10px;
+    }
+
+    .experience-point {
+      margin-left: 15px;
+      margin-top: 3px;
+    }
   </style>
 </head>
 
@@ -158,7 +167,7 @@
       <div class="card">
         Founder of 2 start-ups and passionate about technology. 5+ years of experience as a software developer.
         Write easy, optimized, maintainable code.
-        Hard working (60 hrs/week), fast learner with beginner mind set, result oriented, ability to work under high
+        Hard working, fast learner with beginner mind set, result oriented, ability to work under high
         pressure with can do attitude.
       </div>
 
@@ -171,47 +180,171 @@
         <div>
           I built this software as a side start-up to reduce
           the time from making buying or selling
-          decision from 1-2 weeks to 1 day with > 90% chance of being right. Like Google this software automatically crawl
-          current
-          stock price and other data from
-          <a href="https://vietstock.vn/" target="_blank" class="experience-link">
-            vietstock.vn
+          decision from 1-2 weeks to 1 day with > 90% chance of being right.
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Like Google this software automatically
+            crawl current stock price and other data from
+            <a href="https://vietstock.vn/" target="_blank" class="experience-link">
+              vietstock.vn
+            </a>
+            and do the calculation.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Have a look at a simplified version by visiting <a href="https://tuannguyen.site/login" target="_blank"
+              class="experience-link">tuannguyen.site/login</a> then press button "SIGN IN AS GUEST" then press "SIGN
+            IN".
+          </div>
+          <div class="experience-point">
+            <div class="skill-div">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              <a href="https://github.com/tuan-nguyen-van/warren-buffet" target="_blank" class="experience-link">
+                Github source code
+              </a>
+              <a href="https://tuannguyen.site/database-design.pdf" target="_blank" class="experience-link"
+                style="margin-left: 5px;">
+                Database design
+              </a>
+              <br>
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              Tech Stack:
+              <button class="skill-btn">PHP</button>
+              <button class="skill-btn">Laravel</button>
+              <button class="skill-btn">Javascript</button>
+              <button class="skill-btn">React</button>
+              <button class="skill-btn">Typescript</button>
+              <button class="skill-btn">Recharts</button>
+              <button class="skill-btn">MySQL</button>
+              <button class="skill-btn">Redux</button>
+              <button class="skill-btn">Regex</button>
+              <button class="skill-btn">Material UI</button>
+              <button class="skill-btn">Docker</button>
+              <button class="skill-btn">AWS EC2</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 15px;">
+        <div class="experience-title" style="display: inline-block;">Fullstack web developer (Remote)</div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+          Jan/22 - July/22
+        </div>
+        <div>
+          <a href="https://www.tally.co/acquire/uconx" target="_blank" class="experience-link">
+            Tally Group Australia (UCONX team, 20 members)
           </a>
-          and do the calculation for me.
-          <br>
-          Have a look at simplified version by visiting <a href="https://tuannguyen.site/login" target="_blank"
-            class="experience-link">tuannguyen.site/login</a> then press button "SIGN IN AS GUEST" then press "SIGN IN".
-          <a href="https://github.com/tuan-nguyen-van/warren-buffet" target="_blank" class="experience-link">
-            Github source code
-          </a>
-          <a href="https://tuannguyen.site/database-design.pdf" target="_blank" 
-            class="experience-link" style="margin-left: 5px;">
-            Database design
-          </a>
-          <hr class="experience-hr">
-          <div class="skill-div">
-            Tech stack:
-            <button class="skill-btn">Laravel(Php)</button>
-            <button class="skill-btn">React</button>
-            <button class="skill-btn">Typescript</button>
-            <button class="skill-btn">MySQL</button>
-            <button class="skill-btn">Redux</button>
-            <button class="skill-btn">MUI</button>
-            <button class="skill-btn">Docker</button>
-            <button class="skill-btn">AWS EC2</button>
+          <div>
+            Uconx is multi-tenant app with micro-service architecture for rent to other energy, gas, internet retailers
+            to advertise
+            and set up sales in mintutes.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Refactored messy code base and reduced 80% of database queries
+            by: caching, eager loading, optimizing code...
+            Made both backend and frontend apps run 30% faster.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Wrote solutions for bugs or new features for other devs, reviewed code.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Build new features for both backend and frontend app.
+          </div>
+          <div class="experience-point">
+            <div class="skill-div">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              Tech Stack:
+              <button class="skill-btn">PHP</button>
+              <button class="skill-btn">Yii2</button>
+              <button class="skill-btn">Codeception</button>
+              <button class="skill-btn">MariaDB</button>
+              <button class="skill-btn">Javascript</button>
+              <button class="skill-btn">Bootstrap3</button>
+              <button class="skill-btn">Tailwind</button>
+              <button class="skill-btn">Jquery</button>
+              <button class="skill-btn">React</button>
+              <button class="skill-btn">Redux</button>
+              <button class="skill-btn">Material UI</button>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Stock Price Calculation software</div>
+        <div class="experience-title" style="display: inline-block;">Fullstack web developer (Remote)</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
-          Aug/22 - Ongoing
+          June/21 - Dec/21
+        </div>
+        <div>
+          <a href="https://www.webtools.ag/" target="_blank" class="experience-link">
+            Webtools New Zealand (Agriculture team, 10 members)
+          </a>
+          <div>
+            <a href="https://live.alliance.co.nz/" target="_blank" class="experience-link">
+              Monolith app
+            </a>
+            with both frontend and backend integrated together to keep track of livestock
+            for farmers in New Zealand.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Maintained, upgraded version, fixed bugs, built new features
+            and consulted technical solution for customer.
+          </div>
+          <div class="experience-point">
+            <div class="skill-div">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              Tech Stack:
+              <button class="skill-btn">PHP</button>
+              <button class="skill-btn">Laravel</button>
+              <button class="skill-btn">PHP Unit</button>
+              <button class="skill-btn">MySQL</button>
+              <button class="skill-btn">Javascript</button>
+              <button class="skill-btn">Typescript</button>
+              <button class="skill-btn">React</button>
+              <button class="skill-btn">Jest</button>
+              <button class="skill-btn">Ant Design</button>
+              <button class="skill-btn">Recharts</button>
+            </div>
+          </div>
         </div>
       </div>
 
+      <div class="card" style="margin-top: 15px;">
+        <div class="experience-title" style="display: inline-block;">Fullstack developer</div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+          June/21 - Dec/21
+        </div>
+        <div>
+          <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
+            Texo Design (20 members)
+          </a>
+          <div>
+            Outsourcing company that build all types of products
+            for customers by many different technologies.
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Code complicated 
+            <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
+              Email Template
+            </a>
+             that work across multiple devices
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Right section -->
     <div id="right" class="column" style="background-color: #38464e;">
       <div style="background-color: #283138; height: 260px; padding-top: 10px;">
         <div style="height: 120px;">
@@ -284,9 +417,12 @@
 
         <div class="skill-div">
           Themes, Libraries:
-          <button class="skill-btn">MUI</button>
+          <button class="skill-btn">Material UI</button>
           <button class="skill-btn">Ant Design</button>
           <button class="skill-btn">Bootstrap</button>
+          <button class="skill-btn">Tailwind</button>
+          <button class="skill-btn">Recharts</button>
+          <button class="skill-btn">Sass</button>
           <button class="skill-btn">Lodash</button>
           <button class="skill-btn">Webpack</button>
           <button class="skill-btn">Gulp</button>
@@ -309,7 +445,7 @@
         <div class="language-side-title">Back End</div>
         <div class="skill-div">
           Languages:
-          <button class="skill-btn">Php</button>
+          <button class="skill-btn">PHP</button>
           <button class="skill-btn">Nodejs</button>
           <button class="skill-btn">Ruby</button>
         </div>
@@ -328,14 +464,15 @@
 
         <div class="skill-div">
           Testing:
-          <button class="skill-btn">Php unit</button>
+          <button class="skill-btn">PHP Unit</button>
           <button class="skill-btn">Codeception</button>
         </div>
 
         <div class="skill-div">
           Code Checking:
-          <button class="skill-btn">Php Stan</button>
-          <button class="skill-btn">Php Cs Fixer</button>
+          <button class="skill-btn">PHP Stan</button>
+          <button class="skill-btn">PHP Psalm</button>
+          <button class="skill-btn">PHP Cs Fixer</button>
         </div>
 
         <hr class="hr-skill" />
@@ -356,12 +493,12 @@
         <hr class="hr-skill" />
         <div class="language-side-title">Other</div>
         <div class="skill-div">
-          <button class="skill-btn">Data Structures and Algorithms</button>
-          <button class="skill-btn">TDD</button>
           <button class="skill-btn">Git</button>
           <button class="skill-btn">Docker</button>
+          <button class="skill-btn">AWS</button>
           <button class="skill-btn">Micro Service</button>
           <button class="skill-btn">System Design</button>
+          <button class="skill-btn">Regex</button>
           <button class="skill-btn">Apache</button>
           <button class="skill-btn">Nginx</button>
           <button class="skill-btn">Load Balancer</button>
@@ -369,6 +506,7 @@
           <button class="skill-btn">SEO</button>
           <button class="skill-btn">Jira</button>
           <button class="skill-btn">Slack</button>
+          <button class="skill-btn">Harvest</button>
         </div>
 
       </div>
