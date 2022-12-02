@@ -23,7 +23,7 @@
 
     .main {
       width: 830px;
-      height: 1500px;
+      height: 2100px;
       font-size: 14px;
     }
 
@@ -281,7 +281,7 @@
         <div class="experience-title" style="display: inline-block;">Fullstack web developer (Remote)</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
-          June/21 - Dec/21
+          Jun/21 - Dec/21
         </div>
         <div>
           <a href="https://www.webtools.ag/" target="_blank" class="experience-link">
@@ -305,7 +305,6 @@
               Tech Stack:
               <button class="skill-btn">PHP</button>
               <button class="skill-btn">Laravel</button>
-              <button class="skill-btn">PHP Unit</button>
               <button class="skill-btn">MySQL</button>
               <button class="skill-btn">Javascript</button>
               <button class="skill-btn">Typescript</button>
@@ -322,11 +321,11 @@
         <div class="experience-title" style="display: inline-block;">Fullstack developer</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
-          June/21 - Dec/21
+          Mar/20 - May/21
         </div>
         <div>
           <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
-            Texo Design (20 members)
+            Texo Design (20 member team)
           </a>
           <div>
             Outsourcing company that build all types of products
@@ -334,14 +333,127 @@
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Code complicated 
-            <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
-              Email Template
+            Converted designs to HTML: ~50 complicated
+            <a href="https://tuannguyen.site/email-template" target="_blank" class="experience-link">
+              Email Templates
             </a>
-             that work across multiple devices
+            that work across multiple devices and sent by
+            <a href="https://www.salesforce.com/" target="_blank" class="experience-link">
+              Saleforce
+            </a>
+            or
+            <a href="https://mailchimp.com/" target="_blank" class="experience-link">
+              Mailchimp
+            </a>
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Converted designs and animation videos to 6
+            <a href="https://w6digital.com.au/albc22410w/build/1_discover/index.html" target="_blank"
+              class="experience-link">
+              Applications
+            </a>
+            that deployed on
+            <a href="https://www.veeva.com/" target="_blank" class="experience-link">
+              Veeva
+            </a>
+            for marketing to customer on iPad Pro
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Converted designs to 3
+            <a href="https://celladore.com.au" target="_blank" class="experience-link">
+              websites
+            </a>
+            using CMS
+          </div>
+          <div class="experience-point">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Participated from the beginning, coded, designed databases, chose technologies for multi-tenant, micro
+            service app that allows car retailers to rent web application to sell car devices.
+          </div>
+          <div class="experience-point">
+            <div class="skill-div">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              Tech Stack:
+              <button class="skill-btn">PHP</button>
+              <button class="skill-btn">Wordpress</button>
+              <button class="skill-btn">Moodle</button>
+              <button class="skill-btn">Laravel</button>
+              <button class="skill-btn">Ruby on Rails</button>
+              <button class="skill-btn">Camaleon CMS</button>
+              <button class="skill-btn">PostgreSQL</button>
+              <button class="skill-btn">MySQL</button>
+              <button class="skill-btn">Javascript</button>
+              <button class="skill-btn">Typescript</button>
+              <button class="skill-btn">React</button>
+              <button class="skill-btn">Nextjs</button>
+              <button class="skill-btn">Bootstrap</button>
+              <button class="skill-btn">Webpack</button>
+              <button class="skill-btn">Gulp</button>
+              <button class="skill-btn">AWS</button>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="card" style="margin-top: 15px;">
+        <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack developer...
+        </div>
+        <div>
+          <div style="display: inline-block;">
+            Real Estate Social Network start up
+          </div>
+          <div style="float: right;">
+            <img src="{{url('/images/calendar.svg')}}" class="calendar">
+              Mar/18 - Dec/20
+          </div>
+          <div>
+            Tried to solve messy real estate market for Vietnam by copying
+            <a href="https://www.zillow.com/" target="_blank" class="experience-link">
+              Zillow.com
+            </a>
+            and allowed user post real estate for free. 
+            <div class="experience-point">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              Designed system, designed database, chose technologies, 
+              hired 3 developers, SEO, marketing, raise capital...  
+            </div>
+            <div class="experience-point">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              All devs could not build some tough features that I required, so I had to
+              learn tech and build them myself like this 
+              <a href="https://www.zillow.com/" target="_blank" class="experience-link">
+                upload image feature.
+              </a>
+            </div>
+            <div class="experience-point">
+              <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+              The app reached 10,000 users already after 3 months, but faced many 
+              challenges, and I didn't sense it was going anywhere
+              so I shut it down.  
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-point">
+          <div class="skill-div">
+            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
+            Tech Stack:
+            <button class="skill-btn">PHP</button>
+            <button class="skill-btn">Laravel</button>
+            <button class="skill-btn">Javascript</button>
+            <button class="skill-btn">Vue</button>
+            <button class="skill-btn">Vuex</button>
+            <button class="skill-btn">Nuxtjs</button>
+            <button class="skill-btn">MySQL</button>
+            <button class="skill-btn">MongoDB</button>
+            <button class="skill-btn">Redis</button>
+            <button class="skill-btn">Bootstrap</button>
+          </div>
+        </div>
+      </div>
+    
     </div>
 
     <!-- Right section -->
