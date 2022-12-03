@@ -173,9 +173,9 @@
   <div class="main">
     <div id="left" class="column">
       <div class="card">
-        Founder of 2 tech start-ups. 5+ years of experience as a software engineer.
-        Write easy, optimized, maintainable code. Result oriented, can work under high
-        pressure. Hard-working (70 hrs/w), fast learner with curious, beginner mind set. Only need 20 days to catch up with a brand-new language or framework.
+        Founder of 2 tech start-ups. 5 years of experience as a software engineer.
+        Write easy, optimized, maintainable code. Egoless, result oriented, can work under high
+        pressure. Hard-working (70 hrs/w), fast, passionate learner with curious, beginner mind set. Only need 20 days to catch up with a brand-new language or framework.
       </div>
 
       <div class="card" style="margin-top: 15px;">
