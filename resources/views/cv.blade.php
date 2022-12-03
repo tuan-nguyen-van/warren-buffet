@@ -17,10 +17,11 @@
       font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial';
       font-weight: 400;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.45;
       letter-spacing: 0.2px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
+      width: 830px;
     }
 
     .main {
@@ -460,7 +461,7 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top: 15px; margin-bottom: 20px;">
+      <div class="card" style="margin-top: 15px; margin-bottom: 10px;">
         <div class="experience-title" style="display: inline-block;">Real Estate Agent</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
@@ -668,6 +669,9 @@
         <div class="language-side-title">Education</div>
         <div style="margin-left: 10px;">
           <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer (Hanoi 2011 - 2016)
+        </div>
+        <div style="margin-left: 10px;">
+          <img src="{{url('/images/badge.svg')}}" class="contact-icon"> Full scholarship that cover my tuition
         </div>
         <div style="margin-left: 10px;">
           <img src="{{url('/images/degree.svg')}}" class="contact-icon"> Civil Engineer
