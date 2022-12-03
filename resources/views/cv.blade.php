@@ -411,7 +411,7 @@
           </div>
           <div style="float: right;">
             <img src="{{url('/images/calendar.svg')}}" class="calendar">
-              Mar/18 - Dec/20
+              Mar/18 - Dec/19
           </div>
           <div>
             A start-up tried to solve messy real estate market for Vietnam by copying
