@@ -401,20 +401,20 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top: 15px; width: 810px; position: relative; z-index: 100;">
+      <div class="card" style="margin-top: 15px;">
         <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack Developer...
         </div>
-        <div style="float: right;">
-          <img src="{{url('/images/calendar.svg')}}" class="calendar">
-            Mar/18 - Dec/20
-        </div>
+        
         <div>
           <div style="display: inline-block;">
-            Real Estate Social Network start up (Ho Chi Minh).
+            Real Estate Social Network. (Ho Chi Minh)
           </div>
-          
+          <div style="float: right;">
+            <img src="{{url('/images/calendar.svg')}}" class="calendar">
+              Mar/18 - Dec/20
+          </div>
           <div>
-            Tried to solve messy real estate market for Vietnam by copying
+            A start-up tried to solve messy real estate market for Vietnam by copying
             <a href="https://www.zillow.com/" target="_blank" class="experience-link">
               Zillow.com
             </a>
@@ -460,7 +460,7 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top: 15px; margin-bottom: 20px; width: 810px; position: relative; z-index: 100;">
+      <div class="card" style="margin-top: 15px; margin-bottom: 20px;">
         <div class="experience-title" style="display: inline-block;">Real Estate Agent</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
