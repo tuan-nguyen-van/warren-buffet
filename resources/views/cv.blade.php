@@ -19,18 +19,18 @@
       font-size: 1rem;
       line-height: 1.5;
       letter-spacing: 0.00938em;
+      background-color: rgb(190, 183, 183);
+      color: #0a3454;
     }
 
     .main {
       width: 830px;
-      height: 2100px;
       font-size: 14px;
     }
 
     #left {
       width: 65%;
       height: 100%;
-      background-color: rgb(190, 183, 183);
       padding-left: 10px;
       padding-top: 10px;
       font-size: 15px;
@@ -77,8 +77,11 @@
     }
 
     #right-text {
-      margin-left: 10px;
-      margin-right: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 8px;
+      padding-bottom: 20px;
+
     }
 
     .skill-btn {
@@ -158,6 +161,11 @@
       margin-left: 15px;
       margin-top: 3px;
     }
+
+    .contact-div {
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 
@@ -165,36 +173,36 @@
   <div class="main">
     <div id="left" class="column">
       <div class="card">
-        Founder of 2 start-ups and passionate about technology. 5+ years of experience as a software developer.
-        Write easy, optimized, maintainable code.
-        Hard working, fast learner with beginner mind set, result oriented, ability to work under high
-        pressure with can do attitude.
+        Founder of 2 tech start-ups. 5+ years of experience as a software engineer.
+        Write easy, optimized, maintainable code. Result oriented, can work under high
+        pressure. Hard-working (70 hrs/w), fast learner with curious, beginner mind set. Only need 20 days to catch up with a brand-new language or framework.
       </div>
 
       <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Stock Price Calculation software</div>
+        <div class="experience-title" style="display: inline-block;">Stock Price Calculation Software</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
           Aug/22 - Ongoing
         </div>
         <div>
-          I built this software as a side start-up to reduce
-          the time from making buying or selling
+          Side start-up to reduce the time from making buying or selling
           decision from 1-2 weeks to 1 day with > 90% chance of being right.
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Like Google this software automatically
-            crawl current stock price and other data from
+            Like Google, automatically
+            crawls current stock price and other data from
             <a href="https://vietstock.vn/" target="_blank" class="experience-link">
               vietstock.vn
             </a>
-            and do the calculation.
+            and does the calculation.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Have a look at a simplified version by visiting <a href="https://tuannguyen.site/login" target="_blank"
-              class="experience-link">tuannguyen.site/login</a> then press button "SIGN IN AS GUEST" then press "SIGN
-            IN".
+            Have a look at a simplified version by visiting 
+            <a href="https://tuannguyen.site/login" target="_blank"
+              class="experience-link">tuannguyen.site/login
+            </a> 
+            then press button "SIGN IN AS GUEST" then press "SIGN IN".
           </div>
           <div class="experience-point">
             <div class="skill-div">
@@ -221,6 +229,7 @@
               <button class="skill-btn">Material UI</button>
               <button class="skill-btn">Docker</button>
               <button class="skill-btn">AWS EC2</button>
+              <button class="skill-btn">Apache</button>
             </div>
           </div>
 
@@ -229,33 +238,28 @@
       </div>
 
       <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Fullstack web developer (Remote)</div>
+        <div class="experience-title" style="display: inline-block;">Fullstack Web Developer (Remote)</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
-          Jan/22 - July/22
+          Jan/22 - Aug/22
         </div>
         <div>
           <a href="https://www.tally.co/acquire/uconx" target="_blank" class="experience-link">
             Tally Group Australia (UCONX team, 20 members)
           </a>
           <div>
-            Uconx is multi-tenant app with micro-service architecture for rent to other energy, gas, internet retailers
-            to advertise
-            and set up sales in mintutes.
+            Multi-tenant app with microservice architecture for rent to other energy, gas retailers
+            to advertise and set up sales in minutes.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
             Refactored messy code base and reduced 80% of database queries
             by: caching, eager loading, optimizing code...
-            Made both backend and frontend apps run 30% faster.
+            Made both back-end and front-end apps run 30% faster.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
             Wrote solutions for bugs or new features for other devs, reviewed code.
-          </div>
-          <div class="experience-point">
-            <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Build new features for both backend and frontend app.
           </div>
           <div class="experience-point">
             <div class="skill-div">
@@ -278,7 +282,7 @@
       </div>
 
       <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Fullstack web developer (Remote)</div>
+        <div class="experience-title" style="display: inline-block;">Fullstack Web Developer (Remote)</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
           Jun/21 - Dec/21
@@ -289,15 +293,15 @@
           </a>
           <div>
             <a href="https://live.alliance.co.nz/" target="_blank" class="experience-link">
-              Monolith app
+              A monolith app
             </a>
-            with both frontend and backend integrated together to keep track of livestock
+            with both front-end and back-end integrated together to keep track of livestock
             for farmers in New Zealand.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
             Maintained, upgraded version, fixed bugs, built new features
-            and consulted technical solution for customer.
+            and consulted technical solution for the customer.
           </div>
           <div class="experience-point">
             <div class="skill-div">
@@ -318,17 +322,17 @@
       </div>
 
       <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Fullstack developer</div>
+        <div class="experience-title" style="display: inline-block;">Fullstack Developer</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
           Mar/20 - May/21
         </div>
         <div>
           <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
-            Texo Design (20 member team)
+            Texo Design Ho Chi Minh (20 member team)
           </a>
           <div>
-            Outsourcing company that build all types of products
+            An outsourcing company that builds all types of products
             for customers by many different technologies.
           </div>
           <div class="experience-point">
@@ -343,7 +347,7 @@
             </a>
             or
             <a href="https://mailchimp.com/" target="_blank" class="experience-link">
-              Mailchimp
+              Mailchimp.
             </a>
           </div>
           <div class="experience-point">
@@ -357,7 +361,7 @@
             <a href="https://www.veeva.com/" target="_blank" class="experience-link">
               Veeva
             </a>
-            for marketing to customer on iPad Pro
+            for marketing to the customers on iPad Pro.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
@@ -365,12 +369,12 @@
             <a href="https://celladore.com.au" target="_blank" class="experience-link">
               websites
             </a>
-            using CMS
+            using CMS.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Participated from the beginning, coded, designed databases, chose technologies for multi-tenant, micro
-            service app that allows car retailers to rent web application to sell car devices.
+            Participated from the beginning, coded, designed databases, chose technologies for multi-tenant, 
+            micro-service app that allows car retailers to rent web application to sell car devices.
           </div>
           <div class="experience-point">
             <div class="skill-div">
@@ -397,12 +401,12 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top: 15px;">
-        <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack developer...
+      <div class="card" style="margin-top: 15px; width: 810px; position: relative; z-index: 100;">
+        <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack Developer...
         </div>
         <div>
           <div style="display: inline-block;">
-            Real Estate Social Network start up
+            Real Estate Social Network start up (Ho Chi Minh).
           </div>
           <div style="float: right;">
             <img src="{{url('/images/calendar.svg')}}" class="calendar">
@@ -413,7 +417,7 @@
             <a href="https://www.zillow.com/" target="_blank" class="experience-link">
               Zillow.com
             </a>
-            and allowed user post real estate for free. 
+            and allowed users post real estate for free. 
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               Designed system, designed database, chose technologies, 
@@ -422,9 +426,9 @@
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               All devs could not build some tough features that I required, so I had to
-              learn tech and build them myself like this 
+              learn tech and code them myself like this 
               <a href="https://tuannguyen.site/image-upload" target="_blank" class="experience-link">
-                upload image feature.
+                uploading image feature.
               </a>
             </div>
             <div class="experience-point">
@@ -450,14 +454,29 @@
             <button class="skill-btn">MongoDB</button>
             <button class="skill-btn">Redis</button>
             <button class="skill-btn">Bootstrap</button>
+            <button class="skill-btn">Nginx</button>
           </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 15px; margin-bottom: 20px; width: 810px; position: relative; z-index: 100;">
+        <div class="experience-title" style="display: inline-block;">Real Estate Agent</div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+          Nov/16 - Jan/18
+        </div>
+        <br>
+        <div class="experience-title" style="display: inline-block;">Civil Engineer</div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+          May/16 - Nov/16
         </div>
       </div>
     
     </div>
 
     <!-- Right section -->
-    <div id="right" class="column" style="background-color: #38464e;">
+    <div id="right" class="column">
       <div style="background-color: #283138; height: 260px; padding-top: 10px;">
         <div style="height: 120px;">
           <table>
@@ -472,18 +491,18 @@
           </table>
         </div>
 
-        <div style="margin-left: 10px;">
+        <div class="contact-div">
           <img src="{{url('/images/email-icon.svg')}}" class="contact-icon"> tuan.nv.vina@gmail.com
         </div>
-        <div style="margin-left: 10px;">
+        <div class="contact-div">
           <img src="{{url('/images/phone-call.svg')}}" class="contact-icon"> +84 937 050 700
           <img src="{{url('/images/skype.svg')}}" class="contact-icon">
           <img src="{{url('/images/whatsapp.svg')}}" class="contact-icon">
         </div>
-        <div style="margin-left: 10px;">
+        <div class="contact-div">
           <img src="{{url('/images/location.svg')}}" class="contact-icon"> Ho Chi Minh city, Vietnam
         </div>
-        <div style="margin-left: 10px; padding-top: 10px;">
+        <div class="contact-div">
           <table style="width: 100%;">
             <tbody>
               <tr>
@@ -508,8 +527,8 @@
         </div>
       </div>
 
-      <div id="right-text">
-        <div class="language-side-title">Front End</div>
+      <div id="right-text" style="background-color: #38464e;">
+        <div class="language-side-title">Front-End</div>
         <div class="skill-div">
           Languages:
           <button class="skill-btn">Javascript</button>
@@ -522,6 +541,7 @@
           Frameworks:
           <button class="skill-btn">React</button>
           <button class="skill-btn">Redux</button>
+          <button class="skill-btn">Nextjs</button>
           <button class="skill-btn">Vue</button>
           <button class="skill-btn">VueX</button>
           <button class="skill-btn">Jquery</button>
@@ -539,6 +559,7 @@
           <button class="skill-btn">Webpack</button>
           <button class="skill-btn">Gulp</button>
           <button class="skill-btn">Vite</button>
+          <button class="skill-btn">Greensock Animation</button>
         </div>
 
         <div class="skill-div">
@@ -554,7 +575,7 @@
 
         <hr class="hr-skill" />
 
-        <div class="language-side-title">Back End</div>
+        <div class="language-side-title">Back-End</div>
         <div class="skill-div">
           Languages:
           <button class="skill-btn">PHP</button>
@@ -572,6 +593,7 @@
           CMS:
           <button class="skill-btn">Wordpress</button>
           <button class="skill-btn">Camaleon</button>
+          <button class="skill-btn">Moodle</button>
         </div>
 
         <div class="skill-div">
@@ -608,19 +630,50 @@
           <button class="skill-btn">Git</button>
           <button class="skill-btn">Docker</button>
           <button class="skill-btn">AWS</button>
-          <button class="skill-btn">Micro Service</button>
-          <button class="skill-btn">System Design</button>
-          <button class="skill-btn">Regex</button>
           <button class="skill-btn">Apache</button>
           <button class="skill-btn">Nginx</button>
           <button class="skill-btn">Load Balancer</button>
           <button class="skill-btn">CI/CD</button>
+          <button class="skill-btn">Micro Service</button>
+          <button class="skill-btn">System Design</button>
+          <button class="skill-btn">Data Structures and Algorithms</button>
+          <button class="skill-btn">Regex</button>
           <button class="skill-btn">SEO</button>
           <button class="skill-btn">Jira</button>
           <button class="skill-btn">Slack</button>
           <button class="skill-btn">Harvest</button>
         </div>
 
+        <hr class="hr-skill" />
+        <div class="language-side-title">Certificate</div>
+        <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 10px;">
+          <a href="https://www.udemy.com/certificate/UC-6068576c-b569-4be4-b4a8-7f7213541324/" target="_blank" class="public-link">
+            Data Structures and Algorithms
+          </a>
+        </div>
+        <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 10px;">
+          <a href="https://www.udemy.com/certificate/UC-95437456-9e33-4489-839a-c33b11a98813/" target="_blank" class="public-link">
+            System Design
+          </a>
+        </div>
+        <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 15px;">
+          <a href="https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/" target="_blank" class="public-link">
+            MERN stack (Learning)
+          </a>
+        </div>
+        
+        
+        <hr class="hr-skill" />
+        <div class="language-side-title">Education</div>
+        <div style="margin-left: 10px;">
+          <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer (Hanoi 2011 - 2016)
+        </div>
+        <div style="margin-left: 10px;">
+          <img src="{{url('/images/badge.svg')}}" class="contact-icon"> Full scholarship that covered my tuition
+        </div>
+        <div style="margin-left: 10px;">
+          <img src="{{url('/images/degree.svg')}}" class="contact-icon"> Civil Engineer
+        </div>
       </div>
     </div>
 
