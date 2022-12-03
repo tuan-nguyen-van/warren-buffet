@@ -18,7 +18,7 @@
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5;
-      letter-spacing: 0px;
+      letter-spacing: 0.2px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
     }
