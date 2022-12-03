@@ -21,7 +21,6 @@
       letter-spacing: 0.2px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
-      width: 830px;
     }
 
     .main {
