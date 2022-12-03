@@ -18,7 +18,7 @@
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5;
-      letter-spacing: 0.00938em;
+      letter-spacing: 0px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
     }
@@ -404,14 +404,15 @@
       <div class="card" style="margin-top: 15px; width: 810px; position: relative; z-index: 100;">
         <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack Developer...
         </div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+            Mar/18 - Dec/20
+        </div>
         <div>
           <div style="display: inline-block;">
             Real Estate Social Network start up (Ho Chi Minh).
           </div>
-          <div style="float: right;">
-            <img src="{{url('/images/calendar.svg')}}" class="calendar">
-              Mar/18 - Dec/20
-          </div>
+          
           <div>
             Tried to solve messy real estate market for Vietnam by copying
             <a href="https://www.zillow.com/" target="_blank" class="experience-link">
@@ -667,9 +668,6 @@
         <div class="language-side-title">Education</div>
         <div style="margin-left: 10px;">
           <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer (Hanoi 2011 - 2016)
-        </div>
-        <div style="margin-left: 10px;">
-          <img src="{{url('/images/badge.svg')}}" class="contact-icon"> Full scholarship that covered my tuition
         </div>
         <div style="margin-left: 10px;">
           <img src="{{url('/images/degree.svg')}}" class="contact-icon"> Civil Engineer
