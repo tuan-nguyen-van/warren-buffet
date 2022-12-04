@@ -188,7 +188,7 @@
         </div>
         <div>
           Side start-up to reduce the time from making buying or selling
-          decision from 1-2 weeks to 1 day with > 90% chance of being right.
+          decision from 1-2 weeks to 1 day with > 80% chance of being right.
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
             Like Google, automatically
@@ -230,7 +230,7 @@
               <button class="skill-btn">Regex</button>
               <button class="skill-btn">Material UI</button>
               <button class="skill-btn">Docker</button>
-              <button class="skill-btn">AWS EC2</button>
+              <button class="skill-btn">AWS EC2 Ubuntu</button>
               <button class="skill-btn">Apache</button>
             </div>
           </div>
@@ -633,6 +633,7 @@
           <button class="skill-btn">Git</button>
           <button class="skill-btn">Docker</button>
           <button class="skill-btn">AWS</button>
+          <button class="skill-btn">Ubuntu</button>
           <button class="skill-btn">Apache</button>
           <button class="skill-btn">Nginx</button>
           <button class="skill-btn">Load Balancer</button>
