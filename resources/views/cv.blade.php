@@ -480,18 +480,10 @@
 
     <!-- Right section -->
     <div id="right" class="column">
-      <div style="background-color: #283138; height: 260px; padding-top: 10px;">
-        <div style="height: 120px;">
-          <table>
-            <tbody>
-              <tr>
-                <td><span id="name">Tuan Nguyen <br>
-                    <span style="font-size: 15px; margin-left: 45px;">05/11/1993</span>
-                  </span></td>
-                <td><img src="{{url('/images/avatar.jpg')}}" id="avatar"></td>
-              </tr>
-            </tbody>
-          </table>
+      <div style="background-color: #283138; height: 170px; padding-top: 10px;">
+        <div style="text-align: center;">
+          <span id="name">Tuan Nguyen 
+          <span style="font-size: 15px;">05/11/1993</span>
         </div>
 
         <div class="contact-div">
