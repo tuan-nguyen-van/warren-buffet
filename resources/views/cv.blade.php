@@ -177,7 +177,8 @@
       <div class="card">
         Founder of 2 tech start-ups. 5 years of experience as a software engineer.
         Write easy, optimized, maintainable code. Egoless, result oriented, can work under high
-        pressure. Hard-working (70 hrs/w), fast, passionate learner with curious, beginner mind set. Only need 20 days to catch up with a brand-new language or framework.
+        pressure. Hard-working (70 hrs/w), fast, passionate learner with curious, beginner mind set. Only need 20 days
+        to catch up with a brand-new language or framework.
       </div>
 
       <div class="card" style="margin-top: 15px;">
@@ -200,10 +201,9 @@
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Have a look at a simplified version by visiting 
-            <a href="https://tuannguyen.site/login" target="_blank"
-              class="experience-link">tuannguyen.site/login
-            </a> 
+            Have a look at a simplified version by visiting
+            <a href="https://tuannguyen.site/login" target="_blank" class="experience-link">tuannguyen.site/login
+            </a>
             then press button "SIGN IN AS GUEST" then press "SIGN IN".
           </div>
           <div class="experience-point">
@@ -375,7 +375,7 @@
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Participated from the beginning, coded, designed databases, chose technologies for multi-tenant, 
+            Participated from the beginning, coded, designed databases, chose technologies for multi-tenant,
             micro-service app that allows car retailers to rent web application to sell car devices.
           </div>
           <div class="experience-point">
@@ -406,39 +406,39 @@
       <div class="card" style="margin-top: 15px;">
         <div class="experience-title" style="display: inline-block;">Founder, Project Manager, Fullstack Developer...
         </div>
-        
+
         <div>
           <div style="display: inline-block;">
             Real Estate Social Network. (Ho Chi Minh)
           </div>
           <div style="float: right;">
             <img src="{{url('/images/calendar.svg')}}" class="calendar">
-              Mar/18 - Dec/19
+            Mar/18 - Dec/19
           </div>
           <div>
             A start-up tried to solve messy real estate market for Vietnam by copying
             <a href="https://www.zillow.com/" target="_blank" class="experience-link">
               Zillow.com
             </a>
-            and allowed users post real estate for free. 
+            and allowed users post real estate for free.
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-              Designed system, designed database, chose technologies, 
-              hired 3 developers, SEO, marketing, raise capital...  
+              Designed system, designed database, chose technologies,
+              hired 3 developers, SEO, marketing, raise capital...
             </div>
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               All devs could not build some tough features that I required, so I had to
-              learn tech and code them myself like this 
+              learn tech and code them myself like this
               <a href="https://tuannguyen.site/image-upload" target="_blank" class="experience-link">
                 uploading image feature.
               </a>
             </div>
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-              The app reached 10,000 users already after 3 months, but faced many 
+              The app reached 10,000 users already after 3 months, but faced many
               challenges, and I didn't sense it was going anywhere
-              so I shut it down.  
+              so I shut it down.
             </div>
           </div>
         </div>
@@ -475,7 +475,7 @@
           May/16 - Nov/16
         </div>
       </div>
-    
+
     </div>
 
     <!-- Right section -->
@@ -633,6 +633,8 @@
           <button class="skill-btn">Git</button>
           <button class="skill-btn">Docker</button>
           <button class="skill-btn">AWS</button>
+          <button class="skill-btn">RESTful API</button>
+          <button class="skill-btn">GraphQL</button>
           <button class="skill-btn">Ubuntu</button>
           <button class="skill-btn">Apache</button>
           <button class="skill-btn">Nginx</button>
@@ -651,26 +653,30 @@
         <hr class="hr-skill" />
         <div class="language-side-title">Certificate</div>
         <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 10px;">
-          <a href="https://www.udemy.com/certificate/UC-6068576c-b569-4be4-b4a8-7f7213541324/" target="_blank" class="public-link">
+          <a href="https://www.udemy.com/certificate/UC-6068576c-b569-4be4-b4a8-7f7213541324/" target="_blank"
+            class="public-link">
             Data Structures and Algorithms
           </a>
         </div>
         <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 10px;">
-          <a href="https://www.udemy.com/certificate/UC-95437456-9e33-4489-839a-c33b11a98813/" target="_blank" class="public-link">
+          <a href="https://www.udemy.com/certificate/UC-95437456-9e33-4489-839a-c33b11a98813/" target="_blank"
+            class="public-link">
             System Design
           </a>
         </div>
         <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 15px;">
-          <a href="https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/" target="_blank" class="public-link">
-            MERN stack (Learning)
+          <a href="https://www.udemy.com/certificate/UC-5feb43c9-3f20-4035-879c-a06518037925/" target="_blank"
+            class="public-link">
+            Nodejs - MERN stack
           </a>
         </div>
-        
-        
+
+
         <hr class="hr-skill" />
         <div class="language-side-title">Education</div>
         <div style="margin-left: 10px;">
-          <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer (Hanoi 2011 - 2016)
+          <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer
+          (Hanoi 2011 - 2016)
         </div>
         <div style="margin-left: 10px;">
           <img src="{{url('/images/badge.svg')}}" class="contact-icon"> Full scholarship that cover my tuition
