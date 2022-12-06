@@ -242,7 +242,7 @@
         </div>
         <div>
           <a href="https://www.tally.co/acquire/uconx" target="_blank" class="experience-link">
-            Tally Group Australia (UCONX team, 20 members)
+            Tally Group Australia acquired Webtools Australia (UCONX team, 20 members)
           </a>
           <div>
             Multi-tenant app with microservice architecture for rent to other energy, gas retailers
