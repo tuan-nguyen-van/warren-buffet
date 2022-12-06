@@ -273,6 +273,8 @@
               <button class="skill-btn">React</button>
               <button class="skill-btn">Redux</button>
               <button class="skill-btn">Material UI</button>
+              <button class="skill-btn">Docker</button>
+              <button class="skill-btn">CI/CD</button>
             </div>
           </div>
         </div>
@@ -313,6 +315,8 @@
               <button class="skill-btn">Jest</button>
               <button class="skill-btn">Ant Design</button>
               <button class="skill-btn">Recharts</button>
+              <button class="skill-btn">Docker</button>
+              <button class="skill-btn">CI/CD</button>
             </div>
           </div>
         </div>
