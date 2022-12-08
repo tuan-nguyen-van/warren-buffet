@@ -1,0 +1,183 @@
+body #myAdLink *:not(title) {
+  display: block;
+}
+#ad-wrapper {
+  background-size: cover;
+  -webkit-background-size: cover;
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+  border: 1px solid #7e9cbf;
+  box-sizing: border-box;
+  display: block !important;
+}
+
+#ad-wrapper * {
+  box-sizing: border-box;
+}
+
+#myAdLink {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+}
+
+#first-frame,
+#second-frame,
+#third-frame,
+#fifth-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#forth-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  left: 0;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+#ten {
+  width: 136px;
+  height: 96px;
+  position: absolute;
+  z-index: 2;
+  top: 56px;
+  left: 83px;
+  opacity: 0;
+}
+
+#frame1-background {
+  width: 600px;
+  height: 644px;
+  top: -72px;
+  left: 0;
+  position: absolute;
+}
+
+#wave {
+  position: absolute;
+  z-index: 2;
+  top: 99px;
+  left: 167px;
+  opacity: 0;
+  width: 0px;
+  height: 14px;
+  object-fit: cover;
+  object-position: 0% 100%;
+}
+
+#wave-2 {
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  left: 123px;
+  opacity: 0;
+  width: 0px;
+  height: 14px;
+  object-fit: cover;
+  object-position: 0% 100%;
+}
+
+#years-ago {
+  position: absolute;
+  z-index: 2;
+  bottom: 57px;
+  left: 81px;
+  opacity: 0;
+  width: 138px;
+  object-fit: contain;
+}
+
+#the-aristotle {
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+  width: 246px;
+  height: 86px;
+  top: 38px;
+  left: 26px;
+}
+
+#in-patient {
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+  width: 266px;
+  height: 76px;
+  bottom: 23px;
+  left: 14px;
+}
+
+#celebrating-text {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  width: 188px;
+  height: 57px;
+  top: 23px;
+  left: 56px;
+}
+
+#photo-frame3 {
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  width: 224px;
+  height: 235px;
+  top: 250px;
+  left: 41px;
+}
+
+#skype-frame3 {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  width: 300px;
+  height: 70px;
+}
+
+#fifth-frame-img {
+  opacity: 0;
+  z-index: 2;
+  width: 300px;
+  height: 250px;
+}
+
+#forth-frame-img {
+  z-index: 2;
+  width: 300px;
+  height: 250px;
+}
+
+#eliquis {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  width: 209px;
+  height: 114px;
+  top: 46px;
+  left: 44px;
+}
+
+#hypothetical {
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  bottom: 10px;
+  left: 15px;
+  width: 80px;
+  object-fit: contain;
+}
