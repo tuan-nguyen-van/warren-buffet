@@ -9,29 +9,29 @@ import {
   j as S,
   f as v,
   l as y,
-  ak as M,
-  R as s,
+  aj as M,
+  R as t,
   B as I,
-  al as T,
-  am as R,
-  ay as k,
-  az as G,
-  ab as g,
-  af as w,
-  aw as P,
-  ax as L,
-  ad as x,
-  ac as B,
-  aA as U,
-} from './FormControlLabel.cbfc49d4.js';
-function j(a) {
+  ak as T,
+  al as k,
+  ax as R,
+  ay as G,
+  aa as g,
+  ae as x,
+  av as P,
+  aw as j,
+  ac as w,
+  ab as B,
+  az as L,
+} from './FormControlLabel.7b665b70.js';
+function W(a) {
   return h('MuiCardActions', a);
 }
 C('MuiCardActions', ['root', 'spacing']);
-const W = ['disableSpacing', 'className'],
-  z = (a) => {
+const z = ['disableSpacing', 'className'],
+  U = (a) => {
     const { classes: e, disableSpacing: r } = a;
-    return y({ root: ['root', !r && 'spacing'] }, j, e);
+    return y({ root: ['root', !r && 'spacing'] }, W, e);
   },
   _ = b('div', {
     name: 'MuiCardActions',
@@ -49,10 +49,13 @@ const W = ['disableSpacing', 'className'],
   $ = i.exports.forwardRef(function (e, r) {
     const o = A({ props: e, name: 'MuiCardActions' }),
       { disableSpacing: c = !1, className: n } = o,
-      m = E(o, W),
+      m = E(o, z),
       l = u({}, o, { disableSpacing: c }),
-      d = z(l);
-    return S.jsx(_, u({ className: v(d.root, n), ownerState: l, ref: r }, m));
+      d = U(l);
+    return S.exports.jsx(
+      _,
+      u({ className: v(d.root, n), ownerState: l, ref: r }, m)
+    );
   }),
   N = $,
   F = () => {
@@ -65,23 +68,23 @@ const W = ['disableSpacing', 'className'],
       }),
       [o, c] = i.exports.useState({ email: '', password: '' }),
       [n, m] = i.exports.useState(),
-      l = s.useMemo(() => I({ palette: { mode: a ? 'dark' : 'light' } }), [a]),
+      l = t.useMemo(() => I({ palette: { mode: a ? 'dark' : 'light' } }), [a]),
       d = () => {
-        const t = { ...o };
+        const s = { ...o };
         /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(
           e.email
         )
-          ? (t.email = '')
-          : (t.email = 'Please enter correct email address'),
+          ? (s.email = '')
+          : (s.email = 'Please enter correct email address'),
           /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*\-?~`]).{8,}$/.test(
             e.password
           )
-            ? (t.password = '')
-            : (t.password =
+            ? (s.password = '')
+            : (s.password =
                 'Please enter correct password with at least 1 lowercase,1 uppercase, 1 digit and 1 special characters'),
-          c(t),
-          !t.email &&
-            !t.password &&
+          c(s),
+          !s.email &&
+            !s.password &&
             B(
               {
                 method: 'post',
@@ -94,9 +97,7 @@ const W = ['disableSpacing', 'className'],
               },
               function () {
                 setTimeout(() => {
-                  window.previousURL.includes('/login')
-                    ? window.location.replace('/')
-                    : window.location.replace(window.previousURL);
+                  window.location.replace('/');
                 }, 100);
               },
               function (f) {
@@ -104,55 +105,55 @@ const W = ['disableSpacing', 'className'],
               }
             );
       };
-    return s.createElement(
+    return t.createElement(
       T,
       { theme: l },
-      s.createElement(R, null),
-      s.createElement(
-        k,
+      t.createElement(k, null),
+      t.createElement(
+        R,
         {
           variant: 'outlined',
           sx: { maxWidth: 400, mx: 'auto', mt: 10, textAlign: 'center' },
         },
-        s.createElement(
+        t.createElement(
           G,
           null,
-          s.createElement(
+          t.createElement(
             g,
             { sx: { fontSize: 25 }, color: 'text.secondary', gutterBottom: !0 },
             'Sign In'
           ),
-          s.createElement(w, {
+          t.createElement(x, {
             label: 'Email',
             variant: 'outlined',
             fullWidth: !0,
             sx: { mt: 3 },
             value: e.signInAsGuest ? 'guest@gmail.com' : e.email,
-            onChange: (t) => r({ ...e, email: t.target.value }),
+            onChange: (s) => r({ ...e, email: s.target.value }),
             error: !!o.email,
             helperText: o.email,
           }),
-          s.createElement(w, {
+          t.createElement(x, {
             label: 'Password',
             variant: 'outlined',
             fullWidth: !0,
             sx: { mt: 3 },
             type: 'password',
             value: e.signInAsGuest ? 'Password!@#' : e.password,
-            onChange: (t) => r({ ...e, password: t.target.value }),
+            onChange: (s) => r({ ...e, password: s.target.value }),
             error: !!o.password,
             helperText: o.password,
           }),
-          s.createElement(P, {
-            control: s.createElement(L, null),
+          t.createElement(P, {
+            control: t.createElement(j, null),
             label: 'Remember me',
             sx: { mt: 2, ml: -7 },
             checked: e.signInAsGuest ? !1 : e.rememberMe,
             onChange: () => r({ ...e, rememberMe: !e.rememberMe }),
             disabled: e.signInAsGuest,
           }),
-          s.createElement(
-            x,
+          t.createElement(
+            w,
             {
               variant: e.signInAsGuest ? 'contained' : 'outlined',
               sx: { mt: 2, float: 'right' },
@@ -168,8 +169,8 @@ const W = ['disableSpacing', 'className'],
             'Sign in as Guest'
           ),
           n &&
-            Object.keys(n).map((t, p) =>
-              s.createElement(
+            Object.keys(n).map((s, p) =>
+              t.createElement(
                 g,
                 {
                   variant: 'body1',
@@ -177,15 +178,15 @@ const W = ['disableSpacing', 'className'],
                   sx: { textAlign: 'left', color: 'error.main' },
                   key: p,
                 },
-                t + ' : ' + n[t]
+                s + ' : ' + n[s]
               )
             )
         ),
-        s.createElement(
+        t.createElement(
           N,
           null,
-          s.createElement(
-            x,
+          t.createElement(
+            w,
             { variant: 'contained', fullWidth: !0, sx: { mb: 2 }, onClick: d },
             'Sign in'
           )
@@ -193,5 +194,5 @@ const W = ['disableSpacing', 'className'],
       )
     );
   },
-  D = U(document.getElementById('login'));
-D.render(s.createElement(s.StrictMode, null, s.createElement(F, null)));
+  D = L(document.getElementById('login'));
+D.render(t.createElement(t.StrictMode, null, t.createElement(F, null)));

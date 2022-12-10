@@ -1,22 +1,22 @@
 {
   "resources/js/app/index.tsx": {
-    "file": "assets/index.39eaf744.js",
+    "file": "assets/index.44e99521.js",
     "src": "resources/js/app/index.tsx",
     "isEntry": true,
     "imports": [
-      "_FormControlLabel.cbfc49d4.js"
+      "_FormControlLabel.7b665b70.js"
     ]
   },
   "resources/js/login/index.tsx": {
-    "file": "assets/index.ed8d121e.js",
+    "file": "assets/index.01181471.js",
     "src": "resources/js/login/index.tsx",
     "isEntry": true,
     "imports": [
-      "_FormControlLabel.cbfc49d4.js"
+      "_FormControlLabel.7b665b70.js"
     ]
   },
-  "_FormControlLabel.cbfc49d4.js": {
-    "file": "assets/FormControlLabel.cbfc49d4.js"
+  "_FormControlLabel.7b665b70.js": {
+    "file": "assets/FormControlLabel.7b665b70.js"
   },
   "resources/css/app.scss": {
     "file": "assets/app.6e00494e.css",
