@@ -73,9 +73,7 @@ const Login = () => {
         },
         function () {
           setTimeout(() => {
-            window.previousURL!.includes('/login')
-              ? window.location.replace('/')
-              : window.location.replace(window.previousURL!);
+            window.location.replace('/');
           }, 100);
         },
         function (error) {

@@ -33,6 +33,10 @@ Route::get('/cv', function () {
     return view('cv');
 });
 
+Route::get('/cv-stock', function () {
+    return view('cv-stock');
+});
+
 Route::get('/email-template', function () {
     return view('email-template');
 });
@@ -42,9 +46,7 @@ Route::get('/image-upload', function () {
 });
 
 Route::get('/login', function () {
-    return view('login', [
-        'previousUrl' => url()->previous(),
-    ]);
+    return view('login');
 })->name('login');
 
 Route::get('/test-laravel-working', function () {
