@@ -18,7 +18,8 @@ return [
     and pursue my new career path as a stock analyst.
     In fact, I\'m quite confident with my stock analyzing skills
     that over the long term (1-5 years) more than 90% of my decisions will be right, 
-    and the average return from my stock investments will be from 17%-25% annually over the long term (5-10 years).',
+    and the average return from my stock investments will be from 17%-25% on average annually over the long term (5-10 years).
+    My goal now is to become top 1% of stock analyst next year and top 0.1% for the next 3 years.',
     'I have read multiple books' => 'I have read multiple books about the stock market:
     MONEY Master the Game, The Intelligent Investor, The Warren Buffett Way,
     The Snowball: Warren Buffett and the Business of Life, Margin of safety...',
@@ -39,13 +40,13 @@ return [
     'To fully analyze one stock I need from 1 to 4 weeks.' => 'To fully analyze one stock I need from 1 to 4 weeks.',
     'Step 2:' => 'Step 2: I built a checklist to test the stock quality strength like:
     the business model, management team, financial health, and market price.
-    Often I need the stocks to pass 80% of the check list before I continue to step 3. In this way
+    Often I need the stocks to pass 80% of the checklist before I continue to step 3. In this way
     I could abandon 95% of the weak stocks inside the stock market from 1165 to ~50 great companies.',
     'Step 3:' => 'Step 3: Enter key financial metrics for the last 10 years to calculate growth rates in the past
     according with EPS (Earning Per Share, did take into account stock dividends and stock bonuses)',
     'Step 4:' => 'Step 4: I only make assumptions for the stocks that I could
     confidently predict the future growth rate.
-    Then choose the EPS that I want as the based EPS to multiply with next step PE.',
+    Then choose the EPS that I want as the based EPS to multiply with the next step PE.',
     'Step 5:' => 'Step 5: The calculation is based on the method: "Discounted cash flow"
     from the future back to present.
     E.g: For each 1 VND as the profit in the future year 2030.
@@ -54,7 +55,7 @@ return [
     'I already built an algorithm' => 'I already built an algorithm inside my software that does all the calculations
     necessary, then summing all
     the profit for each future year together to find out the final PE.
-    Then take that final PE multiply with the based EPS chosen, I got the final intrinsic value.',
+    Then take that final PE multiply with the based EPS chosen above, I got the final intrinsic value.',
     'Step 6:' => 'Step 6: Then if you take a look at the',
     'home page' => 'home page',
     'My software automatically summarizes' => 'My software automatically summarizes all the important details for each

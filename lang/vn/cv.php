@@ -4,32 +4,34 @@ return [
     'Ho Chi Minh city' => 'Hồ Chí Minh',
     'Hanoi' => 'Hà Nội',
     'National University of Civil Engineer' => 'Đại học xây dựng Hà Nội',
-    'Have scholarship that cover my tuition' => 'Có học bổng trả học phí',
+    'Have scholarship that cover my tuition' => 'Nhận được học bổng trả học phí',
     'Civil Engineer' => 'Kỹ sư xây dựng',
     'Speak English like native American' => 'Nói tiếng anh như người Mỹ',
     'Stock Price Calculation Software' => 'Stock Price Calculation Software',
     'Aug/22 - Ongoing' => '08/22 - Hiện tại',
     'I have 3 years of experience' => 'Tôi đã có 3 năm kinh nghiệm trên thị trường chứng khoán.
-    Vào năm covid 2020 khi thị trường chứng khoán xuống thấp, Tôi đã mạnh tay đầu tư
+    Vào năm covid 2020 khi thị trường chứng khoán xuống thấp, tôi đã mạnh tay đầu tư
     và đạt được lợi nhuận 57% từ năm 2020-2021.
-    Hiện tại khi thị trường giảm 35% từ đỉnh, Tôi thậm chí không bị lỗ
-    cho các cổ phiếu tôi chọn mua. Và tôi đã nhìn thấy cơ hội lớn với thị trường chứng khoán ở thời điểm hiện tại
-    ,nên tôi đã xin nghỉ khi đang làm senior software engineer để xây dựng một phần mềm tính toán giá cổ phiếu
+    Hiện tại khi thị trường giảm 35% từ đỉnh, tôi thậm chí không bị lỗ
+    cho danh mục đầu tư của mình. Và tôi đã nhìn thấy cơ hội lớn với thị trường chứng khoán ở thời điểm hiện tại,
+    nên tôi đã xin nghỉ khi đang làm senior software engineer để xây dựng một phần mềm tính toán giá cổ phiếu
     và theo đuổi sự nghiệp mới là nhà phân tích chứng khoán.
     Hiện tại thì tôi khá tự tin với kỹ năng phân tích cổ phiếu của mình khi mà về dài hạn
     (1-5 năm) trên 90% quyết định của mình là đúng, 
-    và lợi nhuận từ đầu tư chứng khoán sẽ là từ 17%-25% mỗi năm cho chu kỳ dài (5-10 năm).',
+    và lợi nhuận từ đầu tư chứng khoán sẽ là từ 17%-25% trung bình mỗi năm cho chu kỳ dài (5-10 năm).
+    Mục tiêu hiện tại của tôi là trở thành top 1% chuyên gia phân tích chứng khoán năm tiếp theo,
+    và top 0.1% trong vòng 3 năm tới.',
     'I have read multiple books' => 'Tôi đã đọc khá nhiều sách về thị trường chứng khoán:
     MONEY Master the Game, The Intelligent Investor, The Warren Buffett Way,
     The Snowball: Warren Buffett and the Business of Life, Margin of safety...',
     'So I summarized all my knowledge' => 'Nên tôi đã tổng hợp kiến thức lại
-    để xây dựng một phần mềm tính toán để giúp tôi tính toán
+    để xây dựng một phần mềm tính toán giá cổ phiếu để giúp tôi tính toán
     giá trị nội tại của cổ phiếu nhanh hơn hàng ngàn lần tính toán thủ công.',
     'The principle that I follow' => 'Nguyên tắc mà tôi đang tuân theo là "buy 1 dollar for less than 50 cents".
     Cách mà tôi ra quyết định mua bán là dựa trên giá trị nội tại của cổ phiếu mà tôi tính toán ra được.
     VD: Giá trị nội tại của TLG (CTCP Tập đoàn Thiên Long) là 117,864 VND/CP
     so sánh với giá trị thị trường hiện tại là 47,000 VND. Rất rẻ với biên độ an toàn 60%.
-    Khi mà tôi mua 1 cổ phiếu tôi sẽ nhận được là 2.51 CP. Với thị trường hiện tại tôi đang biết ít nhất 10 cổ phiếu như vậy.',
+    Nếu mà tôi mua 1 cổ phiếu tôi sẽ nhận được là 2.51 CP. Với thị trường hiện tại tôi đang biết ít nhất 10 cổ phiếu như vậy.',
     'The way I choose stocks' => 'Cách để tôi lựa chọn cổ phiếu và tính toán giá trị nội tại của
     cổ phiếu ở bên trong những đường link bên dưới:',
     'First visit' => 'Đầu tiên truy cập',
@@ -40,13 +42,13 @@ return [
     'Step 2:' => 'Step 2: Tôi xây dựng một checklist để kiểm tra chất lượng của cổ phiếu như là:
     mô hình kinh doanh, đội ngũ quản lý, sức khoẻ tài chính, và giá trị thị trường.
     Thông thường tôi cần cổ phiếu vượt qua 80% của checklist trước khi tôi tiếp tục đến bước 3. Theo cách này
-    tôi có thể loại bỏ được 95% cổ phiếu có chất lượng không tốt trong thị trường chứng khoán, từ 1165 xuống còn ~50 công ty.',
-    'Step 3:' => 'Step 3: Tôi nhập các dữ liệu tài chính quan trọng trong quá khứ 10 năm để tính được tốc độ tăng trưởng
-    cho chỉ số EPS (Lãi trên một cổ phiếu, đã đưa vào hệ số chia tách cổ phiếu và thưởng cố phiếu)',
+    tôi có thể loại bỏ được 95% cổ phiếu có chất lượng không tốt trong thị trường chứng khoán, từ 1165 xuống còn ~50 công ty tốt.',
+    'Step 3:' => 'Step 3: Nhập các dữ liệu tài chính quan trọng trong quá khứ 10 năm để tính được tốc độ tăng trưởng
+    cho chỉ số EPS (Lãi trên một cổ phiếu, đã đưa vào hệ số chia tách cổ phiếu và thưởng cổ phiếu)',
     'Step 4:' => 'Step 4: Tôi chỉ đưa ra giả thiết cho những cổ phiếu mà tôi tự tin đoán được 
     tốc độ tăng trưởng trong tương lai.
     Sau đó tôi chọn EPS mà tôi muốn làm EPS cơ sở để nhân với chỉ số PE ở bước tiếp theo.',
-    'Step 5:' => 'Step 5: Tính toán của tôi dựa theo công thức: "Khấu hao dòng tiền"
+    'Step 5:' => 'Step 5: Tính toán của tôi dựa theo phương thức: "Khấu hao dòng tiền"
     từ tương lai về tới giá trị hiện tại.
     VD: Cho mỗi 1 VND là lợi nhuận ở tương lai năm 2030.
     Thì với phần trăm khấu hao là 8.5% mỗi năm, giá trị hiện tại
