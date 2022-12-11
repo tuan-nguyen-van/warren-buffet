@@ -17,10 +17,8 @@
       margin: 0px;
       padding: 0px;
       font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial';
-      font-weight: 400;
       font-size: 15px;
       line-height: 1.45;
-      letter-spacing: 0.2px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
     }
