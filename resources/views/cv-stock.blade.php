@@ -63,6 +63,11 @@
       width: 10px;
     }
 
+    .dot {
+      width: 10px;
+      margin-top: 10px;
+    }
+
     .calendar {
       width: 15px;
       position: relative;
@@ -86,6 +91,14 @@
     .experience-link {
       color: rgb(66, 15, 196);
     }
+
+    .sub-div {
+      margin-left: 20px;
+    }
+
+    li::marker {
+      width: 10px;
+    }
   </style>
 </head>
 
@@ -103,7 +116,7 @@
               05/11/1993
             </span>
           </td>
-          <td style="width: 35%; background-color: #38464e; padding: 10px;">
+          <td style="width: 32%; background-color: #38464e; padding: 10px;">
             <div class="contact-div">
               <img src="{{url('/images/email-icon.svg')}}" class="contact-icon"> tuan.nv.vina@gmail.com
             </div>
@@ -113,24 +126,24 @@
               <img src="{{url('/images/whatsapp.svg')}}" class="contact-icon">
             </div>
             <div class="contact-div">
-              <img src="{{url('/images/location.svg')}}" class="contact-icon"> Ho Chi Minh city
+              <img src="{{url('/images/location.svg')}}" class="contact-icon"> {{ __('cv.Ho Chi Minh city') }}
             </div>
             <div class="contact-div">
-              <img src="{{url('/images/home.svg')}}" class="contact-icon"> Hanoi
+              <img src="{{url('/images/home.svg')}}" class="contact-icon"> {{ __('cv.Hanoi') }}
             </div>
           </td>
-          <td style="width: 40%; background-color: #38464e; padding: 10px;">
+          <td style="width: 43%; background-color: #38464e; padding: 10px;">
             <div class="contact-div">
-              <img src="{{url('/images/university.svg')}}" class="contact-icon"> National University of Civil Engineer
+              <img src="{{url('/images/university.svg')}}" class="contact-icon"> {{ __('cv.National University of Civil Engineer') }}
             </div>
             <div class="contact-div">
-              <img src="{{url('/images/badge.svg')}}" class="contact-icon"> Scholarship that cover my tuition
+              <img src="{{url('/images/badge.svg')}}" class="contact-icon"> {{ __('cv.Have scholarship that cover my tuition') }}
             </div>
             <div class="contact-div">
-              <img src="{{url('/images/degree.svg')}}" class="contact-icon"> Civil Engineer
+              <img src="{{url('/images/degree.svg')}}" class="contact-icon"> {{ __('cv.Civil Engineer') }}
             </div>
             <div class="contact-div">
-              <img src="{{url('/images/english.svg')}}" class="contact-icon"> Speak English like native American
+              <img src="{{url('/images/english.svg')}}" class="contact-icon"> {{ __('cv.Speak English like native American') }}
             </div>
           </td>
         </tr>
@@ -138,101 +151,112 @@
     </div>
 
     <div class="card" style="margin-top: 15px;">
-      <div class="experience-title" style="display: inline-block;">Stock Price Calculation Software</div>
+      <div class="experience-title" style="display: inline-block;">{{ __('cv.Stock Price Calculation Software') }}</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Aug/22 - Ongoing</span>
+        <span class="period">{{ __('cv.Aug/22 - Ongoing') }}</span>
       </div>
 
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        I have 3 years of experience in stock market.
-        The year of covid 2020 when the market was going down so low, I massively invested
-        and have have 57% return from 2020 to 2021.
-        Current time, when market is going down 35%, I'm not even lose money
-        for my stock porfolio.
+        {{ __('cv.I have 3 years of experience') }}
       </div>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        I have read multiple books about stock market:
-        MONEY Master the Game, The Intelligent Investor, The Warren Buffett Way,
-        The Snowball: Warren Buffett and the Business of Life, Margin of safety...
-        so more than 90% of my buying or selling decision was turned out to be right.
+        {{ __('cv.I have read multiple books') }}
       </div>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        With my senior software engineer skill, I quit my previous job and summarize
-        all my knowledge about stock market to
-        build my stock calculation software to help me calculate
-        intrinsic value of stocks > 1000 times faster than manually.
+        {{ __('cv.So I summarized all my knowledge') }}
       </div>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        The principle that I follow is "buy 1 dollar for less than 50 cents".
-        The way I make buying or selling descision is based on calculated intrinsic value of the stock.
-        For example: The calculated intrinsic price of TLG (CTCP Tập đoàn Thiên Long) is 117,864 VND/share
-        then I compare with the current stock price is 47,000 VND. So cheap with margin of safety is 60%.
-        If we buy one share we get 2.51 shares.
+        {{ __('cv.The principle that I follow') }}
       </div>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        The way I choose stocks and calculated intrinsic stock prices will be inside the following linked:
+        {{ __('cv.The way I choose stocks') }}
         <br>
-        - First visit 
-        <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/login</a>
-        then press "SIGN IN AS GUEST" button then press "SIGN IN" button.
-        <br>
-        - Then visit the following links:
-        <br>
-        TLG: <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/edit-stock/49</a>
-        <br>
-        VNM: <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/edit-stock/58</a>
-        <br>
-        MSN: <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/edit-stock/64</a>
-        <br>
-        ACV: <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/edit-stock/37</a>
-        <br>
-        VCB: <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/edit-stock/63</a>
+        <div class="sub-div">
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.First visit') }}
+          <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/login</a>
+          {{ __('cv.then press "SIGN IN AS GUEST" button') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot"> {{ __('cv.Then visit the following links') }}
+          <br>
+          TLG: <a href="https://tuannguyen.site/edit-stock/49" target="_blank">https://tuannguyen.site/edit-stock/49</a>
+          <br>
+          VNM: <a href="https://tuannguyen.site/edit-stock/58" target="_blank">https://tuannguyen.site/edit-stock/58</a>
+          <br>
+          MSN: <a href="https://tuannguyen.site/edit-stock/64" target="_blank">https://tuannguyen.site/edit-stock/64</a>
+          <br>
+          ACV: <a href="https://tuannguyen.site/edit-stock/37" target="_blank">https://tuannguyen.site/edit-stock/37</a>
+          <br>
+          VCB: <a href="https://tuannguyen.site/edit-stock/63" target="_blank">https://tuannguyen.site/edit-stock/63</a>
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.To fully analyze one stock I need from 1 to 4 weeks.') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.Step 2:') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.Step 3:') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.Step 4:') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.Step 5:') }}
+          <br>
+          {{ __('cv.I already built an algorithm') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.Step 6:') }} <a href="https://tuannguyen.site/" target="_blank"> {{ __('cv.home page') }}</a>.
+          {{ __('cv.My software automatically summarizes') }}
+          <br>
+          <img src="{{url('/images/dot.svg')}}" class="dot">
+          {{ __('cv.My software still needs to improve') }}
+        </div>
       </div>
     </div>
 
     <div class="card" style="margin-top: 15px;">
-      <div class="experience-title" style="display: inline-block;">Fullstack Web Developer (Remote)</div>
+      <div class="experience-title" style="display: inline-block;">Fullstack Web Developer ({{ __('cv.Remote') }})</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Jan/22 - Aug/22</span>
+        <span class="period">{{ __('cv.Jan') }}/22 - {{ __('cv.Aug') }}/22</span>
       </div>
       <div>
         <a href="https://www.tally.co/acquire/uconx" target="_blank" class="experience-link">
-          Tally Group Australia acquired Webtools Australia (UCONX team, 20 members)
+          {{ __('cv.Tally Group Australia') }}
         </a>
         <div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Multi-tenant app with microservice architecture for rent to other energy, gas retailers
-            to advertise and set up sales in minutes.
+            {{ __('cv.Multi-tenant app') }}
           </div>
         </div>
       </div>
     </div>
 
     <div class="card" style="margin-top: 15px;">
-      <div class="experience-title" style="display: inline-block;">Fullstack Web Developer (Remote)</div>
+      <div class="experience-title" style="display: inline-block;">Fullstack Web Developer ({{ __('cv.Remote') }})</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Jun/21 - Dec/21</span>
+        <span class="period">{{ __('cv.Jun') }}/21 - {{ __('cv.Dec') }}/21</span>
       </div>
       <div>
         <a href="https://www.webtools.ag/" target="_blank" class="experience-link">
-          Webtools New Zealand (Agriculture team, 10 members)
+          {{ __('cv.Webtools New Zealand') }}
         </a>
         <div class="experience-point">
           <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
           <a href="https://live.alliance.co.nz/" target="_blank" class="experience-link">
-            A monolith app
+            {{ __('cv.A monolith app') }}
           </a>
-          with both front-end and back-end integrated together to keep track of livestock
-          for farmers in New Zealand.
+          {{ __('cv.with both front-end and back-end') }}
         </div>
       </div>
     </div>
@@ -241,16 +265,15 @@
       <div class="experience-title" style="display: inline-block;">Fullstack Web Developer</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Mar/20 - May/21</span>
+        <span class="period">{{ __('cv.Mar') }}/20 - {{ __('cv.May') }}/21</span>
       </div>
       <div>
         <a href="https://www.linkedin.com/company/texo-design/about/" target="_blank" class="experience-link">
-          Texo Design Ho Chi Minh (20 member team)
+          {{ __('cv.Texo Design') }}
         </a>
         <div class="experience-point">
           <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-          An outsourcing company that builds all types of products
-          for customers by many different technologies.
+          {{ __('cv.An outsourcing company') }}
         </div>
       </div>
     </div>
@@ -260,28 +283,25 @@
       </div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Mar/18 - Dec/19</span>
+        <span class="period">{{ __('cv.Mar') }}/18 - {{ __('cv.Dec') }}/19</span>
       </div>
       <div>
         <div style="display: inline-block;">
-          Real Estate Social Network. (Ho Chi Minh)
+          {{ __('cv.Real Estate Social Network. (Ho Chi Minh)') }}
         </div>
         <div>
-          A start-up tried to solve messy real estate market for Vietnam by copying
+          {{ __('cv.A start-up tried to') }}
           <a href="https://www.zillow.com/" target="_blank" class="experience-link">
             Zillow.com
           </a>
-          and allowed users post real estate for free.
+          {{ __('cv.and allowing users') }}
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Designed system, designed database, chose technologies,
-            hired 3 developers, SEO, marketing, raise capital...
+            {{ __('cv.Designed system, designed database') }}
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            The app reached 10,000 users already after 3 months, but faced many
-            challenges, and I didn't sense it was going anywhere
-            so I shut it down.
+            {{ __('cv.The app reached 10,000 users') }}
           </div>
         </div>
       </div>
@@ -291,33 +311,32 @@
       <div class="experience-title" style="display: inline-block;">Real Estate Agent</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">Nov/16 - Jan/18</span>
+        <span class="period">{{ __('cv.Nov') }}/16 - {{ __('cv.Jan') }}/18</span>
       </div>
       <br>
       <a href="https://thenesthousing.com/" target="_blank" class="experience-link">
-        THE NEST REAL ESTATE CO.,LTD
+        The Nest Real Estate Co.,Ltd
       </a>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-        Real Estate Agent with main responsibility is to find houses/villas/apartments
-        for foreigners in Thao Dien Area
+        {{ __('cv.Real Estate Agent with main responsibility') }}
       </div>
     </div>
 
     <div class="card" style="margin-top: 15px; margin-bottom: 10px;">
-      <div class="experience-title" style="display: inline-block;">Civil Engineer</div>
+      <div class="experience-title" style="display: inline-block;">{{ __('cv.Civil Engineer') }}</div>
       <div style="float: right;">
         <img src="{{url('/images/calendar.svg')}}" class="calendar">
-        <span class="period">May/16 - Nov/16</span>
+        <span class="period">{{ __('cv.May') }}/16 - {{ __('cv.Nov') }}/16</span>
       </div>
       <div class="experience-point">
         <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
         <a href="https://coteccons.vn/en/" target="_blank" class="experience-link">
           Coteccons Group
         </a>
-        | Civil Engineer at
+        | {{ __('cv.Civil Engineer at') }}
         <a href="https://masterisehomes.com/masteri-thao-dien" target="_blank" class="experience-link">
-          Masteri Thao Dien project
+          {{ __('cv.Masteri Thao Dien project') }}
         </a>
       </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use App\Models\Tenet;
+use App\Models\User;
 use App\Service\VietstockCrawlPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,19 +17,23 @@ class StockController extends Controller
     public function indexHome()
     {
         /** $stocks \Illuminate\Database\Eloquent\Collection<int,Stock> */
-        $stocks = Stock::has('intrinsicValueCaculations')
-            ->where('status', 'Followed')
-            ->with([
-                'intrinsicValueCaculations',
-                'growthAssumptions',
-                'stockHasTenets' => function ($query) {
-                    $query->where('value', 1);
-                },
-                'financialMetrics' => function ($query) {
-                    $query->orderBy('year', 'desc');
-                },
-            ])
-            ->get();
+        $stocksQuery = Stock::has('intrinsicValueCaculations')
+            ->where('status', 'Followed');
+
+        if (User::isGuest()) {
+            $stocksQuery->whereIn('id', [37, 49, 58, 63, 64]);
+        }
+
+        $stocks = $stocksQuery->with([
+            'intrinsicValueCaculations',
+            'growthAssumptions',
+            'stockHasTenets' => function ($query) {
+                $query->where('value', 1);
+            },
+            'financialMetrics' => function ($query) {
+                $query->orderBy('year', 'desc');
+            },
+        ])->get();
 
         $totalTenets = Tenet::all()->count();
 
@@ -45,9 +50,12 @@ class StockController extends Controller
      */
     public function index()
     {
-        return DB::table('stocks')
-            ->orderByRaw("FIELD(status, 'Followed', 'Unfollowed', 'Unfinished')")
-            ->get();
+        $query = DB::table('stocks');
+        if (User::isGuest()) {
+            $query->whereIn('id', [37, 49, 58, 63, 64]);
+        }
+
+        return $query->orderByRaw("FIELD(status, 'Followed', 'Unfollowed', 'Unfinished')")->get();
     }
 
     /**
@@ -133,9 +141,13 @@ class StockController extends Controller
      */
     public function search()
     {
-        return Stock::where('status', '<>', 'Unfinished')
-            ->selectRaw("concat_ws(' | ', ticker_symbol, company_name) as title, id")
-            ->get();
+        $query = Stock::where('status', '<>', 'Unfinished')
+            ->selectRaw("concat_ws(' | ', ticker_symbol, company_name) as title, id");
+        if (User::isGuest()) {
+            $query->whereIn('id', [37, 49, 58, 63, 64]);
+        }
+
+        return $query->get();
     }
 
     public function refreshMarketPrice(Stock $stock, VietstockCrawlPrice $vietstockCrawlPrice): float

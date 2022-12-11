@@ -13,6 +13,7 @@ use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StockHasTenetController;
 use App\Http\Controllers\TenetController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,15 @@ Route::get('/cv', function () {
     return view('cv');
 });
 
-Route::get('/cv-stock', function () {
+Route::get('/cv-stock-en', function () {
+    App::setLocale('en');
+
+    return view('cv-stock');
+});
+
+Route::get('/cv-stock-vn', function () {
+    App::setLocale('vn');
+
     return view('cv-stock');
 });
 
