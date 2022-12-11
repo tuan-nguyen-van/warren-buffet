@@ -76,10 +76,14 @@ class StockController extends Controller
      *
      * @param \App\Models\Stock $stock
      *
-     * @return \App\Models\Stock
+     * @return \App\Models\Stock|false
      */
     public function show(Stock $stock)
     {
+        if (User::isGuest() && !in_array($stock->id, [37, 49, 58, 63, 64])) {
+            return false;
+        }
+
         return $stock;
     }
 
