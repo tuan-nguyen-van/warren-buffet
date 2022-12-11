@@ -16,7 +16,7 @@
     body {
       margin: 0px;
       padding: 0px;
-      font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial';
+      font-family: 'Helvetica', 'Arial';
       font-size: 15px;
       line-height: 1.45;
       background-color: rgb(190, 183, 183);
