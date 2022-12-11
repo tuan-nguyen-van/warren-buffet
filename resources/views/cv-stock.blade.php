@@ -180,20 +180,20 @@
         <div class="sub-div">
           <img src="{{url('/images/dot.svg')}}" class="dot">
           {{ __('cv.First visit') }}
-          <a href="https://tuannguyen.site/login" target="_blank">https://tuannguyen.site/login</a>
+          <a href="https://tuannguyen.site/login" target="_blank" class="experience-link">https://tuannguyen.site/login</a>
           {{ __('cv.then press "SIGN IN AS GUEST" button') }}
           <br>
           <img src="{{url('/images/dot.svg')}}" class="dot"> {{ __('cv.Then visit the following links') }}
           <br>
-          TLG: <a href="https://tuannguyen.site/edit-stock/49" target="_blank">https://tuannguyen.site/edit-stock/49</a>
+          TLG: <a href="https://tuannguyen.site/edit-stock/49" target="_blank" class="experience-link">https://tuannguyen.site/edit-stock/49</a>
           <br>
-          VNM: <a href="https://tuannguyen.site/edit-stock/58" target="_blank">https://tuannguyen.site/edit-stock/58</a>
+          VNM: <a href="https://tuannguyen.site/edit-stock/58" target="_blank" class="experience-link">https://tuannguyen.site/edit-stock/58</a>
           <br>
-          MSN: <a href="https://tuannguyen.site/edit-stock/64" target="_blank">https://tuannguyen.site/edit-stock/64</a>
+          MSN: <a href="https://tuannguyen.site/edit-stock/64" target="_blank" class="experience-link">https://tuannguyen.site/edit-stock/64</a>
           <br>
-          ACV: <a href="https://tuannguyen.site/edit-stock/37" target="_blank">https://tuannguyen.site/edit-stock/37</a>
+          ACV: <a href="https://tuannguyen.site/edit-stock/37" target="_blank" class="experience-link">https://tuannguyen.site/edit-stock/37</a>
           <br>
-          VCB: <a href="https://tuannguyen.site/edit-stock/63" target="_blank">https://tuannguyen.site/edit-stock/63</a>
+          VCB: <a href="https://tuannguyen.site/edit-stock/63" target="_blank" class="experience-link">https://tuannguyen.site/edit-stock/63</a>
           <br>
           <img src="{{url('/images/dot.svg')}}" class="dot">
           {{ __('cv.To fully analyze one stock I need from 1 to 4 weeks.') }}
@@ -213,7 +213,7 @@
           {{ __('cv.I already built an algorithm') }}
           <br>
           <img src="{{url('/images/dot.svg')}}" class="dot">
-          {{ __('cv.Step 6:') }} <a href="https://tuannguyen.site/" target="_blank"> {{ __('cv.home page') }}</a>.
+          {{ __('cv.Step 6:') }} <a href="https://tuannguyen.site/" target="_blank" class="experience-link"> {{ __('cv.home page') }}</a>.
           {{ __('cv.My software automatically summarizes') }}
           <br>
           <img src="{{url('/images/dot.svg')}}" class="dot">
