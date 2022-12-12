@@ -19,7 +19,7 @@ return [
     In fact, I\'m quite confident with my stock analyzing skills
     that over the long term (1-5 years) more than 90% of my decisions will be right, 
     and the average return from my stock investments will be from 17%-25% on average annually over the long term (5-10 years).
-    My goal now is to become top 1% of stock analyst next year and top 0.1% for the next 3 years.',
+    My goal now is to become top 1% of stock analysts next year and top 0.1% for the next 3 years.',
     'I have read multiple books' => 'I have read multiple books about the stock market:
     MONEY Master the Game, The Intelligent Investor, The Warren Buffett Way,
     The Snowball: Warren Buffett and the Business of Life, Margin of safety...',
