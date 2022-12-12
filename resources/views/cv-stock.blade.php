@@ -19,6 +19,7 @@
       font-family: 'Helvetica', 'Arial';
       font-size: 15px;
       line-height: 1.45;
+      letter-spacing: 0.2px;
       background-color: rgb(190, 183, 183);
       color: #0a3454;
     }
