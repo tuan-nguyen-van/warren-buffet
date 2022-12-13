@@ -324,6 +324,7 @@ const YearData = ({ years }: Props) => {
               <TableCell>Year</TableCell>
               <TableCell align="left">EPS</TableCell>
               <TableCell align="left">Money Dividend</TableCell>
+              <TableCell align="left">Retained Earning</TableCell>
               <TableCell align="left">Stock Dividend</TableCell>
               <TableCell align="left">Profit</TableCell>
               <TableCell align="left">ROEA</TableCell>
@@ -357,6 +358,9 @@ const YearData = ({ years }: Props) => {
                 <TableCell align="left">{tableData.year}</TableCell>
                 <TableCell align="left">{tableData.EPS}</TableCell>
                 <TableCell align="left">{tableData.money_dividend}</TableCell>
+                <TableCell align="left">
+                  {tableData.EPS - tableData.money_dividend}
+                </TableCell>
                 <TableCell align="left">
                   {Math.round(tableData.stock_dividend)}
                 </TableCell>

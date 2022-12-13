@@ -10,6 +10,7 @@ use App\Http\Controllers\GrowthAssumptionController;
 use App\Http\Controllers\GrowthRateController;
 use App\Http\Controllers\IntrinsicValueCalculationController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\RetainedEarningController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StockHasTenetController;
 use App\Http\Controllers\TenetController;
@@ -86,6 +87,10 @@ Route::middleware(['auth', 'auth.session', 'constrainGuest'])->group(function ()
     Route::get('/calculated-growth-rates/{stockId}', [GrowthRateController::class, 'show']);
 
     Route::post('/calculate-growth-rate-with-chosen-years', [GrowthRateController::class, 'calculateForChosenYears']);
+
+    Route::post('/calculate-retained-earning', [RetainedEarningController::class, 'calculateForChosenYears']);
+
+    Route::get('/retained-earning/{stockId}', [RetainedEarningController::class, 'show']);
 
     Route::post('/growth_assumptions', [GrowthAssumptionController::class, 'store']);
 

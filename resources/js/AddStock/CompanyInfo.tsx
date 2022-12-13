@@ -43,7 +43,7 @@ const CompanyInfo = () => {
           setCurYearStockDividend(
             parseFloat(data.current_year_stock_dividend) || 0
           );
-          setStockNote(data.stock_note);
+          setStockNote(data.stock_note ?? '');
           dispatch(changeDisableStep(['CompanyInfo', true]));
         }
       );

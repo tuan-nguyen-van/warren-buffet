@@ -68,6 +68,18 @@ declare namespace App {
     }
   }
 
+  namespace RetainedEarning {
+    export interface ChosenYears {
+      created_at: string;
+      id: number;
+      stock_id: number;
+      updated_at: string;
+      value: number;
+      year_from: string;
+      year_to: string;
+    }
+  }
+
   namespace AssumedOption {
     export interface GrowthData {
       id: number;

@@ -1,45 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Select from '@mui/material/Select';
+import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import Button from '@mui/material/Button';
 import CalculateIcon from '@mui/icons-material/Calculate';
-import { useParams } from 'react-router-dom';
-import { getAddStockState, changeDisableStep } from '../addStockSlice';
-import { useAppSelector, useAppDispatch } from '../../app/redux-hooks';
+import { useAppSelector } from '../../app/redux-hooks';
+import { getAddStockState } from '../addStockSlice';
 import applyAxios from '../../CustomHooks/applyAxios';
-import MenuItem from '@mui/material/MenuItem';
-import { toggleAlertOpen, changeAlertText } from '../../Error/errorAlertSlice';
-import MoneyRetained from './MoneyRetained';
+import { useParams } from 'react-router-dom';
 
 type Props = {
   years: number[];
 };
 
-const CalculateChosenYears = ({ years }: Props) => {
+const MoneyRetained = ({ years }: Props) => {
   const { editStockId } = useParams();
   const [fromYear, setFromYear] = useState('');
   const [toYear, setToYear] = useState('');
-  const [averageGrowthRate, setAverageGrowthRate] = useState('');
+  const [retainedMoney, setRetainedMoney] = useState('');
   const [fromYearErrorText, setFromYearErrorText] = useState('');
   const [toYearErrorText, setToYearErrorText] = useState('');
-  const dispatch = useAppDispatch();
   const { stockId, disableStep } = useAppSelector(getAddStockState);
 
   useEffect(() => {
     if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/chosen-growth-rates/' + editStockId },
+        { method: 'get', url: '/retained-earning/' + editStockId },
         function (response) {
-          const data: App.GrowthRate.ChosenData = response.data;
+          const data: App.RetainedEarning.ChosenYears = response.data;
           if (data) {
             setFromYear(data.year_from);
             setToYear(data.year_to);
-            setAverageGrowthRate(data.value + '%');
+            setRetainedMoney(data.value.toString());
           }
         }
       );
@@ -52,11 +48,12 @@ const CalculateChosenYears = ({ years }: Props) => {
     if (+fromYear >= parseInt(toYear)) {
       setFromYearErrorText('Choose From Year less than To Year');
     }
+
     if (!fromYearErrorText && !toYearErrorText) {
       applyAxios(
         {
           method: 'post',
-          url: '/calculate-growth-rate-with-chosen-years',
+          url: '/calculate-retained-earning',
           data: {
             stock_id: stockId,
             fromYear: fromYear,
@@ -64,27 +61,20 @@ const CalculateChosenYears = ({ years }: Props) => {
           },
         },
         function (response) {
-          setAverageGrowthRate(response.data + '%');
-          dispatch(changeDisableStep(['Assumption', false]));
+          setRetainedMoney(response.data);
         },
         function (error) {
-          if (error.response.status === 404) {
-            dispatch(toggleAlertOpen());
-            dispatch(changeAlertText(error.response.data));
-          }
+          console.log(error);
         }
       );
     }
   };
 
   return (
-    <Box component="div" sx={{ textAlign: 'center', mt: 5 }}>
-      <Typography variant="h5">
-        Decide chosen years to calculate growth rate for this stock.
-      </Typography>
-      <Typography variant="h5" sx={{ mt: 3 }}>
-        Average growth rate from {fromYear ? fromYear : '(year)'} to{' '}
-        {toYear ? toYear : '(year)'} : {averageGrowthRate}
+    <>
+      <Typography variant="h5" sx={{ mt: 5 }}>
+        Retained earning from {fromYear ? fromYear : '(year)'} to{' '}
+        {toYear ? toYear : '(year)'} : {retainedMoney}
       </Typography>
       <Grid container spacing={0} sx={{ textAlign: 'center', mt: 2 }}>
         <Grid item xs={0} lg={3} />
@@ -150,9 +140,8 @@ const CalculateChosenYears = ({ years }: Props) => {
         </Grid>
         <Grid item xs={0} lg={3} />
       </Grid>
-      <MoneyRetained years={years} />
-    </Box>
+    </>
   );
 };
 
-export default CalculateChosenYears;
+export default MoneyRetained;
