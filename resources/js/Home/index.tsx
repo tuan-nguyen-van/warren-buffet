@@ -236,13 +236,23 @@ const Home = () => {
                       <Grid item xs={12} md={6}>
                         <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
                           Next 10 years:{' '}
-                          {stock.growth_assumptions![0].next_10_years}%
+                          {
+                            stock.growth_assumptions!.filter(
+                              (assumption) => assumption.option == 1
+                            )[0].next_10_years
+                          }
+                          %{/* {stock.growth_assumptions![0].next_10_years}% */}
                         </Box>
                       </Grid>
                       <Grid item xs={12} md={6}>
                         <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
                           Next 10 - 20 years:{' '}
-                          {stock.growth_assumptions![0].next_10_to_20_years}%
+                          {
+                            stock.growth_assumptions!.filter(
+                              (assumption) => assumption.option == 1
+                            )[0].next_10_to_20_years
+                          }
+                          %
                         </Box>
                       </Grid>
                     </Grid>
@@ -253,13 +263,23 @@ const Home = () => {
                       <Grid item xs={12} md={6}>
                         <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
                           Next 10 years:{' '}
-                          {stock.growth_assumptions![1]?.next_10_years}%
+                          {
+                            stock.growth_assumptions!.filter(
+                              (assumption) => assumption.option == 2
+                            )[0]?.next_10_years
+                          }
+                          %
                         </Box>
                       </Grid>
                       <Grid item xs={12} md={6}>
                         <Box component="div" sx={{ textAlign: 'left', mt: 2 }}>
                           Next 10 - 20 years:{' '}
-                          {stock.growth_assumptions![1]?.next_10_to_20_years}%
+                          {
+                            stock.growth_assumptions!.filter(
+                              (assumption) => assumption.option == 2
+                            )[0]?.next_10_to_20_years
+                          }
+                          %
                         </Box>
                       </Grid>
                     </Grid>
