@@ -33,16 +33,18 @@ const Calculation = () => {
   };
 
   useEffect(() => {
-    if (editStockId && stockId) {
+    if (editStockId) {
       applyAxios(
-        { method: 'get', url: '/intrinsic-value-calculation/' + stockId },
+        { method: 'get', url: '/intrinsic-value-calculation/' + editStockId },
         function (response) {
           const responseData: Data = response.data;
-          setData(responseData);
+          if (responseData) {
+            setData(responseData);
+          }
         }
       );
     }
-  }, [editStockId, stockId]);
+  }, [editStockId]);
 
   return (
     <Box

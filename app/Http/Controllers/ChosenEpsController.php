@@ -21,7 +21,7 @@ class ChosenEpsController extends Controller
         return ChosenEps::create($request->all());
     }
 
-    public function show(int $stockId): ChosenEps
+    public function show(int $stockId): ?ChosenEps
     {
         return ChosenEps::where('stock_id', $stockId)->first();
     }

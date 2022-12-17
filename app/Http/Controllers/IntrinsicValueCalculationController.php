@@ -132,6 +132,11 @@ class IntrinsicValueCalculationController extends Controller
 
     public function show(int $stockId): mixed
     {
-        return json_decode(IntrinsicValueCalculation::where('stock_id', $stockId)->first()->calculation_step);
+        $intrinsicValueCalculation = IntrinsicValueCalculation::where('stock_id', $stockId)->first()?->calculation_step;
+        if ($intrinsicValueCalculation) {
+            return json_decode($intrinsicValueCalculation);
+        }
+
+        return null;
     }
 }
