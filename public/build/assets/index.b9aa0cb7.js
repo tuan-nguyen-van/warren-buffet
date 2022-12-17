@@ -36559,7 +36559,7 @@ const $Y = ({
       o &&
         be({ method: 'get', url: `/chosen-eps/${o}` }, function (c) {
           const u = c.data;
-          t(u.chosen_eps);
+          u && t(u.chosen_eps);
         });
     }, [o]);
     const l = () => {
@@ -36726,15 +36726,14 @@ const $Y = ({
     return (
       S.exports.useEffect(() => {
         a &&
-          r &&
           be(
-            { method: 'get', url: '/intrinsic-value-calculation/' + r },
+            { method: 'get', url: '/intrinsic-value-calculation/' + a },
             function (o) {
               const s = o.data;
-              t(s);
+              s && t(s);
             }
           );
-      }, [a, r]),
+      }, [a]),
       g.createElement(
         Ne,
         {
