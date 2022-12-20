@@ -431,7 +431,7 @@
               All devs could not build some tough features that I required, so I had to
               code them myself like this
               <a href="https://tuannguyen.site/image-upload" target="_blank" class="experience-link">
-                uploading image with re-order feature.
+                uploading image with re-order and re-size features.
               </a>
             </div>
             <div class="experience-point">
