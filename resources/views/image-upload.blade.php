@@ -280,7 +280,7 @@
   </style>
   <div align="center">
     <h1 style="margin: 80px;">Try to Upload some images by clicking "Add Photos" then 
-      try to move images by dragging or dropping or change select option.
+      try to move images by dragging or dropping or change select options.
     </h1>
   </div>
   <style>

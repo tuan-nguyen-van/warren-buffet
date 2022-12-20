@@ -172,10 +172,11 @@
       <div class="card">
         Founder of 2 tech start-ups. 5 years of experience as a software engineer.
         Write easy, optimized, maintainable code. Egoless, result oriented, can work under high
-        pressure. Hard-working (60 hrs/w), fast, passionate learner with curious, beginner mind set. Only need 20 days
-        to catch up with a brand-new language or framework.
+        pressure. Hard-working (70 h/w), fast, passionate learner with curious, beginner mind set.
+        Speak English like native American.
         <br>
-        Speak English like a native American
+        Only seeking a remote job, could arrange 5.5 to 8 h/d working with different timezone. 
+        Expected net income each month from 2000 USD to 2500 USD. 
       </div>
 
       <div class="card" style="margin-top: 15px;">
@@ -185,8 +186,8 @@
           Aug/22 - Ongoing
         </div>
         <div>
-          Side start-up to reduce the time from making buying or selling
-          decision from 1-2 weeks to 1 day with > 80% chance of being right.
+          Side start-up, monolith app to reduce the time from making buying or selling
+          decision from 1-2 weeks to 1 day with > 90% chance of being right.
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
             Like Google, automatically
@@ -194,7 +195,8 @@
             <a href="https://vietstock.vn/" target="_blank" class="experience-link">
               vietstock.vn
             </a>
-            and does the calculation.
+            and does the calculation for a bunch of stocks with Warren Buffet technique
+            to find out the cheapest stock.
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
@@ -244,7 +246,7 @@
         </div>
         <div>
           <a href="https://www.tally.co/acquire/uconx" target="_blank" class="experience-link">
-            Tally Group Australia acquired Webtools Australia (UCONX team, 20 members)
+            Tally Group Australia acquired Webtools Australia (was transferred here, UCONX team, 20 members)
           </a>
           <div>
             Multi-tenant app with microservice architecture for rent to other energy, gas retailers
@@ -348,22 +350,14 @@
             <a href="https://tuannguyen.site/banner/index.html" target="_blank" class="experience-link">
               Animation Advertising Banners
             </a>
-            and 
-            that work across multiple devices and sent by
-            <a href="https://www.salesforce.com/" target="_blank" class="experience-link">
-              Saleforce
-            </a>
-            or
-            <a href="https://mailchimp.com/" target="_blank" class="experience-link">
-              Mailchimp.
-            </a>
           </div>
           <div class="experience-point">
             <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
-            Converted designs and animation videos to 6
+            Converted designs to 6
             <a href="https://w6digital.com.au/albc22410w/build/1_discover/index.html" target="_blank"
               class="experience-link">
-              Applications
+              animation
+              applications
             </a>
             that deployed on
             <a href="https://www.veeva.com/" target="_blank" class="experience-link">
@@ -426,7 +420,7 @@
             <a href="https://www.zillow.com/" target="_blank" class="experience-link">
               Zillow.com
             </a>
-            and allowed users post real estate for free.
+            and allowed users to post real estate for free.
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               Designed system, designed database, chose technologies,
@@ -435,9 +429,9 @@
             <div class="experience-point">
               <img src="{{url('/images/hexagon.svg')}}" class="hexagon">
               All devs could not build some tough features that I required, so I had to
-              learn tech and code them myself like this
+              code them myself like this
               <a href="https://tuannguyen.site/image-upload" target="_blank" class="experience-link">
-                uploading image feature.
+                uploading image with re-order feature.
               </a>
             </div>
             <div class="experience-point">
@@ -469,10 +463,22 @@
       </div>
 
       <div class="card" style="margin-top: 15px; margin-bottom: 10px;">
+        <div class="experience-title" style="display: inline-block;">Learn web development for startup</div>
+        <div style="float: right;">
+          <img src="{{url('/images/calendar.svg')}}" class="calendar">
+          Jan/18 - Mar/18
+        </div>
+        <div>
+          Was taught how to code from middle school to university. So it's 
+          quite easy for me to learn web development.
+        </div>  
+      </div>
+
+      <div class="card" style="margin-top: 15px; margin-bottom: 10px;">
         <div class="experience-title" style="display: inline-block;">Real Estate Agent</div>
         <div style="float: right;">
           <img src="{{url('/images/calendar.svg')}}" class="calendar">
-          Nov/16 - Jan/18
+          Nov/16 - Dec/17
         </div>
         <br>
         <div class="experience-title" style="display: inline-block;">Civil Engineer</div>
@@ -537,53 +543,6 @@
       </div>
 
       <div id="right-text" style="background-color: #38464e;">
-        <div class="language-side-title">Front-End</div>
-        <div class="skill-div">
-          Languages:
-          <button class="skill-btn">Javascript</button>
-          <button class="skill-btn">Typescript</button>
-          <button class="skill-btn">HTML</button>
-          <button class="skill-btn">CSS</button>
-        </div>
-
-        <div class="skill-div">
-          Frameworks:
-          <button class="skill-btn">React</button>
-          <button class="skill-btn">Redux</button>
-          <button class="skill-btn">Nextjs</button>
-          <button class="skill-btn">Vue</button>
-          <button class="skill-btn">VueX</button>
-          <button class="skill-btn">Jquery</button>
-        </div>
-
-        <div class="skill-div">
-          Themes, Libraries:
-          <button class="skill-btn">Material UI</button>
-          <button class="skill-btn">Ant Design</button>
-          <button class="skill-btn">Bootstrap</button>
-          <button class="skill-btn">Tailwind</button>
-          <button class="skill-btn">Recharts</button>
-          <button class="skill-btn">Sass</button>
-          <button class="skill-btn">Lodash</button>
-          <button class="skill-btn">Webpack</button>
-          <button class="skill-btn">Gulp</button>
-          <button class="skill-btn">Vite</button>
-          <button class="skill-btn">Greensock Animation</button>
-        </div>
-
-        <div class="skill-div">
-          Testing:
-          <button class="skill-btn">Jest</button>
-        </div>
-
-        <div class="skill-div">
-          Code Checking:
-          <button class="skill-btn">Eslint</button>
-          <button class="skill-btn">Prettier</button>
-        </div>
-
-        <hr class="hr-skill" />
-
         <div class="language-side-title">Back-End</div>
         <div class="skill-div">
           Languages:
@@ -634,11 +593,58 @@
         </div>
 
         <hr class="hr-skill" />
+        <div class="language-side-title">Front-End</div>
+        <div class="skill-div">
+          Languages:
+          <button class="skill-btn">Javascript</button>
+          <button class="skill-btn">Typescript</button>
+          <button class="skill-btn">HTML</button>
+          <button class="skill-btn">CSS</button>
+        </div>
+
+        <div class="skill-div">
+          Frameworks:
+          <button class="skill-btn">React</button>
+          <button class="skill-btn">Redux</button>
+          <button class="skill-btn">Nextjs</button>
+          <button class="skill-btn">Vue</button>
+          <button class="skill-btn">VueX</button>
+          <button class="skill-btn">Jquery</button>
+        </div>
+
+        <div class="skill-div">
+          Themes, Libraries:
+          <button class="skill-btn">Material UI</button>
+          <button class="skill-btn">Ant Design</button>
+          <button class="skill-btn">Bootstrap</button>
+          <button class="skill-btn">Tailwind</button>
+          <button class="skill-btn">Recharts</button>
+          <button class="skill-btn">Sass</button>
+          <button class="skill-btn">Lodash</button>
+          <button class="skill-btn">Webpack</button>
+          <button class="skill-btn">Gulp</button>
+          <button class="skill-btn">Vite</button>
+          <button class="skill-btn">Greensock Animation</button>
+        </div>
+
+        <div class="skill-div">
+          Testing:
+          <button class="skill-btn">Jest</button>
+        </div>
+
+        <div class="skill-div">
+          Code Checking:
+          <button class="skill-btn">Eslint</button>
+          <button class="skill-btn">Prettier</button>
+        </div>
+
+        <hr class="hr-skill" />
         <div class="language-side-title">Other</div>
         <div class="skill-div">
           <button class="skill-btn">Git</button>
           <button class="skill-btn">Docker</button>
           <button class="skill-btn">AWS</button>
+          <button class="skill-btn">Regex</button>
           <button class="skill-btn">RESTful API</button>
           <button class="skill-btn">GraphQL</button>
           <button class="skill-btn">Ubuntu</button>
@@ -649,7 +655,6 @@
           <button class="skill-btn">Micro Service</button>
           <button class="skill-btn">System Design</button>
           <button class="skill-btn">Data Structures and Algorithms</button>
-          <button class="skill-btn">Regex</button>
           <button class="skill-btn">SEO</button>
           <button class="skill-btn">Jira</button>
           <button class="skill-btn">Slack</button>
@@ -657,6 +662,7 @@
         </div>
 
         <hr class="hr-skill" />
+
         <div class="language-side-title">Certificate</div>
         <div style="margin-left: 10px; margin-top: 5px; margin-bottom: 10px;">
           <a href="https://www.udemy.com/certificate/UC-6068576c-b569-4be4-b4a8-7f7213541324/" target="_blank"
