@@ -19,9 +19,6 @@ cp .env.example .env
 # generate a local app encryption key
 ./vendor/bin/sail artisan key:generate
 
-# Set up mysql enviroment
-Create new mysql database like inside .env file: name "warren_buffet" with user "root" password "password"
-
 # run migrations
 ./vendor/bin/sail artisan migrate
 
