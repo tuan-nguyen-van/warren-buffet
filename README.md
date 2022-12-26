@@ -28,6 +28,9 @@ Create new mysql database like inside .env file: name "warren_buffet" with user 
 # Install front-end depedencies
 npm install
 
+#Enable Git hooks
+npx husky install
+
 # Start vite development server for front-end
 npm run dev
 ```
