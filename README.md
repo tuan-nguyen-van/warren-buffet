@@ -17,13 +17,13 @@ cp .env.example .env
 ./vendor/bin/sail composer install
 
 # generate a local app encryption key
-./vendor/bin/sail php artisan key:generate
+./vendor/bin/sail artisan key:generate
 
 # Set up mysql enviroment
 Create new mysql database like inside .env file: name "warren_buffet" with user "root" password "password"
 
 # run migrations
-./vendor/bin/sail php artisan migrate
+./vendor/bin/sail artisan migrate
 
 # Install front-end depedencies
 npm install
